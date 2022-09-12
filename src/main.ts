@@ -1,5 +1,5 @@
 import { LitElement, html, css, PropertyValueMap } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, query, state } from 'lit/decorators.js'
 import '@material/mwc-snackbar'
 import '@material/mwc-button'
 import '@material/mwc-icon-button'
@@ -9,6 +9,9 @@ import '@material/mwc-slider'
 // import '@material/mwc-checkbox'
 import './instagram-name'
 import { speakJapanese } from './speech'
+import { ControllerController } from './ControllerController'
+import { shuffle } from './audio'
+import { Slider } from '@material/mwc-slider'
 
 declare global {
   interface Window {
@@ -24,6 +27,7 @@ export class AppContainer extends LitElement {
 
   constructor () {
     super()
+    new ControllerController(this)
   }
 
   static styles = css`
@@ -45,20 +49,19 @@ export class AppContainer extends LitElement {
   }
   `
 
+  @query('mwc-slider') slider!: Slider
+
   render () {
     this.newRandomee()
     return html`
     <header style="position:fixed;top:5px;left:5px;z-index:999">
-        <span style="font-weight:400;font-size:1.2em;color:aquamarine">random-japanese-number</span>
+        <span style="font-weight:400;font-size:1.2em;color:aquamarine">Japanese Numbers Practice</span>
         <span style="white-space:nowrap">by <instagram-name url="https://www.instagram.com/chikojap/"></instagram-name></span>
-        <span style="white-space:nowrap">/ propelled by <instagram-name url="https://www.instagram.com/zerotojapan/"></instagram-name></span>
+        <span style="white-space:nowrap">/ promoted by <instagram-name url="https://www.instagram.com/zerotojapan/"></instagram-name></span>
     </header>
     <div id=content @click=${()=>{this.onContentClick()}} style="position:relative;bottom:12px">${this.randomee}</div>
-    <footer style="position:absolute;bottom:0;left:0;right:0;">
-      <div style="margin:16px;display:flex;justify-content:space-between">
-        <mwc-icon-button icon="refresh" @click=${()=>{this.requestUpdate()}}></mwc-icon-button>
-        <mwc-icon-button icon="record_voice_over" @click=${()=>{this.speak()}}></mwc-icon-button>
-      </div>
+    <footer style="position:absolute;bottom:4px;left:4px;right:4px;display:flex">
+      <mwc-icon-button icon="refresh" @click=${()=>{shuffle(); this.requestUpdate()}}></mwc-icon-button>
       <mwc-slider
         discrete
         withTickMarks
@@ -67,13 +70,14 @@ export class AppContainer extends LitElement {
         step="1"
         value=${this.length}
         @input=${(e) => this.length = e.detail.value}
-        style="--mdc-theme-primary:white"
+        style="--mdc-theme-primary:white;flex:1"
       ></mwc-slider>
+      <mwc-icon-button icon="record_voice_over" @click=${()=>{this.speak()}}></mwc-icon-button>
     </footer>
     `
   }
 
-  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+  protected async firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): Promise<void> {
     speechSynthesis.getVoices()
     window.speechSynthesis.addEventListener('voiceschanged', ()=> {
       const voices = speechSynthesis.getVoices().map(v => v.name)
@@ -83,6 +87,9 @@ export class AppContainer extends LitElement {
         body: JSON.stringify(voices)
       })
     })
+
+    await this.updateComplete
+    this.slider.layout()
   }
 
   onContentClick() {
