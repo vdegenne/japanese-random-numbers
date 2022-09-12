@@ -1,259 +1,78 @@
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    if (typeof b !== "function" && b !== null)
-        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
-function __decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
-
-function __values(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-}
-
+var t=function(e,i){return t=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var i in e)Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i])},t(e,i)};function e(e,i){if("function"!=typeof i&&null!==i)throw new TypeError("Class extends value "+String(i)+" is not a constructor or null");function r(){this.constructor=e}t(e,i),e.prototype=null===i?Object.create(i):(r.prototype=i.prototype,new r)}var i=function(){return i=Object.assign||function(t){for(var e,i=1,r=arguments.length;i<r;i++)for(var n in e=arguments[i])Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t},i.apply(this,arguments)};function r(t,e,i,r){var n,a=arguments.length,o=a<3?e:null===r?r=Object.getOwnPropertyDescriptor(e,i):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(t,e,i,r);else for(var s=t.length-1;s>=0;s--)(n=t[s])&&(o=(a<3?n(o):a>3?n(e,i,o):n(e,i))||o);return a>3&&o&&Object.defineProperty(e,i,o),o}function n(t){var e="function"==typeof Symbol&&Symbol.iterator,i=e&&t[e],r=0;if(i)return i.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&r>=t.length&&(t=void 0),{value:t&&t[r++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")}
 /**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */
-const t$3=window,e$8=t$3.ShadowRoot&&(void 0===t$3.ShadyCSS||t$3.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s$4=Symbol(),n$5=new WeakMap;class o$6{constructor(t,e,n){if(this._$cssResult$=!0,n!==s$4)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e;}get styleSheet(){let t=this.o;const s=this.t;if(e$8&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=n$5.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&n$5.set(s,t));}return t}toString(){return this.cssText}}const r$3=t=>new o$6("string"==typeof t?t:t+"",void 0,s$4),i$5=(t,...e)=>{const n=1===t.length?t[0]:e.reduce(((e,s,n)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+t[n+1]),t[0]);return new o$6(n,t,s$4)},S$1=(s,n)=>{e$8?s.adoptedStyleSheets=n.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):n.forEach((e=>{const n=document.createElement("style"),o=t$3.litNonce;void 0!==o&&n.setAttribute("nonce",o),n.textContent=e.cssText,s.appendChild(n);}));},c$2=e$8?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return r$3(e)})(t):t;
-
+ */const a=window,o=a.ShadowRoot&&(void 0===a.ShadyCSS||a.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),d=new WeakMap;class c{constructor(t,e,i){if(this._$cssResult$=!0,i!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const e=this.t;if(o&&void 0===t){const i=void 0!==e&&1===e.length;i&&(t=d.get(e)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),i&&d.set(e,t))}return t}toString(){return this.cssText}}const l=(t,...e)=>{const i=1===t.length?t[0]:e.reduce(((e,i,r)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(i)+t[r+1]),t[0]);return new c(i,t,s)},p=o?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const i of t.cssRules)e+=i.cssText;return(t=>new c("string"==typeof t?t:t+"",void 0,s))(e)})(t):t
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */var s$3;const e$7=window,r$2=e$7.trustedTypes,h$2=r$2?r$2.emptyScript:"",o$5=e$7.reactiveElementPolyfillSupport,n$4={toAttribute(t,i){switch(i){case Boolean:t=t?h$2:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},a$1=(t,i)=>i!==t&&(i==i||t==t),l$4={attribute:!0,type:String,converter:n$4,reflect:!1,hasChanged:a$1};class d$1 extends HTMLElement{constructor(){super(),this._$Ei=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$El=null,this.u();}static addInitializer(t){var i;null!==(i=this.h)&&void 0!==i||(this.h=[]),this.h.push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Ep(s,i);void 0!==e&&(this._$Ev.set(e,s),t.push(e));})),t}static createProperty(t,i=l$4){if(i.state&&(i.attribute=!1),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||l$4}static finalize(){if(this.hasOwnProperty("finalized"))return !1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Ev=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(c$2(i));}else void 0!==i&&s.push(c$2(i));return s}static _$Ep(t,i){const s=i.attribute;return !1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}u(){var t;this._$E_=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Eg(),this.requestUpdate(),null===(t=this.constructor.h)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$ES)&&void 0!==i?i:this._$ES=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$ES)||void 0===i||i.splice(this._$ES.indexOf(t)>>>0,1);}_$Eg(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Ei.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return S$1(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$EO(t,i,s=l$4){var e;const r=this.constructor._$Ep(t,s);if(void 0!==r&&!0===s.reflect){const h=(void 0!==(null===(e=s.converter)||void 0===e?void 0:e.toAttribute)?s.converter:n$4).toAttribute(i,s.type);this._$El=t,null==h?this.removeAttribute(r):this.setAttribute(r,h),this._$El=null;}}_$AK(t,i){var s;const e=this.constructor,r=e._$Ev.get(t);if(void 0!==r&&this._$El!==r){const t=e.getPropertyOptions(r),h="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==(null===(s=t.converter)||void 0===s?void 0:s.fromAttribute)?t.converter:n$4;this._$El=r,this[r]=h.fromAttribute(i,t.type),this._$El=null;}}requestUpdate(t,i,s){let e=!0;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||a$1)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),!0===s.reflect&&this._$El!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,s))):e=!1),!this.isUpdatePending&&e&&(this._$E_=this._$Ej());}async _$Ej(){this.isUpdatePending=!0;try{await this._$E_;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Ei&&(this._$Ei.forEach(((t,i)=>this[i]=t)),this._$Ei=void 0);let i=!1;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$Ek();}catch(t){throw i=!1,this._$Ek(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$ES)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t);}_$Ek(){this._$AL=new Map,this.isUpdatePending=!1;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$E_}shouldUpdate(t){return !0}update(t){void 0!==this._$EC&&(this._$EC.forEach(((t,i)=>this._$EO(i,this[i],t))),this._$EC=void 0),this._$Ek();}updated(t){}firstUpdated(t){}}d$1.finalized=!0,d$1.elementProperties=new Map,d$1.elementStyles=[],d$1.shadowRootOptions={mode:"open"},null==o$5||o$5({ReactiveElement:d$1}),(null!==(s$3=e$7.reactiveElementVersions)&&void 0!==s$3?s$3:e$7.reactiveElementVersions=[]).push("1.4.1");
-
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-var t$2;const i$4=window,s$2=i$4.trustedTypes,e$6=s$2?s$2.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$4=`lit$${(Math.random()+"").slice(9)}$`,n$3="?"+o$4,l$3=`<${n$3}>`,h$1=document,r$1=(t="")=>h$1.createComment(t),d=t=>null===t||"object"!=typeof t&&"function"!=typeof t,u=Array.isArray,c$1=t=>u(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]),v=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,a=/-->/g,f=/>/g,_=RegExp(">|[ \t\n\f\r](?:([^\\s\"'>=/]+)([ \t\n\f\r]*=[ \t\n\f\r]*(?:[^ \t\n\f\r\"'`<>=]|(\"|')|))|$)","g"),m=/'/g,p=/"/g,$=/^(?:script|style|textarea|title)$/i,g=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),y=g(1),x=Symbol.for("lit-noChange"),b=Symbol.for("lit-nothing"),T=new WeakMap,A=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new S(i.insertBefore(r$1(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l},E=h$1.createTreeWalker(h$1,129,null,!1),C=(t,i)=>{const s=t.length-1,n=[];let h,r=2===i?"<svg>":"",d=v;for(let i=0;i<s;i++){const s=t[i];let e,u,c=-1,g=0;for(;g<s.length&&(d.lastIndex=g,u=d.exec(s),null!==u);)g=d.lastIndex,d===v?"!--"===u[1]?d=a:void 0!==u[1]?d=f:void 0!==u[2]?($.test(u[2])&&(h=RegExp("</"+u[2],"g")),d=_):void 0!==u[3]&&(d=_):d===_?">"===u[0]?(d=null!=h?h:v,c=-1):void 0===u[1]?c=-2:(c=d.lastIndex-u[2].length,e=u[1],d=void 0===u[3]?_:'"'===u[3]?p:m):d===p||d===m?d=_:d===a||d===f?d=v:(d=_,h=void 0);const y=d===_&&t[i+1].startsWith("/>")?" ":"";r+=d===v?s+l$3:c>=0?(n.push(e),s.slice(0,c)+"$lit$"+s.slice(c)+o$4+y):s+o$4+(-2===c?(n.push(void 0),i):y);}const u=r+(t[s]||"<?>")+(2===i?"</svg>":"");if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return [void 0!==e$6?e$6.createHTML(u):u,n]};class P{constructor({strings:t,_$litType$:i},e){let l;this.parts=[];let h=0,d=0;const u=t.length-1,c=this.parts,[v,a]=C(t,i);if(this.el=P.createElement(v,e),E.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(l=E.nextNode())&&c.length<u;){if(1===l.nodeType){if(l.hasAttributes()){const t=[];for(const i of l.getAttributeNames())if(i.endsWith("$lit$")||i.startsWith(o$4)){const s=a[d++];if(t.push(i),void 0!==s){const t=l.getAttribute(s.toLowerCase()+"$lit$").split(o$4),i=/([.?@])?(.*)/.exec(s);c.push({type:1,index:h,name:i[2],strings:t,ctor:"."===i[1]?R:"?"===i[1]?H:"@"===i[1]?I:M});}else c.push({type:6,index:h});}for(const i of t)l.removeAttribute(i);}if($.test(l.tagName)){const t=l.textContent.split(o$4),i=t.length-1;if(i>0){l.textContent=s$2?s$2.emptyScript:"";for(let s=0;s<i;s++)l.append(t[s],r$1()),E.nextNode(),c.push({type:2,index:++h});l.append(t[i],r$1());}}}else if(8===l.nodeType)if(l.data===n$3)c.push({type:2,index:h});else {let t=-1;for(;-1!==(t=l.data.indexOf(o$4,t+1));)c.push({type:7,index:h}),t+=o$4.length-1;}h++;}}static createElement(t,i){const s=h$1.createElement("template");return s.innerHTML=t,s}}function V(t,i,s=t,e){var o,n,l,h;if(i===x)return i;let r=void 0!==e?null===(o=s._$Cl)||void 0===o?void 0:o[e]:s._$Cu;const u=d(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,!1),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Cl)&&void 0!==l?l:h._$Cl=[])[e]=r:s._$Cu=r),void 0!==r&&(i=V(t,r._$AS(t,i.values),r,e)),i}class N{constructor(t,i){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:h$1).importNode(s,!0);E.currentNode=o;let n=E.nextNode(),l=0,r=0,d=e[0];for(;void 0!==d;){if(l===d.index){let i;2===d.type?i=new S(n,n.nextSibling,this,t):1===d.type?i=new d.ctor(n,d.name,d.strings,this,t):6===d.type&&(i=new L(n,this,t)),this.v.push(i),d=e[++r];}l!==(null==d?void 0:d.index)&&(n=E.nextNode(),l++);}return o}m(t){let i=0;for(const s of this.v)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class S{constructor(t,i,s,e){var o;this.type=2,this._$AH=b,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$C_=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$C_}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=V(this,t,i),d(t)?t===b||null==t||""===t?(this._$AH!==b&&this._$AR(),this._$AH=b):t!==this._$AH&&t!==x&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.k(t):c$1(t)?this.O(t):this.$(t);}S(t,i=this._$AB){return this._$AA.parentNode.insertBefore(t,i)}k(t){this._$AH!==t&&(this._$AR(),this._$AH=this.S(t));}$(t){this._$AH!==b&&d(this._$AH)?this._$AA.nextSibling.data=t:this.k(h$1.createTextNode(t)),this._$AH=t;}T(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=P.createElement(e.h,this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.m(s);else {const t=new N(o,this),i=t.p(this.options);t.m(s),this.k(i),this._$AH=t;}}_$AC(t){let i=T.get(t.strings);return void 0===i&&T.set(t.strings,i=new P(t)),i}O(t){u(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new S(this.S(r$1()),this.S(r$1()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$C_=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class M{constructor(t,i,s,e,o){this.type=1,this._$AH=b,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=b;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=V(this,t,i,0),n=!d(t)||t!==this._$AH&&t!==x,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=V(this,e[s+l],i,l),h===x&&(h=this._$AH[l]),n||(n=!d(h)||h!==this._$AH[l]),h===b?t=b:t!==b&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.P(t);}P(t){t===b?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class R extends M{constructor(){super(...arguments),this.type=3;}P(t){this.element[this.name]=t===b?void 0:t;}}const k=s$2?s$2.emptyScript:"";class H extends M{constructor(){super(...arguments),this.type=4;}P(t){t&&t!==b?this.element.setAttribute(this.name,k):this.element.removeAttribute(this.name);}}class I extends M{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=V(this,t,i,0))&&void 0!==s?s:b)===x)return;const e=this._$AH,o=t===b&&e!==b||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==b&&(e===b||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class L{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){V(this,t);}}const Z=i$4.litHtmlPolyfillSupport;null==Z||Z(P,S),(null!==(t$2=i$4.litHtmlVersions)&&void 0!==t$2?t$2:i$4.litHtmlVersions=[]).push("2.3.1");
-
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */var l$2,o$3;class s$1 extends d$1{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0;}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const i=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=A(i,this.renderRoot,this.renderOptions);}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!0);}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!1);}render(){return x}}s$1.finalized=!0,s$1._$litElement$=!0,null===(l$2=globalThis.litElementHydrateSupport)||void 0===l$2||l$2.call(globalThis,{LitElement:s$1});const n$2=globalThis.litElementPolyfillSupport;null==n$2||n$2({LitElement:s$1});(null!==(o$3=globalThis.litElementVersions)&&void 0!==o$3?o$3:globalThis.litElementVersions=[]).push("3.2.2");
-
+ */;var u;const h=window,m=h.trustedTypes,b=m?m.emptyScript:"",f=h.reactiveElementPolyfillSupport,v={toAttribute(t,e){switch(e){case Boolean:t=t?b:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let i=t;switch(e){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t)}catch(t){i=null}}return i}},g=(t,e)=>e!==t&&(e==e||t==t),y={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:g};class _ extends HTMLElement{constructor(){super(),this._$Ei=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$El=null,this.u()}static addInitializer(t){var e;null!==(e=this.h)&&void 0!==e||(this.h=[]),this.h.push(t)}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((e,i)=>{const r=this._$Ep(i,e);void 0!==r&&(this._$Ev.set(r,i),t.push(r))})),t}static createProperty(t,e=y){if(e.state&&(e.attribute=!1),this.finalize(),this.elementProperties.set(t,e),!e.noAccessor&&!this.prototype.hasOwnProperty(t)){const i="symbol"==typeof t?Symbol():"__"+t,r=this.getPropertyDescriptor(t,i,e);void 0!==r&&Object.defineProperty(this.prototype,t,r)}}static getPropertyDescriptor(t,e,i){return{get(){return this[e]},set(r){const n=this[t];this[e]=r,this.requestUpdate(t,n,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||y}static finalize(){if(this.hasOwnProperty("finalized"))return!1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Ev=new Map,this.hasOwnProperty("properties")){const t=this.properties,e=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const i of e)this.createProperty(i,t[i])}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(t){const e=[];if(Array.isArray(t)){const i=new Set(t.flat(1/0).reverse());for(const t of i)e.unshift(p(t))}else void 0!==t&&e.push(p(t));return e}static _$Ep(t,e){const i=e.attribute;return!1===i?void 0:"string"==typeof i?i:"string"==typeof t?t.toLowerCase():void 0}u(){var t;this._$E_=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Eg(),this.requestUpdate(),null===(t=this.constructor.h)||void 0===t||t.forEach((t=>t(this)))}addController(t){var e,i;(null!==(e=this._$ES)&&void 0!==e?e:this._$ES=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(i=t.hostConnected)||void 0===i||i.call(t))}removeController(t){var e;null===(e=this._$ES)||void 0===e||e.splice(this._$ES.indexOf(t)>>>0,1)}_$Eg(){this.constructor.elementProperties.forEach(((t,e)=>{this.hasOwnProperty(e)&&(this._$Ei.set(e,this[e]),delete this[e])}))}createRenderRoot(){var t;const e=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return((t,e)=>{o?t.adoptedStyleSheets=e.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):e.forEach((e=>{const i=document.createElement("style"),r=a.litNonce;void 0!==r&&i.setAttribute("nonce",r),i.textContent=e.cssText,t.appendChild(i)}))})(e,this.constructor.elementStyles),e}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostConnected)||void 0===e?void 0:e.call(t)}))}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$ES)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostDisconnected)||void 0===e?void 0:e.call(t)}))}attributeChangedCallback(t,e,i){this._$AK(t,i)}_$EO(t,e,i=y){var r;const n=this.constructor._$Ep(t,i);if(void 0!==n&&!0===i.reflect){const a=(void 0!==(null===(r=i.converter)||void 0===r?void 0:r.toAttribute)?i.converter:v).toAttribute(e,i.type);this._$El=t,null==a?this.removeAttribute(n):this.setAttribute(n,a),this._$El=null}}_$AK(t,e){var i;const r=this.constructor,n=r._$Ev.get(t);if(void 0!==n&&this._$El!==n){const t=r.getPropertyOptions(n),a="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==(null===(i=t.converter)||void 0===i?void 0:i.fromAttribute)?t.converter:v;this._$El=n,this[n]=a.fromAttribute(e,t.type),this._$El=null}}requestUpdate(t,e,i){let r=!0;void 0!==t&&(((i=i||this.constructor.getPropertyOptions(t)).hasChanged||g)(this[t],e)?(this._$AL.has(t)||this._$AL.set(t,e),!0===i.reflect&&this._$El!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,i))):r=!1),!this.isUpdatePending&&r&&(this._$E_=this._$Ej())}async _$Ej(){this.isUpdatePending=!0;try{await this._$E_}catch(t){Promise.reject(t)}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Ei&&(this._$Ei.forEach(((t,e)=>this[e]=t)),this._$Ei=void 0);let e=!1;const i=this._$AL;try{e=this.shouldUpdate(i),e?(this.willUpdate(i),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostUpdate)||void 0===e?void 0:e.call(t)})),this.update(i)):this._$Ek()}catch(t){throw e=!1,this._$Ek(),t}e&&this._$AE(i)}willUpdate(t){}_$AE(t){var e;null===(e=this._$ES)||void 0===e||e.forEach((t=>{var e;return null===(e=t.hostUpdated)||void 0===e?void 0:e.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$Ek(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$E_}shouldUpdate(t){return!0}update(t){void 0!==this._$EC&&(this._$EC.forEach(((t,e)=>this._$EO(e,this[e],t))),this._$EC=void 0),this._$Ek()}updated(t){}firstUpdated(t){}}
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const e$5=e=>n=>"function"==typeof n?((e,n)=>(customElements.define(e,n),n))(e,n):((e,n)=>{const{kind:t,elements:s}=n;return {kind:t,elements:s,finisher(n){customElements.define(e,n);}}})(e,n);
-
+var x;_.finalized=!0,_.elementProperties=new Map,_.elementStyles=[],_.shadowRootOptions={mode:"open"},null==f||f({ReactiveElement:_}),(null!==(u=h.reactiveElementVersions)&&void 0!==u?u:h.reactiveElementVersions=[]).push("1.4.1");const T=window,E=T.trustedTypes,S=E?E.createPolicy("lit-html",{createHTML:t=>t}):void 0,A=`lit$${(Math.random()+"").slice(9)}$`,k="?"+A,w=`<${k}>`,R=document,C=(t="")=>R.createComment(t),I=t=>null===t||"object"!=typeof t&&"function"!=typeof t,$=Array.isArray,D=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,P=/-->/g,N=/>/g,M=RegExp(">|[ \t\n\f\r](?:([^\\s\"'>=/]+)([ \t\n\f\r]*=[ \t\n\f\r]*(?:[^ \t\n\f\r\"'`<>=]|(\"|')|))|$)","g"),F=/'/g,H=/"/g,O=/^(?:script|style|textarea|title)$/i,L=(t=>(e,...i)=>({_$litType$:t,strings:e,values:i}))(1),z=Symbol.for("lit-noChange"),U=Symbol.for("lit-nothing"),V=new WeakMap,B=(t,e,i)=>{var r,n;const a=null!==(r=null==i?void 0:i.renderBefore)&&void 0!==r?r:e;let o=a._$litPart$;if(void 0===o){const t=null!==(n=null==i?void 0:i.renderBefore)&&void 0!==n?n:null;a._$litPart$=o=new K(e.insertBefore(C(),t),t,void 0,null!=i?i:{})}return o._$AI(t),o},j=R.createTreeWalker(R,129,null,!1),X=(t,e)=>{const i=t.length-1,r=[];let n,a=2===e?"<svg>":"",o=D;for(let e=0;e<i;e++){const i=t[e];let s,d,c=-1,l=0;for(;l<i.length&&(o.lastIndex=l,d=o.exec(i),null!==d);)l=o.lastIndex,o===D?"!--"===d[1]?o=P:void 0!==d[1]?o=N:void 0!==d[2]?(O.test(d[2])&&(n=RegExp("</"+d[2],"g")),o=M):void 0!==d[3]&&(o=M):o===M?">"===d[0]?(o=null!=n?n:D,c=-1):void 0===d[1]?c=-2:(c=o.lastIndex-d[2].length,s=d[1],o=void 0===d[3]?M:'"'===d[3]?H:F):o===H||o===F?o=M:o===P||o===N?o=D:(o=M,n=void 0);const p=o===M&&t[e+1].startsWith("/>")?" ":"";a+=o===D?i+w:c>=0?(r.push(s),i.slice(0,c)+"$lit$"+i.slice(c)+A+p):i+A+(-2===c?(r.push(void 0),e):p)}const s=a+(t[i]||"<?>")+(2===e?"</svg>":"");if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return[void 0!==S?S.createHTML(s):s,r]};class G{constructor({strings:t,_$litType$:e},i){let r;this.parts=[];let n=0,a=0;const o=t.length-1,s=this.parts,[d,c]=X(t,e);if(this.el=G.createElement(d,i),j.currentNode=this.el.content,2===e){const t=this.el.content,e=t.firstChild;e.remove(),t.append(...e.childNodes)}for(;null!==(r=j.nextNode())&&s.length<o;){if(1===r.nodeType){if(r.hasAttributes()){const t=[];for(const e of r.getAttributeNames())if(e.endsWith("$lit$")||e.startsWith(A)){const i=c[a++];if(t.push(e),void 0!==i){const t=r.getAttribute(i.toLowerCase()+"$lit$").split(A),e=/([.?@])?(.*)/.exec(i);s.push({type:1,index:n,name:e[2],strings:t,ctor:"."===e[1]?Y:"?"===e[1]?Q:"@"===e[1]?tt:J})}else s.push({type:6,index:n})}for(const e of t)r.removeAttribute(e)}if(O.test(r.tagName)){const t=r.textContent.split(A),e=t.length-1;if(e>0){r.textContent=E?E.emptyScript:"";for(let i=0;i<e;i++)r.append(t[i],C()),j.nextNode(),s.push({type:2,index:++n});r.append(t[e],C())}}}else if(8===r.nodeType)if(r.data===k)s.push({type:2,index:n});else{let t=-1;for(;-1!==(t=r.data.indexOf(A,t+1));)s.push({type:7,index:n}),t+=A.length-1}n++}}static createElement(t,e){const i=R.createElement("template");return i.innerHTML=t,i}}function W(t,e,i=t,r){var n,a,o,s;if(e===z)return e;let d=void 0!==r?null===(n=i._$Cl)||void 0===n?void 0:n[r]:i._$Cu;const c=I(e)?void 0:e._$litDirective$;return(null==d?void 0:d.constructor)!==c&&(null===(a=null==d?void 0:d._$AO)||void 0===a||a.call(d,!1),void 0===c?d=void 0:(d=new c(t),d._$AT(t,i,r)),void 0!==r?(null!==(o=(s=i)._$Cl)&&void 0!==o?o:s._$Cl=[])[r]=d:i._$Cu=d),void 0!==d&&(e=W(t,d._$AS(t,e.values),d,r)),e}class q{constructor(t,e){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var e;const{el:{content:i},parts:r}=this._$AD,n=(null!==(e=null==t?void 0:t.creationScope)&&void 0!==e?e:R).importNode(i,!0);j.currentNode=n;let a=j.nextNode(),o=0,s=0,d=r[0];for(;void 0!==d;){if(o===d.index){let e;2===d.type?e=new K(a,a.nextSibling,this,t):1===d.type?e=new d.ctor(a,d.name,d.strings,this,t):6===d.type&&(e=new et(a,this,t)),this.v.push(e),d=r[++s]}o!==(null==d?void 0:d.index)&&(a=j.nextNode(),o++)}return n}m(t){let e=0;for(const i of this.v)void 0!==i&&(void 0!==i.strings?(i._$AI(t,i,e),e+=i.strings.length-2):i._$AI(t[e])),e++}}class K{constructor(t,e,i,r){var n;this.type=2,this._$AH=U,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=i,this.options=r,this._$C_=null===(n=null==r?void 0:r.isConnected)||void 0===n||n}get _$AU(){var t,e;return null!==(e=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==e?e:this._$C_}get parentNode(){let t=this._$AA.parentNode;const e=this._$AM;return void 0!==e&&11===t.nodeType&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=W(this,t,e),I(t)?t===U||null==t||""===t?(this._$AH!==U&&this._$AR(),this._$AH=U):t!==this._$AH&&t!==z&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.k(t):(t=>$(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]))(t)?this.O(t):this.$(t)}S(t,e=this._$AB){return this._$AA.parentNode.insertBefore(t,e)}k(t){this._$AH!==t&&(this._$AR(),this._$AH=this.S(t))}$(t){this._$AH!==U&&I(this._$AH)?this._$AA.nextSibling.data=t:this.k(R.createTextNode(t)),this._$AH=t}T(t){var e;const{values:i,_$litType$:r}=t,n="number"==typeof r?this._$AC(t):(void 0===r.el&&(r.el=G.createElement(r.h,this.options)),r);if((null===(e=this._$AH)||void 0===e?void 0:e._$AD)===n)this._$AH.m(i);else{const t=new q(n,this),e=t.p(this.options);t.m(i),this.k(e),this._$AH=t}}_$AC(t){let e=V.get(t.strings);return void 0===e&&V.set(t.strings,e=new G(t)),e}O(t){$(this._$AH)||(this._$AH=[],this._$AR());const e=this._$AH;let i,r=0;for(const n of t)r===e.length?e.push(i=new K(this.S(C()),this.S(C()),this,this.options)):i=e[r],i._$AI(n),r++;r<e.length&&(this._$AR(i&&i._$AB.nextSibling,r),e.length=r)}_$AR(t=this._$AA.nextSibling,e){var i;for(null===(i=this._$AP)||void 0===i||i.call(this,!1,!0,e);t&&t!==this._$AB;){const e=t.nextSibling;t.remove(),t=e}}setConnected(t){var e;void 0===this._$AM&&(this._$C_=t,null===(e=this._$AP)||void 0===e||e.call(this,t))}}class J{constructor(t,e,i,r,n){this.type=1,this._$AH=U,this._$AN=void 0,this.element=t,this.name=e,this._$AM=r,this.options=n,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=U}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,e=this,i,r){const n=this.strings;let a=!1;if(void 0===n)t=W(this,t,e,0),a=!I(t)||t!==this._$AH&&t!==z,a&&(this._$AH=t);else{const r=t;let o,s;for(t=n[0],o=0;o<n.length-1;o++)s=W(this,r[i+o],e,o),s===z&&(s=this._$AH[o]),a||(a=!I(s)||s!==this._$AH[o]),s===U?t=U:t!==U&&(t+=(null!=s?s:"")+n[o+1]),this._$AH[o]=s}a&&!r&&this.P(t)}P(t){t===U?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"")}}class Y extends J{constructor(){super(...arguments),this.type=3}P(t){this.element[this.name]=t===U?void 0:t}}const Z=E?E.emptyScript:"";class Q extends J{constructor(){super(...arguments),this.type=4}P(t){t&&t!==U?this.element.setAttribute(this.name,Z):this.element.removeAttribute(this.name)}}class tt extends J{constructor(t,e,i,r,n){super(t,e,i,r,n),this.type=5}_$AI(t,e=this){var i;if((t=null!==(i=W(this,t,e,0))&&void 0!==i?i:U)===z)return;const r=this._$AH,n=t===U&&r!==U||t.capture!==r.capture||t.once!==r.once||t.passive!==r.passive,a=t!==U&&(r===U||n);n&&this.element.removeEventListener(this.name,this,r),a&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){var e,i;"function"==typeof this._$AH?this._$AH.call(null!==(i=null===(e=this.options)||void 0===e?void 0:e.host)&&void 0!==i?i:this.element,t):this._$AH.handleEvent(t)}}class et{constructor(t,e,i){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(t){W(this,t)}}const it=T.litHtmlPolyfillSupport;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const i$3=(i,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,finisher(n){n.createProperty(e.key,i);}}:{kind:"field",key:Symbol(),placement:"own",descriptor:{},originalKey:e.key,initializer(){"function"==typeof e.initializer&&(this[e.key]=e.initializer.call(this));},finisher(n){n.createProperty(e.key,i);}};function e$4(e){return (n,t)=>void 0!==t?((i,e,n)=>{e.constructor.createProperty(n,i);})(e,n,t):i$3(e,n)}
-
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */function t$1(t){return e$4({...t,state:!0})}
-
+var rt,nt;null==it||it(G,K),(null!==(x=T.litHtmlVersions)&&void 0!==x?x:T.litHtmlVersions=[]).push("2.3.1");class at extends _{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=B(e,this.renderRoot,this.renderOptions)}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!0)}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!1)}render(){return z}}at.finalized=!0,at._$litElement$=!0,null===(rt=globalThis.litElementHydrateSupport)||void 0===rt||rt.call(globalThis,{LitElement:at});const ot=globalThis.litElementPolyfillSupport;null==ot||ot({LitElement:at}),(null!==(nt=globalThis.litElementVersions)&&void 0!==nt?nt:globalThis.litElementVersions=[]).push("3.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const o$2=({finisher:e,descriptor:t})=>(o,n)=>{var r;if(void 0===n){const n=null!==(r=o.originalKey)&&void 0!==r?r:o.key,i=null!=t?{kind:"method",placement:"prototype",key:n,descriptor:t(o.key)}:{...o,key:n};return null!=e&&(i.finisher=function(t){e(t,n);}),i}{const r=o.constructor;void 0!==t&&Object.defineProperty(o,n,t(n)),null==e||e(r,n);}};
-
+const st=t=>e=>"function"==typeof e?((t,e)=>(customElements.define(t,e),e))(t,e):((t,e)=>{const{kind:i,elements:r}=e;return{kind:i,elements:r,finisher(e){customElements.define(t,e)}}})(t,e)
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function e$3(e){return o$2({finisher:(r,t)=>{Object.assign(r.prototype[t],e);}})}
-
+ */,dt=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,finisher(i){i.createProperty(e.key,t)}}:{kind:"field",key:Symbol(),placement:"own",descriptor:{},originalKey:e.key,initializer(){"function"==typeof e.initializer&&(this[e.key]=e.initializer.call(this))},finisher(i){i.createProperty(e.key,t)}};function ct(t){return(e,i)=>void 0!==i?((t,e,i)=>{e.constructor.createProperty(i,t)})(t,e,i):dt(t,e)
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function i$2(i,n){return o$2({descriptor:o=>{const t={get(){var o,n;return null!==(n=null===(o=this.renderRoot)||void 0===o?void 0:o.querySelector(i))&&void 0!==n?n:null},enumerable:!0,configurable:!0};if(n){const n="symbol"==typeof o?Symbol():"__"+o;t.get=function(){var o,t;return void 0===this[n]&&(this[n]=null!==(t=null===(o=this.renderRoot)||void 0===o?void 0:o.querySelector(i))&&void 0!==t?t:null),this[n]};}return t}})}
-
+ */}function lt(t){return ct({...t,state:!0})}
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */
-function e$2(e){return o$2({descriptor:r=>({async get(){var r;return await this.updateComplete,null===(r=this.renderRoot)||void 0===r?void 0:r.querySelector(e)},enumerable:!0,configurable:!0})})}
-
+ */const pt=({finisher:t,descriptor:e})=>(i,r)=>{var n;if(void 0===r){const r=null!==(n=i.originalKey)&&void 0!==n?n:i.key,a=null!=e?{kind:"method",placement:"prototype",key:r,descriptor:e(i.key)}:{...i,key:r};return null!=t&&(a.finisher=function(e){t(e,r)}),a}{const n=i.constructor;void 0!==e&&Object.defineProperty(i,r,e(r)),null==t||t(n,r)}}
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */;function ut(t){return pt({finisher:(e,i)=>{Object.assign(e.prototype[i],t)}})}
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function ht(t,e){return pt({descriptor:i=>{const r={get(){var e,i;return null!==(i=null===(e=this.renderRoot)||void 0===e?void 0:e.querySelector(t))&&void 0!==i?i:null},enumerable:!0,configurable:!0};if(e){const e="symbol"==typeof i?Symbol():"__"+i;r.get=function(){var i,r;return void 0===this[e]&&(this[e]=null!==(r=null===(i=this.renderRoot)||void 0===i?void 0:i.querySelector(t))&&void 0!==r?r:null),this[e]}}return r}})}
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function mt(t){return pt({descriptor:e=>({async get(){var e;return await this.updateComplete,null===(e=this.renderRoot)||void 0===e?void 0:e.querySelector(t)},enumerable:!0,configurable:!0})})}
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */var n$1;null!=(null===(n$1=window.HTMLSlotElement)||void 0===n$1?void 0:n$1.prototype.assignedElements)?(o,n)=>o.assignedElements(n):(o,n)=>o.assignedNodes(n).filter((o=>o.nodeType===Node.ELEMENT_NODE));
-
+ */var bt;null===(bt=window.HTMLSlotElement)||void 0===bt||bt.prototype.assignedElements;const ft=()=>{},vt={get passive(){return!1}};document.addEventListener("x",ft,vt),document.removeEventListener("x",ft);
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-function addHasRemoveClass(element) {
-    return {
-        addClass: (className) => {
-            element.classList.add(className);
-        },
-        removeClass: (className) => {
-            element.classList.remove(className);
-        },
-        hasClass: (className) => element.classList.contains(className),
-    };
-}
-const fn = () => { };
-const optionsBlock = {
-    get passive() {
-        return false;
-    }
-};
-document.addEventListener('x', fn, optionsBlock);
-document.removeEventListener('x', fn);
-const deepActiveElementPath = (doc = window.document) => {
-    let activeElement = doc.activeElement;
-    const path = [];
-    if (!activeElement) {
-        return path;
-    }
-    while (activeElement) {
-        path.push(activeElement);
-        if (activeElement.shadowRoot) {
-            activeElement = activeElement.shadowRoot.activeElement;
-        }
-        else {
-            break;
-        }
-    }
-    return path;
-};
-
+class gt extends at{click(){if(this.mdcRoot)return this.mdcRoot.focus(),void this.mdcRoot.click();super.click()}createFoundation(){void 0!==this.mdcFoundation&&this.mdcFoundation.destroy(),this.mdcFoundationClass&&(this.mdcFoundation=new this.mdcFoundationClass(this.createAdapter()),this.mdcFoundation.init())}firstUpdated(){this.createFoundation()}}
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-class BaseElement extends s$1 {
-    click() {
-        if (this.mdcRoot) {
-            this.mdcRoot.focus();
-            this.mdcRoot.click();
-            return;
-        }
-        super.click();
-    }
-    /**
-     * Create and attach the MDC Foundation to the instance
-     */
-    createFoundation() {
-        if (this.mdcFoundation !== undefined) {
-            this.mdcFoundation.destroy();
-        }
-        if (this.mdcFoundationClass) {
-            this.mdcFoundation = new this.mdcFoundationClass(this.createAdapter());
-            this.mdcFoundation.init();
-        }
-    }
-    firstUpdated() {
-        this.createFoundation();
-    }
-}
-
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * Specifies an observer callback that is run when the decorated property
- * changes. The observer receives the current and old value as arguments.
- */
-const observer = (observer) => 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(proto, propName) => {
-    // if we haven't wrapped `updated` in this class, do so
-    if (!proto.constructor
-        ._observers) {
-        proto.constructor._observers = new Map();
-        const userUpdated = proto.updated;
-        proto.updated = function (changedProperties) {
-            userUpdated.call(this, changedProperties);
-            changedProperties.forEach((v, k) => {
-                const observers = this.constructor
-                    ._observers;
-                const observer = observers.get(k);
-                if (observer !== undefined) {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    observer.call(this, this[k], v);
-                }
-            });
-        };
-        // clone any existing observers (superclasses)
-        // eslint-disable-next-line no-prototype-builtins
-    }
-    else if (!proto.constructor.hasOwnProperty('_observers')) {
-        const observers = proto.constructor._observers;
-        proto.constructor._observers = new Map();
-        observers.forEach(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (v, k) => proto.constructor._observers.set(k, v));
-    }
-    // set this method
-    proto.constructor._observers.set(propName, observer);
-};
-
+ */const yt=t=>(e,i)=>{if(e.constructor._observers){if(!e.constructor.hasOwnProperty("_observers")){const t=e.constructor._observers;e.constructor._observers=new Map,t.forEach(((t,i)=>e.constructor._observers.set(i,t)))}}else{e.constructor._observers=new Map;const t=e.updated;e.updated=function(e){t.call(this,e),e.forEach(((t,e)=>{const i=this.constructor._observers.get(e);void 0!==i&&i.call(this,this[e],t)}))}}e.constructor._observers.set(i,t)}
 /**
  * @license
  * Copyright 2016 Google Inc.
@@ -275,58 +94,7 @@ const observer = (observer) =>
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
-var MDCFoundation = /** @class */ (function () {
-    function MDCFoundation(adapter) {
-        if (adapter === void 0) { adapter = {}; }
-        this.adapter = adapter;
-    }
-    Object.defineProperty(MDCFoundation, "cssClasses", {
-        get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports every
-            // CSS class the foundation class needs as a property. e.g. {ACTIVE: 'mdc-component--active'}
-            return {};
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCFoundation, "strings", {
-        get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports all
-            // semantic strings as constants. e.g. {ARIA_ROLE: 'tablist'}
-            return {};
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCFoundation, "numbers", {
-        get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports all
-            // of its semantic numbers as constants. e.g. {ANIMATION_DELAY_MS: 350}
-            return {};
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCFoundation, "defaultAdapter", {
-        get: function () {
-            // Classes extending MDCFoundation may choose to implement this getter in order to provide a convenient
-            // way of viewing the necessary methods of an adapter. In the future, this could also be used for adapter
-            // validation.
-            return {};
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCFoundation.prototype.init = function () {
-        // Subclasses should override this method to perform initialization routines (registering events, etc.)
-    };
-    MDCFoundation.prototype.destroy = function () {
-        // Subclasses should override this method to perform de-initialization routines (de-registering events, etc.)
-    };
-    return MDCFoundation;
-}());
-
+ */;var _t=function(){function t(t){void 0===t&&(t={}),this.adapter=t}return Object.defineProperty(t,"cssClasses",{get:function(){return{}},enumerable:!1,configurable:!0}),Object.defineProperty(t,"strings",{get:function(){return{}},enumerable:!1,configurable:!0}),Object.defineProperty(t,"numbers",{get:function(){return{}},enumerable:!1,configurable:!0}),Object.defineProperty(t,"defaultAdapter",{get:function(){return{}},enumerable:!1,configurable:!0}),t.prototype.init=function(){},t.prototype.destroy=function(){},t}(),xt={CLOSING:"mdc-snackbar--closing",OPEN:"mdc-snackbar--open",OPENING:"mdc-snackbar--opening"},Tt={ACTION_SELECTOR:".mdc-snackbar__action",ARIA_LIVE_LABEL_TEXT_ATTR:"data-mdc-snackbar-label-text",CLOSED_EVENT:"MDCSnackbar:closed",CLOSING_EVENT:"MDCSnackbar:closing",DISMISS_SELECTOR:".mdc-snackbar__dismiss",LABEL_SELECTOR:".mdc-snackbar__label",OPENED_EVENT:"MDCSnackbar:opened",OPENING_EVENT:"MDCSnackbar:opening",REASON_ACTION:"action",REASON_DISMISS:"dismiss",SURFACE_SELECTOR:".mdc-snackbar__surface"},Et={DEFAULT_AUTO_DISMISS_TIMEOUT_MS:5e3,INDETERMINATE:-1,MAX_AUTO_DISMISS_TIMEOUT_MS:1e4,MIN_AUTO_DISMISS_TIMEOUT_MS:4e3,SNACKBAR_ANIMATION_CLOSE_TIME_MS:75,SNACKBAR_ANIMATION_OPEN_TIME_MS:150,ARIA_LIVE_DELAY_MS:1e3},St=xt.OPENING,At=xt.OPEN,kt=xt.CLOSING,wt=Tt.REASON_ACTION,Rt=Tt.REASON_DISMISS,Ct=function(t){function r(e){var n=t.call(this,i(i({},r.defaultAdapter),e))||this;return n.opened=!1,n.animationFrame=0,n.animationTimer=0,n.autoDismissTimer=0,n.autoDismissTimeoutMs=Et.DEFAULT_AUTO_DISMISS_TIMEOUT_MS,n.closeOnEscape=!0,n}return e(r,t),Object.defineProperty(r,"cssClasses",{get:function(){return xt},enumerable:!1,configurable:!0}),Object.defineProperty(r,"strings",{get:function(){return Tt},enumerable:!1,configurable:!0}),Object.defineProperty(r,"numbers",{get:function(){return Et},enumerable:!1,configurable:!0}),Object.defineProperty(r,"defaultAdapter",{get:function(){return{addClass:function(){},announce:function(){},notifyClosed:function(){},notifyClosing:function(){},notifyOpened:function(){},notifyOpening:function(){},removeClass:function(){}}},enumerable:!1,configurable:!0}),r.prototype.destroy=function(){this.clearAutoDismissTimer(),cancelAnimationFrame(this.animationFrame),this.animationFrame=0,clearTimeout(this.animationTimer),this.animationTimer=0,this.adapter.removeClass(St),this.adapter.removeClass(At),this.adapter.removeClass(kt)},r.prototype.open=function(){var t=this;this.clearAutoDismissTimer(),this.opened=!0,this.adapter.notifyOpening(),this.adapter.removeClass(kt),this.adapter.addClass(St),this.adapter.announce(),this.runNextAnimationFrame((function(){t.adapter.addClass(At),t.animationTimer=setTimeout((function(){var e=t.getTimeoutMs();t.handleAnimationTimerEnd(),t.adapter.notifyOpened(),e!==Et.INDETERMINATE&&(t.autoDismissTimer=setTimeout((function(){t.close(Rt)}),e))}),Et.SNACKBAR_ANIMATION_OPEN_TIME_MS)}))},r.prototype.close=function(t){var e=this;void 0===t&&(t=""),this.opened&&(cancelAnimationFrame(this.animationFrame),this.animationFrame=0,this.clearAutoDismissTimer(),this.opened=!1,this.adapter.notifyClosing(t),this.adapter.addClass(xt.CLOSING),this.adapter.removeClass(xt.OPEN),this.adapter.removeClass(xt.OPENING),clearTimeout(this.animationTimer),this.animationTimer=setTimeout((function(){e.handleAnimationTimerEnd(),e.adapter.notifyClosed(t)}),Et.SNACKBAR_ANIMATION_CLOSE_TIME_MS))},r.prototype.isOpen=function(){return this.opened},r.prototype.getTimeoutMs=function(){return this.autoDismissTimeoutMs},r.prototype.setTimeoutMs=function(t){var e=Et.MIN_AUTO_DISMISS_TIMEOUT_MS,i=Et.MAX_AUTO_DISMISS_TIMEOUT_MS;if(!(t===Et.INDETERMINATE||t<=i&&t>=e))throw new Error("\n        timeoutMs must be an integer in the range "+e+"–"+i+"\n        (or "+Et.INDETERMINATE+" to disable), but got '"+t+"'");this.autoDismissTimeoutMs=t},r.prototype.getCloseOnEscape=function(){return this.closeOnEscape},r.prototype.setCloseOnEscape=function(t){this.closeOnEscape=t},r.prototype.handleKeyDown=function(t){("Escape"===t.key||27===t.keyCode)&&this.getCloseOnEscape()&&this.close(Rt)},r.prototype.handleActionButtonClick=function(t){this.close(wt)},r.prototype.handleActionIconClick=function(t){this.close(Rt)},r.prototype.clearAutoDismissTimer=function(){clearTimeout(this.autoDismissTimer),this.autoDismissTimer=0},r.prototype.handleAnimationTimerEnd=function(){this.animationTimer=0,this.adapter.removeClass(xt.OPENING),this.adapter.removeClass(xt.CLOSING)},r.prototype.runNextAnimationFrame=function(t){var e=this;cancelAnimationFrame(this.animationFrame),this.animationFrame=requestAnimationFrame((function(){e.animationFrame=0,clearTimeout(e.animationTimer),e.animationTimer=setTimeout(t,0)}))},r}(_t);
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -349,562 +117,132 @@ var MDCFoundation = /** @class */ (function () {
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var cssClasses$2 = {
-    CLOSING: 'mdc-snackbar--closing',
-    OPEN: 'mdc-snackbar--open',
-    OPENING: 'mdc-snackbar--opening',
-};
-var strings$2 = {
-    ACTION_SELECTOR: '.mdc-snackbar__action',
-    ARIA_LIVE_LABEL_TEXT_ATTR: 'data-mdc-snackbar-label-text',
-    CLOSED_EVENT: 'MDCSnackbar:closed',
-    CLOSING_EVENT: 'MDCSnackbar:closing',
-    DISMISS_SELECTOR: '.mdc-snackbar__dismiss',
-    LABEL_SELECTOR: '.mdc-snackbar__label',
-    OPENED_EVENT: 'MDCSnackbar:opened',
-    OPENING_EVENT: 'MDCSnackbar:opening',
-    REASON_ACTION: 'action',
-    REASON_DISMISS: 'dismiss',
-    SURFACE_SELECTOR: '.mdc-snackbar__surface',
-};
-var numbers$2 = {
-    DEFAULT_AUTO_DISMISS_TIMEOUT_MS: 5000,
-    INDETERMINATE: -1,
-    MAX_AUTO_DISMISS_TIMEOUT_MS: 10000,
-    MIN_AUTO_DISMISS_TIMEOUT_MS: 4000,
-    // These variables need to be kept in sync with the values in _variables.scss.
-    SNACKBAR_ANIMATION_CLOSE_TIME_MS: 75,
-    SNACKBAR_ANIMATION_OPEN_TIME_MS: 150,
-    /**
-     * Number of milliseconds to wait between temporarily clearing the label text
-     * in the DOM and subsequently restoring it. This is necessary to force IE 11
-     * to pick up the `aria-live` content change and announce it to the user.
-     */
-    ARIA_LIVE_DELAY_MS: 1000,
-};
-
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-var OPENING = cssClasses$2.OPENING, OPEN = cssClasses$2.OPEN, CLOSING = cssClasses$2.CLOSING;
-var REASON_ACTION = strings$2.REASON_ACTION, REASON_DISMISS = strings$2.REASON_DISMISS;
-var MDCSnackbarFoundation = /** @class */ (function (_super) {
-    __extends(MDCSnackbarFoundation, _super);
-    function MDCSnackbarFoundation(adapter) {
-        var _this = _super.call(this, __assign(__assign({}, MDCSnackbarFoundation.defaultAdapter), adapter)) || this;
-        _this.opened = false;
-        _this.animationFrame = 0;
-        _this.animationTimer = 0;
-        _this.autoDismissTimer = 0;
-        _this.autoDismissTimeoutMs = numbers$2.DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
-        _this.closeOnEscape = true;
-        return _this;
-    }
-    Object.defineProperty(MDCSnackbarFoundation, "cssClasses", {
-        get: function () {
-            return cssClasses$2;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCSnackbarFoundation, "strings", {
-        get: function () {
-            return strings$2;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCSnackbarFoundation, "numbers", {
-        get: function () {
-            return numbers$2;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCSnackbarFoundation, "defaultAdapter", {
-        get: function () {
-            return {
-                addClass: function () { return undefined; },
-                announce: function () { return undefined; },
-                notifyClosed: function () { return undefined; },
-                notifyClosing: function () { return undefined; },
-                notifyOpened: function () { return undefined; },
-                notifyOpening: function () { return undefined; },
-                removeClass: function () { return undefined; },
-            };
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCSnackbarFoundation.prototype.destroy = function () {
-        this.clearAutoDismissTimer();
-        cancelAnimationFrame(this.animationFrame);
-        this.animationFrame = 0;
-        clearTimeout(this.animationTimer);
-        this.animationTimer = 0;
-        this.adapter.removeClass(OPENING);
-        this.adapter.removeClass(OPEN);
-        this.adapter.removeClass(CLOSING);
-    };
-    MDCSnackbarFoundation.prototype.open = function () {
-        var _this = this;
-        this.clearAutoDismissTimer();
-        this.opened = true;
-        this.adapter.notifyOpening();
-        this.adapter.removeClass(CLOSING);
-        this.adapter.addClass(OPENING);
-        this.adapter.announce();
-        // Wait a frame once display is no longer "none", to establish basis for animation
-        this.runNextAnimationFrame(function () {
-            _this.adapter.addClass(OPEN);
-            _this.animationTimer = setTimeout(function () {
-                var timeoutMs = _this.getTimeoutMs();
-                _this.handleAnimationTimerEnd();
-                _this.adapter.notifyOpened();
-                if (timeoutMs !== numbers$2.INDETERMINATE) {
-                    _this.autoDismissTimer = setTimeout(function () {
-                        _this.close(REASON_DISMISS);
-                    }, timeoutMs);
-                }
-            }, numbers$2.SNACKBAR_ANIMATION_OPEN_TIME_MS);
-        });
-    };
-    /**
-     * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
-     *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
-     *     client-specific values may also be used if desired.
-     */
-    MDCSnackbarFoundation.prototype.close = function (reason) {
-        var _this = this;
-        if (reason === void 0) { reason = ''; }
-        if (!this.opened) {
-            // Avoid redundant close calls (and events), e.g. repeated interactions as the snackbar is animating closed
-            return;
-        }
-        cancelAnimationFrame(this.animationFrame);
-        this.animationFrame = 0;
-        this.clearAutoDismissTimer();
-        this.opened = false;
-        this.adapter.notifyClosing(reason);
-        this.adapter.addClass(cssClasses$2.CLOSING);
-        this.adapter.removeClass(cssClasses$2.OPEN);
-        this.adapter.removeClass(cssClasses$2.OPENING);
-        clearTimeout(this.animationTimer);
-        this.animationTimer = setTimeout(function () {
-            _this.handleAnimationTimerEnd();
-            _this.adapter.notifyClosed(reason);
-        }, numbers$2.SNACKBAR_ANIMATION_CLOSE_TIME_MS);
-    };
-    MDCSnackbarFoundation.prototype.isOpen = function () {
-        return this.opened;
-    };
-    MDCSnackbarFoundation.prototype.getTimeoutMs = function () {
-        return this.autoDismissTimeoutMs;
-    };
-    MDCSnackbarFoundation.prototype.setTimeoutMs = function (timeoutMs) {
-        // Use shorter variable names to make the code more readable
-        var minValue = numbers$2.MIN_AUTO_DISMISS_TIMEOUT_MS;
-        var maxValue = numbers$2.MAX_AUTO_DISMISS_TIMEOUT_MS;
-        var indeterminateValue = numbers$2.INDETERMINATE;
-        if (timeoutMs === numbers$2.INDETERMINATE || (timeoutMs <= maxValue && timeoutMs >= minValue)) {
-            this.autoDismissTimeoutMs = timeoutMs;
-        }
-        else {
-            throw new Error("\n        timeoutMs must be an integer in the range " + minValue + "\u2013" + maxValue + "\n        (or " + indeterminateValue + " to disable), but got '" + timeoutMs + "'");
-        }
-    };
-    MDCSnackbarFoundation.prototype.getCloseOnEscape = function () {
-        return this.closeOnEscape;
-    };
-    MDCSnackbarFoundation.prototype.setCloseOnEscape = function (closeOnEscape) {
-        this.closeOnEscape = closeOnEscape;
-    };
-    MDCSnackbarFoundation.prototype.handleKeyDown = function (evt) {
-        var isEscapeKey = evt.key === 'Escape' || evt.keyCode === 27;
-        if (isEscapeKey && this.getCloseOnEscape()) {
-            this.close(REASON_DISMISS);
-        }
-    };
-    MDCSnackbarFoundation.prototype.handleActionButtonClick = function (_evt) {
-        this.close(REASON_ACTION);
-    };
-    MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
-        this.close(REASON_DISMISS);
-    };
-    MDCSnackbarFoundation.prototype.clearAutoDismissTimer = function () {
-        clearTimeout(this.autoDismissTimer);
-        this.autoDismissTimer = 0;
-    };
-    MDCSnackbarFoundation.prototype.handleAnimationTimerEnd = function () {
-        this.animationTimer = 0;
-        this.adapter.removeClass(cssClasses$2.OPENING);
-        this.adapter.removeClass(cssClasses$2.CLOSING);
-    };
-    /**
-     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
-     */
-    MDCSnackbarFoundation.prototype.runNextAnimationFrame = function (callback) {
-        var _this = this;
-        cancelAnimationFrame(this.animationFrame);
-        this.animationFrame = requestAnimationFrame(function () {
-            _this.animationFrame = 0;
-            clearTimeout(_this.animationTimer);
-            _this.animationTimer = setTimeout(callback, 0);
-        });
-    };
-    return MDCSnackbarFoundation;
-}(MDCFoundation));
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-var MDCSnackbarFoundation$1 = MDCSnackbarFoundation;
-
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const t={ATTRIBUTE:1,CHILD:2,PROPERTY:3,BOOLEAN_ATTRIBUTE:4,EVENT:5,ELEMENT:6},e$1=t=>(...e)=>({_$litDirective$:t,values:e});class i$1{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,e,i){this._$Ct=t,this._$AM=e,this._$Ci=i;}_$AS(t,e){return this.update(t,e)}update(t,e){return this.render(...e)}}
-
+const It=1,$t=2,Dt=t=>(...e)=>({_$litDirective$:t,values:e});class Pt{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,e,i){this._$Ct=t,this._$AM=e,this._$Ci=i}_$AS(t,e){return this.update(t,e)}update(t,e){return this.render(...e)}}
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */const o$1=e$1(class extends i$1{constructor(t$1){var i;if(super(t$1),t$1.type!==t.ATTRIBUTE||"class"!==t$1.name||(null===(i=t$1.strings)||void 0===i?void 0:i.length)>2)throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.")}render(t){return " "+Object.keys(t).filter((i=>t[i])).join(" ")+" "}update(i,[s]){var r,o;if(void 0===this.nt){this.nt=new Set,void 0!==i.strings&&(this.st=new Set(i.strings.join(" ").split(/\s/).filter((t=>""!==t))));for(const t in s)s[t]&&!(null===(r=this.st)||void 0===r?void 0:r.has(t))&&this.nt.add(t);return this.render(s)}const e=i.element.classList;this.nt.forEach((t=>{t in s||(e.remove(t),this.nt.delete(t));}));for(const t in s){const i=!!s[t];i===this.nt.has(t)||(null===(o=this.st)||void 0===o?void 0:o.has(t))||(i?(e.add(t),this.nt.add(t)):(e.remove(t),this.nt.delete(t)));}return x}});
-
+ */const Nt=Dt(class extends Pt{constructor(t){var e;if(super(t),t.type!==It||"class"!==t.name||(null===(e=t.strings)||void 0===e?void 0:e.length)>2)throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.")}render(t){return" "+Object.keys(t).filter((e=>t[e])).join(" ")+" "}update(t,[e]){var i,r;if(void 0===this.nt){this.nt=new Set,void 0!==t.strings&&(this.st=new Set(t.strings.join(" ").split(/\s/).filter((t=>""!==t))));for(const t in e)e[t]&&!(null===(i=this.st)||void 0===i?void 0:i.has(t))&&this.nt.add(t);return this.render(e)}const n=t.element.classList;this.nt.forEach((t=>{t in e||(n.remove(t),this.nt.delete(t))}));for(const t in e){const i=!!e[t];i===this.nt.has(t)||(null===(r=this.st)||void 0===r?void 0:r.has(t))||(i?(n.add(t),this.nt.add(t)):(n.remove(t),this.nt.delete(t)))}return z}}),Mt=(t,e)=>{var i,r;const n=t._$AN;if(void 0===n)return!1;for(const t of n)null===(r=(i=t)._$AO)||void 0===r||r.call(i,e,!1),Mt(t,e);return!0},Ft=t=>{let e,i;do{if(void 0===(e=t._$AM))break;i=e._$AN,i.delete(t),t=e}while(0===(null==i?void 0:i.size))},Ht=t=>{for(let e;e=t._$AM;t=e){let i=e._$AN;if(void 0===i)e._$AN=i=new Set;else if(i.has(t))break;i.add(t),zt(e)}};
 /**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */const e=o=>void 0===o.strings;
-
+ */function Ot(t){void 0!==this._$AN?(Ft(this),this._$AM=t,Ht(this)):this._$AM=t}function Lt(t,e=!1,i=0){const r=this._$AH,n=this._$AN;if(void 0!==n&&0!==n.size)if(e)if(Array.isArray(r))for(let t=i;t<r.length;t++)Mt(r[t],!1),Ft(r[t]);else null!=r&&(Mt(r,!1),Ft(r));else Mt(this,t)}const zt=t=>{var e,i,r,n;t.type==$t&&(null!==(e=(r=t)._$AP)&&void 0!==e||(r._$AP=Lt),null!==(i=(n=t)._$AQ)&&void 0!==i||(n._$AQ=Ot))};class Ut extends Pt{constructor(){super(...arguments),this._$AN=void 0}_$AT(t,e,i){super._$AT(t,e,i),Ht(this),this.isConnected=t._$AU}_$AO(t,e=!0){var i,r;t!==this.isConnected&&(this.isConnected=t,t?null===(i=this.reconnected)||void 0===i||i.call(this):null===(r=this.disconnected)||void 0===r||r.call(this)),e&&(Mt(this,t),Ft(this))}setValue(t){if((t=>void 0===t.strings)
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */const s=(i,t)=>{var e,o;const r=i._$AN;if(void 0===r)return !1;for(const i of r)null===(o=(e=i)._$AO)||void 0===o||o.call(e,t,!1),s(i,t);return !0},o=i=>{let t,e;do{if(void 0===(t=i._$AM))break;e=t._$AN,e.delete(i),i=t;}while(0===(null==e?void 0:e.size))},r=i=>{for(let t;t=i._$AM;i=t){let e=t._$AN;if(void 0===e)t._$AN=e=new Set;else if(e.has(i))break;e.add(i),l$1(t);}};function n(i){void 0!==this._$AN?(o(this),this._$AM=i,r(this)):this._$AM=i;}function h(i,t=!1,e=0){const r=this._$AH,n=this._$AN;if(void 0!==n&&0!==n.size)if(t)if(Array.isArray(r))for(let i=e;i<r.length;i++)s(r[i],!1),o(r[i]);else null!=r&&(s(r,!1),o(r));else s(this,i);}const l$1=i=>{var t$1,s,o,r;i.type==t.CHILD&&(null!==(t$1=(o=i)._$AP)&&void 0!==t$1||(o._$AP=h),null!==(s=(r=i)._$AQ)&&void 0!==s||(r._$AQ=n));};class c extends i$1{constructor(){super(...arguments),this._$AN=void 0;}_$AT(i,t,e){super._$AT(i,t,e),r(this),this.isConnected=i._$AU;}_$AO(i,t=!0){var e,r;i!==this.isConnected&&(this.isConnected=i,i?null===(e=this.reconnected)||void 0===e||e.call(this):null===(r=this.disconnected)||void 0===r||r.call(this)),t&&(s(this,i),o(this));}setValue(t){if(e(this._$Ct))this._$Ct._$AI(t,this);else {const i=[...this._$Ct._$AH];i[this._$Ci]=t,this._$Ct._$AI(i,this,0);}}disconnected(){}reconnected(){}}
-
+ */(this._$Ct))this._$Ct._$AI(t,this);else{const e=[...this._$Ct._$AH];e[this._$Ci]=t,this._$Ct._$AI(e,this,0)}}disconnected(){}reconnected(){}}
 /**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-const { ARIA_LIVE_DELAY_MS } = MDCSnackbarFoundation$1.numbers;
-/**
- * A lit directive implementation of @material/mdc-snackbar/util.ts#announce,
- * which does some tricks to ensure that snackbar labels will be handled
- * correctly by screen readers.
- *
- * The existing MDC announce util function is difficult to use directly here,
- * because Lit can crash when DOM that it is managing changes outside of its
- * purvue. In this case, we would render our labelText as the text content of
- * the label div, but the MDC announce function then clears that text content,
- * and resets it after a timeout (see below for why). We do the same thing here,
- * but in a way that fits into Lit's lifecycle.
- *
- * TODO(aomarks) Investigate whether this can be simplified; but to do that we
- * first need testing infrastructure to verify that it remains compatible with
- * screen readers. For example, can we just create an entirely new label node
- * every time we open or labelText changes? If not, and the async text/::before
- * swap is strictly required, can we at elast make this directive more generic
- * (e.g. so that we don't hard-code the name of the label class).
- */
-class AccessibleSnackbarLabel extends c {
-    constructor(partInfo) {
-        super(partInfo);
-        this.labelEl = null;
-        this.timerId = null;
-        this.previousPart = null;
-        if (partInfo.type !== t.CHILD) {
-            throw new Error('AccessibleSnackbarLabel only supports child parts.');
-        }
-    }
-    update(part, [labelText, isOpen]) {
-        var _a;
-        if (!isOpen) {
-            // We never need to do anything if we're closed, even if the label also
-            // changed in this batch of changes. We'll fully reset the label text
-            // whenever we next open.
-            return;
-        }
-        if (this.labelEl === null) {
-            // Create the label element once, the first time we open.
-            const wrapperEl = document.createElement('div');
-            const labelTemplate = y `<div class="mdc-snackbar__label" role="status" aria-live="polite"></div>`;
-            A(labelTemplate, wrapperEl);
-            const labelEl = wrapperEl.firstElementChild;
-            labelEl.textContent = labelText;
-            // endNode can't be a Document, so it must have a parent.
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            (_a = part.endNode) === null || _a === void 0 ? void 0 : _a.parentNode.insertBefore(labelEl, part.endNode);
-            this.labelEl = labelEl;
-            // No need to do anything more for ARIA the first time we open. We just
-            // created the element with the current label, so screen readers will
-            // detect it fine.
-            return labelEl;
-        }
-        const labelEl = this.labelEl;
-        // Temporarily disable `aria-live` to prevent JAWS+Firefox from announcing
-        // the message twice.
-        labelEl.setAttribute('aria-live', 'off');
-        // Temporarily clear `textContent` to force a DOM mutation event that will
-        // be detected by screen readers. `aria-live` elements are only announced
-        // when the element's `textContent` *changes*, so snackbars sent to the
-        // browser in the initial HTML response won't be read unless we clear the
-        // element's `textContent` first. Similarly, displaying the same snackbar
-        // message twice in a row doesn't trigger a DOM mutation event, so screen
-        // readers won't announce the second message unless we first clear
-        // `textContent`.
-        //
-        // We have to clear the label text two different ways to make it work in
-        // all browsers and screen readers:
-        //
-        //   1. `textContent = ''` is required for IE11 + JAWS
-        //   2. the lit render of `'&nbsp;'` is required for Chrome + JAWS and
-        //       NVDA
-        //
-        // All other browser/screen reader combinations support both methods.
-        //
-        // The wrapper `<span>` visually hides the space character so that it
-        // doesn't cause jank when added/removed. N.B.: Setting `position:
-        // absolute`, `opacity: 0`, or `height: 0` prevents Chrome from detecting
-        // the DOM change.
-        //
-        // This technique has been tested in:
-        //
-        //   * JAWS 2019:
-        //       - Chrome 70
-        //       - Firefox 60 (ESR)
-        //       - IE 11
-        //   * NVDA 2018:
-        //       - Chrome 70
-        //       - Firefox 60 (ESR)
-        //       - IE 11
-        //   * ChromeVox 53
-        labelEl.textContent = '';
-        // Updating an element using both Lit's `render` as well as setting its
-        // `textContent` can cause later renders to throw because setting
-        // `textContent` will remove Lit's part marker comments. This directive
-        // needs to set `labelEl`'s `textContent` to trigger the expected screen
-        // reader behavior, so it needs to avoid `render` for `labelEl` altogether.
-        const spaceSpan = document.createElement('span');
-        spaceSpan.style.display = 'inline-block';
-        spaceSpan.style.width = '0';
-        spaceSpan.style.height = '1px';
-        spaceSpan.textContent = '\u00A0'; // U+00A0 is &nbsp;
-        labelEl.appendChild(spaceSpan);
-        // Prevent visual jank by temporarily displaying the label text in the
-        // ::before pseudo-element. CSS generated content is normally announced by
-        // screen readers (except in IE 11; see
-        // https://tink.uk/accessibility-support-for-css-generated-content/);
-        // however, `aria-live` is turned off, so this DOM update will be ignored
-        // by screen readers.
-        labelEl.setAttribute('data-mdc-snackbar-label-text', labelText);
-        if (this.timerId !== null) {
-            // We hadn't yet swapped the textContent back in since the last time we
-            // opened or changed the label. Cancel that task so we don't clobber the
-            // new label.
-            clearTimeout(this.timerId);
-        }
-        this.timerId = window.setTimeout(() => {
-            this.timerId = null;
-            // Allow screen readers to announce changes to the DOM again.
-            labelEl.setAttribute('aria-live', 'polite');
-            // Remove the message from the ::before pseudo-element.
-            labelEl.removeAttribute('data-mdc-snackbar-label-text');
-            // Restore the original label text, which will be announced by
-            // screen readers.
-            labelEl.textContent = labelText;
-            this.setValue(this.labelEl);
-        }, ARIA_LIVE_DELAY_MS);
-        return labelEl;
-    }
-    render(labelText, isOpen) {
-        if (!isOpen) {
-            return y ``;
-        }
-        return y `
-      <div class="mdc-snackbar__label" role="status" aria-live="polite">${labelText}</div>`;
-    }
-}
-const accessibleSnackbarLabel = e$1(AccessibleSnackbarLabel);
-
+ */const{ARIA_LIVE_DELAY_MS:Vt}=Ct.numbers;const Bt=Dt(class extends Ut{constructor(t){if(super(t),this.labelEl=null,this.timerId=null,this.previousPart=null,t.type!==$t)throw new Error("AccessibleSnackbarLabel only supports child parts.")}update(t,[e,i]){var r;if(!i)return;if(null===this.labelEl){const i=document.createElement("div"),n=L`<div class="mdc-snackbar__label" role="status" aria-live="polite"></div>`;B(n,i);const a=i.firstElementChild;return a.textContent=e,null===(r=t.endNode)||void 0===r||r.parentNode.insertBefore(a,t.endNode),this.labelEl=a,a}const n=this.labelEl;n.setAttribute("aria-live","off"),n.textContent="";const a=document.createElement("span");return a.style.display="inline-block",a.style.width="0",a.style.height="1px",a.textContent=" ",n.appendChild(a),n.setAttribute("data-mdc-snackbar-label-text",e),null!==this.timerId&&clearTimeout(this.timerId),this.timerId=window.setTimeout((()=>{this.timerId=null,n.setAttribute("aria-live","polite"),n.removeAttribute("data-mdc-snackbar-label-text"),n.textContent=e,this.setValue(this.labelEl)}),Vt),n}render(t,e){return e?L`
+      <div class="mdc-snackbar__label" role="status" aria-live="polite">${t}</div>`:L``}}),{OPENING_EVENT:jt,OPENED_EVENT:Xt,CLOSING_EVENT:Gt,CLOSED_EVENT:Wt}=Ct.strings;
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-const { OPENING_EVENT, OPENED_EVENT, CLOSING_EVENT, CLOSED_EVENT, } = MDCSnackbarFoundation$1.strings;
-class SnackbarBase extends BaseElement {
-    constructor() {
-        super(...arguments);
-        this.mdcFoundationClass = MDCSnackbarFoundation$1;
-        this.open = false;
-        this.timeoutMs = 5000;
-        this.closeOnEscape = false;
-        this.labelText = '';
-        this.stacked = false;
-        this.leading = false;
-        this.reason = '';
-    }
-    render() {
-        const classes = {
-            'mdc-snackbar--stacked': this.stacked,
-            'mdc-snackbar--leading': this.leading,
-        };
-        return y `
-      <div class="mdc-snackbar ${o$1(classes)}" @keydown="${this._handleKeydown}">
+ */class qt extends gt{constructor(){super(...arguments),this.mdcFoundationClass=Ct,this.open=!1,this.timeoutMs=5e3,this.closeOnEscape=!1,this.labelText="",this.stacked=!1,this.leading=!1,this.reason=""}render(){const t={"mdc-snackbar--stacked":this.stacked,"mdc-snackbar--leading":this.leading};return L`
+      <div class="mdc-snackbar ${Nt(t)}" @keydown="${this._handleKeydown}">
         <div class="mdc-snackbar__surface">
-          ${accessibleSnackbarLabel(this.labelText, this.open)}
+          ${Bt(this.labelText,this.open)}
           <div class="mdc-snackbar__actions">
             <slot name="action" @click="${this._handleActionClick}"></slot>
             <slot name="dismiss" @click="${this._handleDismissClick}"></slot>
           </div>
         </div>
-      </div>`;
-    }
-    createAdapter() {
-        return Object.assign(Object.assign({}, addHasRemoveClass(this.mdcRoot)), { announce: () => {
-                /* We handle announce ourselves with the accessible directive. */
-            }, notifyClosed: (reason) => {
-                this.dispatchEvent(new CustomEvent(CLOSED_EVENT, { bubbles: true, cancelable: true, detail: { reason: reason } }));
-            }, notifyClosing: (reason) => {
-                this.open = false;
-                this.dispatchEvent(new CustomEvent(CLOSING_EVENT, { bubbles: true, cancelable: true, detail: { reason: reason } }));
-            }, notifyOpened: () => {
-                this.dispatchEvent(new CustomEvent(OPENED_EVENT, { bubbles: true, cancelable: true }));
-            }, notifyOpening: () => {
-                this.open = true;
-                this.dispatchEvent(new CustomEvent(OPENING_EVENT, { bubbles: true, cancelable: true }));
-            } });
-    }
-    /** @export */
-    show() {
-        this.open = true;
-    }
-    /** @export */
-    close(reason = '') {
-        this.reason = reason;
-        this.open = false;
-    }
-    firstUpdated() {
-        super.firstUpdated();
-        if (this.open) {
-            this.mdcFoundation.open();
-        }
-    }
-    _handleKeydown(e) {
-        this.mdcFoundation.handleKeyDown(e);
-    }
-    _handleActionClick(e) {
-        this.mdcFoundation.handleActionButtonClick(e);
-    }
-    _handleDismissClick(e) {
-        this.mdcFoundation.handleActionIconClick(e);
-    }
-}
-__decorate([
-    i$2('.mdc-snackbar')
-], SnackbarBase.prototype, "mdcRoot", void 0);
-__decorate([
-    i$2('.mdc-snackbar__label')
-], SnackbarBase.prototype, "labelElement", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true }),
-    observer(function (value) {
-        if (this.mdcFoundation) {
-            if (value) {
-                this.mdcFoundation.open();
-            }
-            else {
-                this.mdcFoundation.close(this.reason);
-                this.reason = '';
-            }
-        }
-    })
-], SnackbarBase.prototype, "open", void 0);
-__decorate([
-    observer(function (value) {
-        this.mdcFoundation.setTimeoutMs(value);
-    }),
-    e$4({ type: Number })
-], SnackbarBase.prototype, "timeoutMs", void 0);
-__decorate([
-    observer(function (value) {
-        this.mdcFoundation.setCloseOnEscape(value);
-    }),
-    e$4({ type: Boolean })
-], SnackbarBase.prototype, "closeOnEscape", void 0);
-__decorate([
-    e$4({ type: String })
-], SnackbarBase.prototype, "labelText", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], SnackbarBase.prototype, "stacked", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], SnackbarBase.prototype, "leading", void 0);
-
-/**
- * @license
- * Copyright 2021 Google LLC
- * SPDX-LIcense-Identifier: Apache-2.0
- */
-const styles$5 = i$5 `.mdc-snackbar{z-index:8;margin:8px;display:none;position:fixed;right:0;bottom:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;pointer-events:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-snackbar__surface{background-color:#333333}.mdc-snackbar__label{color:rgba(255, 255, 255, 0.87)}.mdc-snackbar__surface{min-width:344px}@media(max-width: 480px),(max-width: 344px){.mdc-snackbar__surface{min-width:100%}}.mdc-snackbar__surface{max-width:672px}.mdc-snackbar__surface{box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0,0,0,.12)}.mdc-snackbar__surface{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-snackbar--opening,.mdc-snackbar--open,.mdc-snackbar--closing{display:flex}.mdc-snackbar--open .mdc-snackbar__label,.mdc-snackbar--open .mdc-snackbar__actions{visibility:visible}.mdc-snackbar--leading{justify-content:flex-start}.mdc-snackbar--stacked .mdc-snackbar__label{padding-left:16px;padding-right:8px;padding-bottom:12px}[dir=rtl] .mdc-snackbar--stacked .mdc-snackbar__label,.mdc-snackbar--stacked .mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar--stacked .mdc-snackbar__surface{flex-direction:column;align-items:flex-start}.mdc-snackbar--stacked .mdc-snackbar__actions{align-self:flex-end;margin-bottom:8px}.mdc-snackbar__surface{padding-left:0;padding-right:8px;display:flex;align-items:center;justify-content:flex-start;box-sizing:border-box;transform:scale(0.8);opacity:0}.mdc-snackbar__surface::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-snackbar__surface::before{border-color:CanvasText}}[dir=rtl] .mdc-snackbar__surface,.mdc-snackbar__surface[dir=rtl]{padding-left:8px;padding-right:0}.mdc-snackbar--open .mdc-snackbar__surface{transform:scale(1);opacity:1;pointer-events:auto;transition:opacity 150ms 0ms cubic-bezier(0, 0, 0.2, 1),transform 150ms 0ms cubic-bezier(0, 0, 0.2, 1)}.mdc-snackbar--closing .mdc-snackbar__surface{transform:scale(1);transition:opacity 75ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mdc-snackbar__label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-body2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-body2-font-size, 0.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height, 1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight, 400);letter-spacing:0.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing, 0.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration, inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform, inherit);padding-left:16px;padding-right:8px;width:100%;flex-grow:1;box-sizing:border-box;margin:0;visibility:hidden;padding-top:14px;padding-bottom:14px}[dir=rtl] .mdc-snackbar__label,.mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar__label::before{display:inline;content:attr(data-mdc-snackbar-label-text)}.mdc-snackbar__actions{display:flex;flex-shrink:0;align-items:center;box-sizing:border-box;visibility:hidden}.mdc-snackbar__action:not(:disabled){color:#bb86fc}.mdc-snackbar__action .mdc-button__ripple::before,.mdc-snackbar__action .mdc-button__ripple::after{background-color:#bb86fc;background-color:var(--mdc-ripple-color, #bb86fc)}.mdc-snackbar__action:hover .mdc-button__ripple::before,.mdc-snackbar__action.mdc-ripple-surface--hover .mdc-button__ripple::before{opacity:0.08;opacity:var(--mdc-ripple-hover-opacity, 0.08)}.mdc-snackbar__action.mdc-ripple-upgraded--background-focused .mdc-button__ripple::before,.mdc-snackbar__action:not(.mdc-ripple-upgraded):focus .mdc-button__ripple::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-snackbar__action:not(.mdc-ripple-upgraded) .mdc-button__ripple::after{transition:opacity 150ms linear}.mdc-snackbar__action:not(.mdc-ripple-upgraded):active .mdc-button__ripple::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__action.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss{color:rgba(255, 255, 255, 0.87)}.mdc-snackbar__dismiss .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss .mdc-icon-button__ripple::after{background-color:rgba(255, 255, 255, 0.87);background-color:var(--mdc-ripple-color, rgba(255, 255, 255, 0.87))}.mdc-snackbar__dismiss:hover .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss.mdc-ripple-surface--hover .mdc-icon-button__ripple::before{opacity:0.08;opacity:var(--mdc-ripple-hover-opacity, 0.08)}.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__ripple::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded) .mdc-icon-button__ripple::after{transition:opacity 150ms linear}.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):active .mdc-icon-button__ripple::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss.mdc-snackbar__dismiss{width:36px;height:36px;padding:6px;font-size:18px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss .mdc-icon-button__focus-ring{display:none}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block;max-height:36px;max-width:36px}@media screen and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size .mdc-icon-button__ripple{width:36px;height:36px;margin-top:0px;margin-bottom:0px;margin-right:0px;margin-left:0px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{max-height:36px;max-width:36px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss .mdc-icon-button__touch{position:absolute;top:50%;height:36px;left:50%;width:36px;transform:translate(-50%, -50%)}.mdc-snackbar__action+.mdc-snackbar__dismiss{margin-left:8px;margin-right:0}[dir=rtl] .mdc-snackbar__action+.mdc-snackbar__dismiss,.mdc-snackbar__action+.mdc-snackbar__dismiss[dir=rtl]{margin-left:0;margin-right:8px}slot[name=action]::slotted(mwc-button){--mdc-theme-primary: var( --mdc-snackbar-action-color, #bb86fc )}slot[name=dismiss]::slotted(mwc-icon-button){--mdc-icon-size: 18px;--mdc-icon-button-size: 36px;color:rgba(255, 255, 255, 0.87);margin-left:8px;margin-right:0}[dir=rtl] slot[name=dismiss]::slotted(mwc-icon-button),::slotted(mwc-icon-buttonslot[name=dismiss][dir=rtl]){margin-left:0;margin-right:8px}`;
-
+      </div>`}createAdapter(){return Object.assign(Object.assign({},(t=this.mdcRoot,{addClass:e=>{t.classList.add(e)},removeClass:e=>{t.classList.remove(e)},hasClass:e=>t.classList.contains(e)})),{announce:()=>{},notifyClosed:t=>{this.dispatchEvent(new CustomEvent(Wt,{bubbles:!0,cancelable:!0,detail:{reason:t}}))},notifyClosing:t=>{this.open=!1,this.dispatchEvent(new CustomEvent(Gt,{bubbles:!0,cancelable:!0,detail:{reason:t}}))},notifyOpened:()=>{this.dispatchEvent(new CustomEvent(Xt,{bubbles:!0,cancelable:!0}))},notifyOpening:()=>{this.open=!0,this.dispatchEvent(new CustomEvent(jt,{bubbles:!0,cancelable:!0}))}});
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-let Snackbar = class Snackbar extends SnackbarBase {
-};
-Snackbar.styles = [styles$5];
-Snackbar = __decorate([
-    e$5('mwc-snackbar')
-], Snackbar);
-
+var t}show(){this.open=!0}close(t=""){this.reason=t,this.open=!1}firstUpdated(){super.firstUpdated(),this.open&&this.mdcFoundation.open()}_handleKeydown(t){this.mdcFoundation.handleKeyDown(t)}_handleActionClick(t){this.mdcFoundation.handleActionButtonClick(t)}_handleDismissClick(t){this.mdcFoundation.handleActionIconClick(t)}}r([ht(".mdc-snackbar")],qt.prototype,"mdcRoot",void 0),r([ht(".mdc-snackbar__label")],qt.prototype,"labelElement",void 0),r([ct({type:Boolean,reflect:!0}),yt((function(t){this.mdcFoundation&&(t?this.mdcFoundation.open():(this.mdcFoundation.close(this.reason),this.reason=""))}))],qt.prototype,"open",void 0),r([yt((function(t){this.mdcFoundation.setTimeoutMs(t)})),ct({type:Number})],qt.prototype,"timeoutMs",void 0),r([yt((function(t){this.mdcFoundation.setCloseOnEscape(t)})),ct({type:Boolean})],qt.prototype,"closeOnEscape",void 0),r([ct({type:String})],qt.prototype,"labelText",void 0),r([ct({type:Boolean})],qt.prototype,"stacked",void 0),r([ct({type:Boolean})],qt.prototype,"leading",void 0);
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-LIcense-Identifier: Apache-2.0
  */
-const styles$4 = i$5 `:host{font-family:var(--mdc-icon-font, "Material Icons");font-weight:normal;font-style:normal;font-size:var(--mdc-icon-size, 24px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:"liga"}`;
-
+const Kt=l`.mdc-snackbar{z-index:8;margin:8px;display:none;position:fixed;right:0;bottom:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;pointer-events:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-snackbar__surface{background-color:#333333}.mdc-snackbar__label{color:rgba(255, 255, 255, 0.87)}.mdc-snackbar__surface{min-width:344px}@media(max-width: 480px),(max-width: 344px){.mdc-snackbar__surface{min-width:100%}}.mdc-snackbar__surface{max-width:672px}.mdc-snackbar__surface{box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0,0,0,.12)}.mdc-snackbar__surface{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-snackbar--opening,.mdc-snackbar--open,.mdc-snackbar--closing{display:flex}.mdc-snackbar--open .mdc-snackbar__label,.mdc-snackbar--open .mdc-snackbar__actions{visibility:visible}.mdc-snackbar--leading{justify-content:flex-start}.mdc-snackbar--stacked .mdc-snackbar__label{padding-left:16px;padding-right:8px;padding-bottom:12px}[dir=rtl] .mdc-snackbar--stacked .mdc-snackbar__label,.mdc-snackbar--stacked .mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar--stacked .mdc-snackbar__surface{flex-direction:column;align-items:flex-start}.mdc-snackbar--stacked .mdc-snackbar__actions{align-self:flex-end;margin-bottom:8px}.mdc-snackbar__surface{padding-left:0;padding-right:8px;display:flex;align-items:center;justify-content:flex-start;box-sizing:border-box;transform:scale(0.8);opacity:0}.mdc-snackbar__surface::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-snackbar__surface::before{border-color:CanvasText}}[dir=rtl] .mdc-snackbar__surface,.mdc-snackbar__surface[dir=rtl]{padding-left:8px;padding-right:0}.mdc-snackbar--open .mdc-snackbar__surface{transform:scale(1);opacity:1;pointer-events:auto;transition:opacity 150ms 0ms cubic-bezier(0, 0, 0.2, 1),transform 150ms 0ms cubic-bezier(0, 0, 0.2, 1)}.mdc-snackbar--closing .mdc-snackbar__surface{transform:scale(1);transition:opacity 75ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mdc-snackbar__label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-body2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-body2-font-size, 0.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height, 1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight, 400);letter-spacing:0.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing, 0.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration, inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform, inherit);padding-left:16px;padding-right:8px;width:100%;flex-grow:1;box-sizing:border-box;margin:0;visibility:hidden;padding-top:14px;padding-bottom:14px}[dir=rtl] .mdc-snackbar__label,.mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar__label::before{display:inline;content:attr(data-mdc-snackbar-label-text)}.mdc-snackbar__actions{display:flex;flex-shrink:0;align-items:center;box-sizing:border-box;visibility:hidden}.mdc-snackbar__action:not(:disabled){color:#bb86fc}.mdc-snackbar__action .mdc-button__ripple::before,.mdc-snackbar__action .mdc-button__ripple::after{background-color:#bb86fc;background-color:var(--mdc-ripple-color, #bb86fc)}.mdc-snackbar__action:hover .mdc-button__ripple::before,.mdc-snackbar__action.mdc-ripple-surface--hover .mdc-button__ripple::before{opacity:0.08;opacity:var(--mdc-ripple-hover-opacity, 0.08)}.mdc-snackbar__action.mdc-ripple-upgraded--background-focused .mdc-button__ripple::before,.mdc-snackbar__action:not(.mdc-ripple-upgraded):focus .mdc-button__ripple::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-snackbar__action:not(.mdc-ripple-upgraded) .mdc-button__ripple::after{transition:opacity 150ms linear}.mdc-snackbar__action:not(.mdc-ripple-upgraded):active .mdc-button__ripple::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__action.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss{color:rgba(255, 255, 255, 0.87)}.mdc-snackbar__dismiss .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss .mdc-icon-button__ripple::after{background-color:rgba(255, 255, 255, 0.87);background-color:var(--mdc-ripple-color, rgba(255, 255, 255, 0.87))}.mdc-snackbar__dismiss:hover .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss.mdc-ripple-surface--hover .mdc-icon-button__ripple::before{opacity:0.08;opacity:var(--mdc-ripple-hover-opacity, 0.08)}.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__ripple::before,.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__ripple::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded) .mdc-icon-button__ripple::after{transition:opacity 150ms linear}.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):active .mdc-icon-button__ripple::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-snackbar__dismiss.mdc-snackbar__dismiss{width:36px;height:36px;padding:6px;font-size:18px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss .mdc-icon-button__focus-ring{display:none}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block;max-height:36px;max-width:36px}@media screen and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-snackbar__dismiss.mdc-snackbar__dismiss:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size .mdc-icon-button__ripple{width:36px;height:36px;margin-top:0px;margin-bottom:0px;margin-right:0px;margin-left:0px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-snackbar__dismiss.mdc-snackbar__dismiss.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{max-height:36px;max-width:36px}.mdc-snackbar__dismiss.mdc-snackbar__dismiss .mdc-icon-button__touch{position:absolute;top:50%;height:36px;left:50%;width:36px;transform:translate(-50%, -50%)}.mdc-snackbar__action+.mdc-snackbar__dismiss{margin-left:8px;margin-right:0}[dir=rtl] .mdc-snackbar__action+.mdc-snackbar__dismiss,.mdc-snackbar__action+.mdc-snackbar__dismiss[dir=rtl]{margin-left:0;margin-right:8px}slot[name=action]::slotted(mwc-button){--mdc-theme-primary: var( --mdc-snackbar-action-color, #bb86fc )}slot[name=dismiss]::slotted(mwc-icon-button){--mdc-icon-size: 18px;--mdc-icon-button-size: 36px;color:rgba(255, 255, 255, 0.87);margin-left:8px;margin-right:0}[dir=rtl] slot[name=dismiss]::slotted(mwc-icon-button),::slotted(mwc-icon-buttonslot[name=dismiss][dir=rtl]){margin-left:0;margin-right:8px}`
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
+ */;let Jt=class extends qt{};Jt.styles=[Kt],Jt=r([st("mwc-snackbar")],Jt);
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-LIcense-Identifier: Apache-2.0
  */
-/** @soyCompatible */
-let Icon = class Icon extends s$1 {
-    /** @soyTemplate */
-    render() {
-        return y `<span><slot></slot></span>`;
-    }
-};
-Icon.styles = [styles$4];
-Icon = __decorate([
-    e$5('mwc-icon')
-], Icon);
-
+const Yt=l`:host{font-family:var(--mdc-icon-font, "Material Icons");font-weight:normal;font-style:normal;font-size:var(--mdc-icon-size, 24px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:"liga"}`
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */;let Zt=class extends at{render(){return L`<span><slot></slot></span>`}};Zt.styles=[Yt],Zt=r([st("mwc-icon")],Zt);
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var Qt={BG_FOCUSED:"mdc-ripple-upgraded--background-focused",FG_ACTIVATION:"mdc-ripple-upgraded--foreground-activation",FG_DEACTIVATION:"mdc-ripple-upgraded--foreground-deactivation",ROOT:"mdc-ripple-upgraded",UNBOUNDED:"mdc-ripple-upgraded--unbounded"},te={VAR_FG_SCALE:"--mdc-ripple-fg-scale",VAR_FG_SIZE:"--mdc-ripple-fg-size",VAR_FG_TRANSLATE_END:"--mdc-ripple-fg-translate-end",VAR_FG_TRANSLATE_START:"--mdc-ripple-fg-translate-start",VAR_LEFT:"--mdc-ripple-left",VAR_TOP:"--mdc-ripple-top"},ee={DEACTIVATION_TIMEOUT_MS:225,FG_DEACTIVATION_MS:150,INITIAL_ORIGIN_SCALE:.6,PADDING:10,TAP_DELAY_MS:300};
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var ie=["touchstart","pointerdown","mousedown","keydown"],re=["touchend","pointerup","mouseup","contextmenu"],ne=[],ae=function(t){function r(e){var n=t.call(this,i(i({},r.defaultAdapter),e))||this;return n.activationAnimationHasEnded=!1,n.activationTimer=0,n.fgDeactivationRemovalTimer=0,n.fgScale="0",n.frame={width:0,height:0},n.initialSize=0,n.layoutFrame=0,n.maxRadius=0,n.unboundedCoords={left:0,top:0},n.activationState=n.defaultActivationState(),n.activationTimerCallback=function(){n.activationAnimationHasEnded=!0,n.runDeactivationUXLogicIfReady()},n.activateHandler=function(t){n.activateImpl(t)},n.deactivateHandler=function(){n.deactivateImpl()},n.focusHandler=function(){n.handleFocus()},n.blurHandler=function(){n.handleBlur()},n.resizeHandler=function(){n.layout()},n}return e(r,t),Object.defineProperty(r,"cssClasses",{get:function(){return Qt},enumerable:!1,configurable:!0}),Object.defineProperty(r,"strings",{get:function(){return te},enumerable:!1,configurable:!0}),Object.defineProperty(r,"numbers",{get:function(){return ee},enumerable:!1,configurable:!0}),Object.defineProperty(r,"defaultAdapter",{get:function(){return{addClass:function(){},browserSupportsCssVars:function(){return!0},computeBoundingRect:function(){return{top:0,right:0,bottom:0,left:0,width:0,height:0}},containsEventTarget:function(){return!0},deregisterDocumentInteractionHandler:function(){},deregisterInteractionHandler:function(){},deregisterResizeHandler:function(){},getWindowPageOffset:function(){return{x:0,y:0}},isSurfaceActive:function(){return!0},isSurfaceDisabled:function(){return!0},isUnbounded:function(){return!0},registerDocumentInteractionHandler:function(){},registerInteractionHandler:function(){},registerResizeHandler:function(){},removeClass:function(){},updateCssVariable:function(){}}},enumerable:!1,configurable:!0}),r.prototype.init=function(){var t=this,e=this.supportsPressRipple();if(this.registerRootHandlers(e),e){var i=r.cssClasses,n=i.ROOT,a=i.UNBOUNDED;requestAnimationFrame((function(){t.adapter.addClass(n),t.adapter.isUnbounded()&&(t.adapter.addClass(a),t.layoutInternal())}))}},r.prototype.destroy=function(){var t=this;if(this.supportsPressRipple()){this.activationTimer&&(clearTimeout(this.activationTimer),this.activationTimer=0,this.adapter.removeClass(r.cssClasses.FG_ACTIVATION)),this.fgDeactivationRemovalTimer&&(clearTimeout(this.fgDeactivationRemovalTimer),this.fgDeactivationRemovalTimer=0,this.adapter.removeClass(r.cssClasses.FG_DEACTIVATION));var e=r.cssClasses,i=e.ROOT,n=e.UNBOUNDED;requestAnimationFrame((function(){t.adapter.removeClass(i),t.adapter.removeClass(n),t.removeCssVars()}))}this.deregisterRootHandlers(),this.deregisterDeactivationHandlers()},r.prototype.activate=function(t){this.activateImpl(t)},r.prototype.deactivate=function(){this.deactivateImpl()},r.prototype.layout=function(){var t=this;this.layoutFrame&&cancelAnimationFrame(this.layoutFrame),this.layoutFrame=requestAnimationFrame((function(){t.layoutInternal(),t.layoutFrame=0}))},r.prototype.setUnbounded=function(t){var e=r.cssClasses.UNBOUNDED;t?this.adapter.addClass(e):this.adapter.removeClass(e)},r.prototype.handleFocus=function(){var t=this;requestAnimationFrame((function(){return t.adapter.addClass(r.cssClasses.BG_FOCUSED)}))},r.prototype.handleBlur=function(){var t=this;requestAnimationFrame((function(){return t.adapter.removeClass(r.cssClasses.BG_FOCUSED)}))},r.prototype.supportsPressRipple=function(){return this.adapter.browserSupportsCssVars()},r.prototype.defaultActivationState=function(){return{activationEvent:void 0,hasDeactivationUXRun:!1,isActivated:!1,isProgrammatic:!1,wasActivatedByPointer:!1,wasElementMadeActive:!1}},r.prototype.registerRootHandlers=function(t){var e,i;if(t){try{for(var r=n(ie),a=r.next();!a.done;a=r.next()){var o=a.value;this.adapter.registerInteractionHandler(o,this.activateHandler)}}catch(t){e={error:t}}finally{try{a&&!a.done&&(i=r.return)&&i.call(r)}finally{if(e)throw e.error}}this.adapter.isUnbounded()&&this.adapter.registerResizeHandler(this.resizeHandler)}this.adapter.registerInteractionHandler("focus",this.focusHandler),this.adapter.registerInteractionHandler("blur",this.blurHandler)},r.prototype.registerDeactivationHandlers=function(t){var e,i;if("keydown"===t.type)this.adapter.registerInteractionHandler("keyup",this.deactivateHandler);else try{for(var r=n(re),a=r.next();!a.done;a=r.next()){var o=a.value;this.adapter.registerDocumentInteractionHandler(o,this.deactivateHandler)}}catch(t){e={error:t}}finally{try{a&&!a.done&&(i=r.return)&&i.call(r)}finally{if(e)throw e.error}}},r.prototype.deregisterRootHandlers=function(){var t,e;try{for(var i=n(ie),r=i.next();!r.done;r=i.next()){var a=r.value;this.adapter.deregisterInteractionHandler(a,this.activateHandler)}}catch(e){t={error:e}}finally{try{r&&!r.done&&(e=i.return)&&e.call(i)}finally{if(t)throw t.error}}this.adapter.deregisterInteractionHandler("focus",this.focusHandler),this.adapter.deregisterInteractionHandler("blur",this.blurHandler),this.adapter.isUnbounded()&&this.adapter.deregisterResizeHandler(this.resizeHandler)},r.prototype.deregisterDeactivationHandlers=function(){var t,e;this.adapter.deregisterInteractionHandler("keyup",this.deactivateHandler);try{for(var i=n(re),r=i.next();!r.done;r=i.next()){var a=r.value;this.adapter.deregisterDocumentInteractionHandler(a,this.deactivateHandler)}}catch(e){t={error:e}}finally{try{r&&!r.done&&(e=i.return)&&e.call(i)}finally{if(t)throw t.error}}},r.prototype.removeCssVars=function(){var t=this,e=r.strings;Object.keys(e).forEach((function(i){0===i.indexOf("VAR_")&&t.adapter.updateCssVariable(e[i],null)}))},r.prototype.activateImpl=function(t){var e=this;if(!this.adapter.isSurfaceDisabled()){var i=this.activationState;if(!i.isActivated){var r=this.previousActivationEvent;if(!(r&&void 0!==t&&r.type!==t.type))i.isActivated=!0,i.isProgrammatic=void 0===t,i.activationEvent=t,i.wasActivatedByPointer=!i.isProgrammatic&&(void 0!==t&&("mousedown"===t.type||"touchstart"===t.type||"pointerdown"===t.type)),void 0!==t&&ne.length>0&&ne.some((function(t){return e.adapter.containsEventTarget(t)}))?this.resetActivationState():(void 0!==t&&(ne.push(t.target),this.registerDeactivationHandlers(t)),i.wasElementMadeActive=this.checkElementMadeActive(t),i.wasElementMadeActive&&this.animateActivation(),requestAnimationFrame((function(){ne=[],i.wasElementMadeActive||void 0===t||" "!==t.key&&32!==t.keyCode||(i.wasElementMadeActive=e.checkElementMadeActive(t),i.wasElementMadeActive&&e.animateActivation()),i.wasElementMadeActive||(e.activationState=e.defaultActivationState())})))}}},r.prototype.checkElementMadeActive=function(t){return void 0===t||"keydown"!==t.type||this.adapter.isSurfaceActive()},r.prototype.animateActivation=function(){var t=this,e=r.strings,i=e.VAR_FG_TRANSLATE_START,n=e.VAR_FG_TRANSLATE_END,a=r.cssClasses,o=a.FG_DEACTIVATION,s=a.FG_ACTIVATION,d=r.numbers.DEACTIVATION_TIMEOUT_MS;this.layoutInternal();var c="",l="";if(!this.adapter.isUnbounded()){var p=this.getFgTranslationCoordinates(),u=p.startPoint,h=p.endPoint;c=u.x+"px, "+u.y+"px",l=h.x+"px, "+h.y+"px"}this.adapter.updateCssVariable(i,c),this.adapter.updateCssVariable(n,l),clearTimeout(this.activationTimer),clearTimeout(this.fgDeactivationRemovalTimer),this.rmBoundedActivationClasses(),this.adapter.removeClass(o),this.adapter.computeBoundingRect(),this.adapter.addClass(s),this.activationTimer=setTimeout((function(){t.activationTimerCallback()}),d)},r.prototype.getFgTranslationCoordinates=function(){var t,e=this.activationState,i=e.activationEvent;return t=e.wasActivatedByPointer?function(t,e,i){if(!t)return{x:0,y:0};var r,n,a=e.x,o=e.y,s=a+i.left,d=o+i.top;if("touchstart"===t.type){var c=t;r=c.changedTouches[0].pageX-s,n=c.changedTouches[0].pageY-d}else{var l=t;r=l.pageX-s,n=l.pageY-d}return{x:r,y:n}}(i,this.adapter.getWindowPageOffset(),this.adapter.computeBoundingRect()):{x:this.frame.width/2,y:this.frame.height/2},{startPoint:t={x:t.x-this.initialSize/2,y:t.y-this.initialSize/2},endPoint:{x:this.frame.width/2-this.initialSize/2,y:this.frame.height/2-this.initialSize/2}}},r.prototype.runDeactivationUXLogicIfReady=function(){var t=this,e=r.cssClasses.FG_DEACTIVATION,i=this.activationState,n=i.hasDeactivationUXRun,a=i.isActivated;(n||!a)&&this.activationAnimationHasEnded&&(this.rmBoundedActivationClasses(),this.adapter.addClass(e),this.fgDeactivationRemovalTimer=setTimeout((function(){t.adapter.removeClass(e)}),ee.FG_DEACTIVATION_MS))},r.prototype.rmBoundedActivationClasses=function(){var t=r.cssClasses.FG_ACTIVATION;this.adapter.removeClass(t),this.activationAnimationHasEnded=!1,this.adapter.computeBoundingRect()},r.prototype.resetActivationState=function(){var t=this;this.previousActivationEvent=this.activationState.activationEvent,this.activationState=this.defaultActivationState(),setTimeout((function(){return t.previousActivationEvent=void 0}),r.numbers.TAP_DELAY_MS)},r.prototype.deactivateImpl=function(){var t=this,e=this.activationState;if(e.isActivated){var r=i({},e);e.isProgrammatic?(requestAnimationFrame((function(){t.animateDeactivation(r)})),this.resetActivationState()):(this.deregisterDeactivationHandlers(),requestAnimationFrame((function(){t.activationState.hasDeactivationUXRun=!0,t.animateDeactivation(r),t.resetActivationState()})))}},r.prototype.animateDeactivation=function(t){var e=t.wasActivatedByPointer,i=t.wasElementMadeActive;(e||i)&&this.runDeactivationUXLogicIfReady()},r.prototype.layoutInternal=function(){var t=this;this.frame=this.adapter.computeBoundingRect();var e=Math.max(this.frame.height,this.frame.width);this.maxRadius=this.adapter.isUnbounded()?e:Math.sqrt(Math.pow(t.frame.width,2)+Math.pow(t.frame.height,2))+r.numbers.PADDING;var i=Math.floor(e*r.numbers.INITIAL_ORIGIN_SCALE);this.adapter.isUnbounded()&&i%2!=0?this.initialSize=i-1:this.initialSize=i,this.fgScale=""+this.maxRadius/this.initialSize,this.updateLayoutCssVars()},r.prototype.updateLayoutCssVars=function(){var t=r.strings,e=t.VAR_FG_SIZE,i=t.VAR_LEFT,n=t.VAR_TOP,a=t.VAR_FG_SCALE;this.adapter.updateCssVariable(e,this.initialSize+"px"),this.adapter.updateCssVariable(a,this.fgScale),this.adapter.isUnbounded()&&(this.unboundedCoords={left:Math.round(this.frame.width/2-this.initialSize/2),top:Math.round(this.frame.height/2-this.initialSize/2)},this.adapter.updateCssVariable(i,this.unboundedCoords.left+"px"),this.adapter.updateCssVariable(n,this.unboundedCoords.top+"px"))},r}(_t),oe=ae;
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const se=Dt(class extends Pt{constructor(t){var e;if(super(t),t.type!==It||"style"!==t.name||(null===(e=t.strings)||void 0===e?void 0:e.length)>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(t){return Object.keys(t).reduce(((e,i)=>{const r=t[i];return null==r?e:e+`${i=i.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${r};`}),"")}update(t,[e]){const{style:i}=t.element;if(void 0===this.vt){this.vt=new Set;for(const t in e)this.vt.add(t);return this.render(e)}this.vt.forEach((t=>{null==e[t]&&(this.vt.delete(t),t.includes("-")?i.removeProperty(t):i[t]="")}));for(const t in e){const r=e[t];null!=r&&(this.vt.add(t),t.includes("-")?i.setProperty(t,r):i[t]=r)}return z}});
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class de extends gt{constructor(){super(...arguments),this.primary=!1,this.accent=!1,this.unbounded=!1,this.disabled=!1,this.activated=!1,this.selected=!1,this.internalUseStateLayerCustomProperties=!1,this.hovering=!1,this.bgFocused=!1,this.fgActivation=!1,this.fgDeactivation=!1,this.fgScale="",this.fgSize="",this.translateStart="",this.translateEnd="",this.leftPos="",this.topPos="",this.mdcFoundationClass=oe}get isActive(){return t=this.parentElement||this,e=":active",(t.matches||t.webkitMatchesSelector||t.msMatchesSelector).call(t,e);
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -927,1101 +265,47 @@ Icon = __decorate([
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-function matches(element, selector) {
-    var nativeMatches = element.matches
-        || element.webkitMatchesSelector
-        || element.msMatchesSelector;
-    return nativeMatches.call(element, selector);
-}
-
-/**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-var cssClasses$1 = {
-    // Ripple is a special case where the "root" component is really a "mixin" of sorts,
-    // given that it's an 'upgrade' to an existing component. That being said it is the root
-    // CSS class that all other CSS classes derive from.
-    BG_FOCUSED: 'mdc-ripple-upgraded--background-focused',
-    FG_ACTIVATION: 'mdc-ripple-upgraded--foreground-activation',
-    FG_DEACTIVATION: 'mdc-ripple-upgraded--foreground-deactivation',
-    ROOT: 'mdc-ripple-upgraded',
-    UNBOUNDED: 'mdc-ripple-upgraded--unbounded',
-};
-var strings$1 = {
-    VAR_FG_SCALE: '--mdc-ripple-fg-scale',
-    VAR_FG_SIZE: '--mdc-ripple-fg-size',
-    VAR_FG_TRANSLATE_END: '--mdc-ripple-fg-translate-end',
-    VAR_FG_TRANSLATE_START: '--mdc-ripple-fg-translate-start',
-    VAR_LEFT: '--mdc-ripple-left',
-    VAR_TOP: '--mdc-ripple-top',
-};
-var numbers$1 = {
-    DEACTIVATION_TIMEOUT_MS: 225,
-    FG_DEACTIVATION_MS: 150,
-    INITIAL_ORIGIN_SCALE: 0.6,
-    PADDING: 10,
-    TAP_DELAY_MS: 300, // Delay between touch and simulated mouse events on touch devices
-};
-
-/**
- * Stores result from supportsCssVariables to avoid redundant processing to
- * detect CSS custom variable support.
- */
-function getNormalizedEventCoords(evt, pageOffset, clientRect) {
-    if (!evt) {
-        return { x: 0, y: 0 };
-    }
-    var x = pageOffset.x, y = pageOffset.y;
-    var documentX = x + clientRect.left;
-    var documentY = y + clientRect.top;
-    var normalizedX;
-    var normalizedY;
-    // Determine touch point relative to the ripple container.
-    if (evt.type === 'touchstart') {
-        var touchEvent = evt;
-        normalizedX = touchEvent.changedTouches[0].pageX - documentX;
-        normalizedY = touchEvent.changedTouches[0].pageY - documentY;
-    }
-    else {
-        var mouseEvent = evt;
-        normalizedX = mouseEvent.pageX - documentX;
-        normalizedY = mouseEvent.pageY - documentY;
-    }
-    return { x: normalizedX, y: normalizedY };
-}
-
-/**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-// Activation events registered on the root element of each instance for activation
-var ACTIVATION_EVENT_TYPES = [
-    'touchstart', 'pointerdown', 'mousedown', 'keydown',
-];
-// Deactivation events registered on documentElement when a pointer-related down event occurs
-var POINTER_DEACTIVATION_EVENT_TYPES = [
-    'touchend', 'pointerup', 'mouseup', 'contextmenu',
-];
-// simultaneous nested activations
-var activatedTargets = [];
-var MDCRippleFoundation = /** @class */ (function (_super) {
-    __extends(MDCRippleFoundation, _super);
-    function MDCRippleFoundation(adapter) {
-        var _this = _super.call(this, __assign(__assign({}, MDCRippleFoundation.defaultAdapter), adapter)) || this;
-        _this.activationAnimationHasEnded = false;
-        _this.activationTimer = 0;
-        _this.fgDeactivationRemovalTimer = 0;
-        _this.fgScale = '0';
-        _this.frame = { width: 0, height: 0 };
-        _this.initialSize = 0;
-        _this.layoutFrame = 0;
-        _this.maxRadius = 0;
-        _this.unboundedCoords = { left: 0, top: 0 };
-        _this.activationState = _this.defaultActivationState();
-        _this.activationTimerCallback = function () {
-            _this.activationAnimationHasEnded = true;
-            _this.runDeactivationUXLogicIfReady();
-        };
-        _this.activateHandler = function (e) {
-            _this.activateImpl(e);
-        };
-        _this.deactivateHandler = function () {
-            _this.deactivateImpl();
-        };
-        _this.focusHandler = function () {
-            _this.handleFocus();
-        };
-        _this.blurHandler = function () {
-            _this.handleBlur();
-        };
-        _this.resizeHandler = function () {
-            _this.layout();
-        };
-        return _this;
-    }
-    Object.defineProperty(MDCRippleFoundation, "cssClasses", {
-        get: function () {
-            return cssClasses$1;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCRippleFoundation, "strings", {
-        get: function () {
-            return strings$1;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCRippleFoundation, "numbers", {
-        get: function () {
-            return numbers$1;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(MDCRippleFoundation, "defaultAdapter", {
-        get: function () {
-            return {
-                addClass: function () { return undefined; },
-                browserSupportsCssVars: function () { return true; },
-                computeBoundingRect: function () {
-                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
-                },
-                containsEventTarget: function () { return true; },
-                deregisterDocumentInteractionHandler: function () { return undefined; },
-                deregisterInteractionHandler: function () { return undefined; },
-                deregisterResizeHandler: function () { return undefined; },
-                getWindowPageOffset: function () { return ({ x: 0, y: 0 }); },
-                isSurfaceActive: function () { return true; },
-                isSurfaceDisabled: function () { return true; },
-                isUnbounded: function () { return true; },
-                registerDocumentInteractionHandler: function () { return undefined; },
-                registerInteractionHandler: function () { return undefined; },
-                registerResizeHandler: function () { return undefined; },
-                removeClass: function () { return undefined; },
-                updateCssVariable: function () { return undefined; },
-            };
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCRippleFoundation.prototype.init = function () {
-        var _this = this;
-        var supportsPressRipple = this.supportsPressRipple();
-        this.registerRootHandlers(supportsPressRipple);
-        if (supportsPressRipple) {
-            var _a = MDCRippleFoundation.cssClasses, ROOT_1 = _a.ROOT, UNBOUNDED_1 = _a.UNBOUNDED;
-            requestAnimationFrame(function () {
-                _this.adapter.addClass(ROOT_1);
-                if (_this.adapter.isUnbounded()) {
-                    _this.adapter.addClass(UNBOUNDED_1);
-                    // Unbounded ripples need layout logic applied immediately to set coordinates for both shade and ripple
-                    _this.layoutInternal();
-                }
-            });
-        }
-    };
-    MDCRippleFoundation.prototype.destroy = function () {
-        var _this = this;
-        if (this.supportsPressRipple()) {
-            if (this.activationTimer) {
-                clearTimeout(this.activationTimer);
-                this.activationTimer = 0;
-                this.adapter.removeClass(MDCRippleFoundation.cssClasses.FG_ACTIVATION);
-            }
-            if (this.fgDeactivationRemovalTimer) {
-                clearTimeout(this.fgDeactivationRemovalTimer);
-                this.fgDeactivationRemovalTimer = 0;
-                this.adapter.removeClass(MDCRippleFoundation.cssClasses.FG_DEACTIVATION);
-            }
-            var _a = MDCRippleFoundation.cssClasses, ROOT_2 = _a.ROOT, UNBOUNDED_2 = _a.UNBOUNDED;
-            requestAnimationFrame(function () {
-                _this.adapter.removeClass(ROOT_2);
-                _this.adapter.removeClass(UNBOUNDED_2);
-                _this.removeCssVars();
-            });
-        }
-        this.deregisterRootHandlers();
-        this.deregisterDeactivationHandlers();
-    };
-    /**
-     * @param evt Optional event containing position information.
-     */
-    MDCRippleFoundation.prototype.activate = function (evt) {
-        this.activateImpl(evt);
-    };
-    MDCRippleFoundation.prototype.deactivate = function () {
-        this.deactivateImpl();
-    };
-    MDCRippleFoundation.prototype.layout = function () {
-        var _this = this;
-        if (this.layoutFrame) {
-            cancelAnimationFrame(this.layoutFrame);
-        }
-        this.layoutFrame = requestAnimationFrame(function () {
-            _this.layoutInternal();
-            _this.layoutFrame = 0;
-        });
-    };
-    MDCRippleFoundation.prototype.setUnbounded = function (unbounded) {
-        var UNBOUNDED = MDCRippleFoundation.cssClasses.UNBOUNDED;
-        if (unbounded) {
-            this.adapter.addClass(UNBOUNDED);
-        }
-        else {
-            this.adapter.removeClass(UNBOUNDED);
-        }
-    };
-    MDCRippleFoundation.prototype.handleFocus = function () {
-        var _this = this;
-        requestAnimationFrame(function () { return _this.adapter.addClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
-    };
-    MDCRippleFoundation.prototype.handleBlur = function () {
-        var _this = this;
-        requestAnimationFrame(function () { return _this.adapter.removeClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
-    };
-    /**
-     * We compute this property so that we are not querying information about the client
-     * until the point in time where the foundation requests it. This prevents scenarios where
-     * client-side feature-detection may happen too early, such as when components are rendered on the server
-     * and then initialized at mount time on the client.
-     */
-    MDCRippleFoundation.prototype.supportsPressRipple = function () {
-        return this.adapter.browserSupportsCssVars();
-    };
-    MDCRippleFoundation.prototype.defaultActivationState = function () {
-        return {
-            activationEvent: undefined,
-            hasDeactivationUXRun: false,
-            isActivated: false,
-            isProgrammatic: false,
-            wasActivatedByPointer: false,
-            wasElementMadeActive: false,
-        };
-    };
-    /**
-     * supportsPressRipple Passed from init to save a redundant function call
-     */
-    MDCRippleFoundation.prototype.registerRootHandlers = function (supportsPressRipple) {
-        var e_1, _a;
-        if (supportsPressRipple) {
-            try {
-                for (var ACTIVATION_EVENT_TYPES_1 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next(); !ACTIVATION_EVENT_TYPES_1_1.done; ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next()) {
-                    var evtType = ACTIVATION_EVENT_TYPES_1_1.value;
-                    this.adapter.registerInteractionHandler(evtType, this.activateHandler);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (ACTIVATION_EVENT_TYPES_1_1 && !ACTIVATION_EVENT_TYPES_1_1.done && (_a = ACTIVATION_EVENT_TYPES_1.return)) _a.call(ACTIVATION_EVENT_TYPES_1);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-            if (this.adapter.isUnbounded()) {
-                this.adapter.registerResizeHandler(this.resizeHandler);
-            }
-        }
-        this.adapter.registerInteractionHandler('focus', this.focusHandler);
-        this.adapter.registerInteractionHandler('blur', this.blurHandler);
-    };
-    MDCRippleFoundation.prototype.registerDeactivationHandlers = function (evt) {
-        var e_2, _a;
-        if (evt.type === 'keydown') {
-            this.adapter.registerInteractionHandler('keyup', this.deactivateHandler);
-        }
-        else {
-            try {
-                for (var POINTER_DEACTIVATION_EVENT_TYPES_1 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next(); !POINTER_DEACTIVATION_EVENT_TYPES_1_1.done; POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next()) {
-                    var evtType = POINTER_DEACTIVATION_EVENT_TYPES_1_1.value;
-                    this.adapter.registerDocumentInteractionHandler(evtType, this.deactivateHandler);
-                }
-            }
-            catch (e_2_1) { e_2 = { error: e_2_1 }; }
-            finally {
-                try {
-                    if (POINTER_DEACTIVATION_EVENT_TYPES_1_1 && !POINTER_DEACTIVATION_EVENT_TYPES_1_1.done && (_a = POINTER_DEACTIVATION_EVENT_TYPES_1.return)) _a.call(POINTER_DEACTIVATION_EVENT_TYPES_1);
-                }
-                finally { if (e_2) throw e_2.error; }
-            }
-        }
-    };
-    MDCRippleFoundation.prototype.deregisterRootHandlers = function () {
-        var e_3, _a;
-        try {
-            for (var ACTIVATION_EVENT_TYPES_2 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next(); !ACTIVATION_EVENT_TYPES_2_1.done; ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next()) {
-                var evtType = ACTIVATION_EVENT_TYPES_2_1.value;
-                this.adapter.deregisterInteractionHandler(evtType, this.activateHandler);
-            }
-        }
-        catch (e_3_1) { e_3 = { error: e_3_1 }; }
-        finally {
-            try {
-                if (ACTIVATION_EVENT_TYPES_2_1 && !ACTIVATION_EVENT_TYPES_2_1.done && (_a = ACTIVATION_EVENT_TYPES_2.return)) _a.call(ACTIVATION_EVENT_TYPES_2);
-            }
-            finally { if (e_3) throw e_3.error; }
-        }
-        this.adapter.deregisterInteractionHandler('focus', this.focusHandler);
-        this.adapter.deregisterInteractionHandler('blur', this.blurHandler);
-        if (this.adapter.isUnbounded()) {
-            this.adapter.deregisterResizeHandler(this.resizeHandler);
-        }
-    };
-    MDCRippleFoundation.prototype.deregisterDeactivationHandlers = function () {
-        var e_4, _a;
-        this.adapter.deregisterInteractionHandler('keyup', this.deactivateHandler);
-        try {
-            for (var POINTER_DEACTIVATION_EVENT_TYPES_2 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next(); !POINTER_DEACTIVATION_EVENT_TYPES_2_1.done; POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next()) {
-                var evtType = POINTER_DEACTIVATION_EVENT_TYPES_2_1.value;
-                this.adapter.deregisterDocumentInteractionHandler(evtType, this.deactivateHandler);
-            }
-        }
-        catch (e_4_1) { e_4 = { error: e_4_1 }; }
-        finally {
-            try {
-                if (POINTER_DEACTIVATION_EVENT_TYPES_2_1 && !POINTER_DEACTIVATION_EVENT_TYPES_2_1.done && (_a = POINTER_DEACTIVATION_EVENT_TYPES_2.return)) _a.call(POINTER_DEACTIVATION_EVENT_TYPES_2);
-            }
-            finally { if (e_4) throw e_4.error; }
-        }
-    };
-    MDCRippleFoundation.prototype.removeCssVars = function () {
-        var _this = this;
-        var rippleStrings = MDCRippleFoundation.strings;
-        var keys = Object.keys(rippleStrings);
-        keys.forEach(function (key) {
-            if (key.indexOf('VAR_') === 0) {
-                _this.adapter.updateCssVariable(rippleStrings[key], null);
-            }
-        });
-    };
-    MDCRippleFoundation.prototype.activateImpl = function (evt) {
-        var _this = this;
-        if (this.adapter.isSurfaceDisabled()) {
-            return;
-        }
-        var activationState = this.activationState;
-        if (activationState.isActivated) {
-            return;
-        }
-        // Avoid reacting to follow-on events fired by touch device after an already-processed user interaction
-        var previousActivationEvent = this.previousActivationEvent;
-        var isSameInteraction = previousActivationEvent && evt !== undefined && previousActivationEvent.type !== evt.type;
-        if (isSameInteraction) {
-            return;
-        }
-        activationState.isActivated = true;
-        activationState.isProgrammatic = evt === undefined;
-        activationState.activationEvent = evt;
-        activationState.wasActivatedByPointer = activationState.isProgrammatic ? false : evt !== undefined && (evt.type === 'mousedown' || evt.type === 'touchstart' || evt.type === 'pointerdown');
-        var hasActivatedChild = evt !== undefined &&
-            activatedTargets.length > 0 &&
-            activatedTargets.some(function (target) { return _this.adapter.containsEventTarget(target); });
-        if (hasActivatedChild) {
-            // Immediately reset activation state, while preserving logic that prevents touch follow-on events
-            this.resetActivationState();
-            return;
-        }
-        if (evt !== undefined) {
-            activatedTargets.push(evt.target);
-            this.registerDeactivationHandlers(evt);
-        }
-        activationState.wasElementMadeActive = this.checkElementMadeActive(evt);
-        if (activationState.wasElementMadeActive) {
-            this.animateActivation();
-        }
-        requestAnimationFrame(function () {
-            // Reset array on next frame after the current event has had a chance to bubble to prevent ancestor ripples
-            activatedTargets = [];
-            if (!activationState.wasElementMadeActive
-                && evt !== undefined
-                && (evt.key === ' ' || evt.keyCode === 32)) {
-                // If space was pressed, try again within an rAF call to detect :active, because different UAs report
-                // active states inconsistently when they're called within event handling code:
-                // - https://bugs.chromium.org/p/chromium/issues/detail?id=635971
-                // - https://bugzilla.mozilla.org/show_bug.cgi?id=1293741
-                // We try first outside rAF to support Edge, which does not exhibit this problem, but will crash if a CSS
-                // variable is set within a rAF callback for a submit button interaction (#2241).
-                activationState.wasElementMadeActive = _this.checkElementMadeActive(evt);
-                if (activationState.wasElementMadeActive) {
-                    _this.animateActivation();
-                }
-            }
-            if (!activationState.wasElementMadeActive) {
-                // Reset activation state immediately if element was not made active.
-                _this.activationState = _this.defaultActivationState();
-            }
-        });
-    };
-    MDCRippleFoundation.prototype.checkElementMadeActive = function (evt) {
-        return (evt !== undefined && evt.type === 'keydown') ?
-            this.adapter.isSurfaceActive() :
-            true;
-    };
-    MDCRippleFoundation.prototype.animateActivation = function () {
-        var _this = this;
-        var _a = MDCRippleFoundation.strings, VAR_FG_TRANSLATE_START = _a.VAR_FG_TRANSLATE_START, VAR_FG_TRANSLATE_END = _a.VAR_FG_TRANSLATE_END;
-        var _b = MDCRippleFoundation.cssClasses, FG_DEACTIVATION = _b.FG_DEACTIVATION, FG_ACTIVATION = _b.FG_ACTIVATION;
-        var DEACTIVATION_TIMEOUT_MS = MDCRippleFoundation.numbers.DEACTIVATION_TIMEOUT_MS;
-        this.layoutInternal();
-        var translateStart = '';
-        var translateEnd = '';
-        if (!this.adapter.isUnbounded()) {
-            var _c = this.getFgTranslationCoordinates(), startPoint = _c.startPoint, endPoint = _c.endPoint;
-            translateStart = startPoint.x + "px, " + startPoint.y + "px";
-            translateEnd = endPoint.x + "px, " + endPoint.y + "px";
-        }
-        this.adapter.updateCssVariable(VAR_FG_TRANSLATE_START, translateStart);
-        this.adapter.updateCssVariable(VAR_FG_TRANSLATE_END, translateEnd);
-        // Cancel any ongoing activation/deactivation animations
-        clearTimeout(this.activationTimer);
-        clearTimeout(this.fgDeactivationRemovalTimer);
-        this.rmBoundedActivationClasses();
-        this.adapter.removeClass(FG_DEACTIVATION);
-        // Force layout in order to re-trigger the animation.
-        this.adapter.computeBoundingRect();
-        this.adapter.addClass(FG_ACTIVATION);
-        this.activationTimer = setTimeout(function () {
-            _this.activationTimerCallback();
-        }, DEACTIVATION_TIMEOUT_MS);
-    };
-    MDCRippleFoundation.prototype.getFgTranslationCoordinates = function () {
-        var _a = this.activationState, activationEvent = _a.activationEvent, wasActivatedByPointer = _a.wasActivatedByPointer;
-        var startPoint;
-        if (wasActivatedByPointer) {
-            startPoint = getNormalizedEventCoords(activationEvent, this.adapter.getWindowPageOffset(), this.adapter.computeBoundingRect());
-        }
-        else {
-            startPoint = {
-                x: this.frame.width / 2,
-                y: this.frame.height / 2,
-            };
-        }
-        // Center the element around the start point.
-        startPoint = {
-            x: startPoint.x - (this.initialSize / 2),
-            y: startPoint.y - (this.initialSize / 2),
-        };
-        var endPoint = {
-            x: (this.frame.width / 2) - (this.initialSize / 2),
-            y: (this.frame.height / 2) - (this.initialSize / 2),
-        };
-        return { startPoint: startPoint, endPoint: endPoint };
-    };
-    MDCRippleFoundation.prototype.runDeactivationUXLogicIfReady = function () {
-        var _this = this;
-        // This method is called both when a pointing device is released, and when the activation animation ends.
-        // The deactivation animation should only run after both of those occur.
-        var FG_DEACTIVATION = MDCRippleFoundation.cssClasses.FG_DEACTIVATION;
-        var _a = this.activationState, hasDeactivationUXRun = _a.hasDeactivationUXRun, isActivated = _a.isActivated;
-        var activationHasEnded = hasDeactivationUXRun || !isActivated;
-        if (activationHasEnded && this.activationAnimationHasEnded) {
-            this.rmBoundedActivationClasses();
-            this.adapter.addClass(FG_DEACTIVATION);
-            this.fgDeactivationRemovalTimer = setTimeout(function () {
-                _this.adapter.removeClass(FG_DEACTIVATION);
-            }, numbers$1.FG_DEACTIVATION_MS);
-        }
-    };
-    MDCRippleFoundation.prototype.rmBoundedActivationClasses = function () {
-        var FG_ACTIVATION = MDCRippleFoundation.cssClasses.FG_ACTIVATION;
-        this.adapter.removeClass(FG_ACTIVATION);
-        this.activationAnimationHasEnded = false;
-        this.adapter.computeBoundingRect();
-    };
-    MDCRippleFoundation.prototype.resetActivationState = function () {
-        var _this = this;
-        this.previousActivationEvent = this.activationState.activationEvent;
-        this.activationState = this.defaultActivationState();
-        // Touch devices may fire additional events for the same interaction within a short time.
-        // Store the previous event until it's safe to assume that subsequent events are for new interactions.
-        setTimeout(function () { return _this.previousActivationEvent = undefined; }, MDCRippleFoundation.numbers.TAP_DELAY_MS);
-    };
-    MDCRippleFoundation.prototype.deactivateImpl = function () {
-        var _this = this;
-        var activationState = this.activationState;
-        // This can happen in scenarios such as when you have a keyup event that blurs the element.
-        if (!activationState.isActivated) {
-            return;
-        }
-        var state = __assign({}, activationState);
-        if (activationState.isProgrammatic) {
-            requestAnimationFrame(function () {
-                _this.animateDeactivation(state);
-            });
-            this.resetActivationState();
-        }
-        else {
-            this.deregisterDeactivationHandlers();
-            requestAnimationFrame(function () {
-                _this.activationState.hasDeactivationUXRun = true;
-                _this.animateDeactivation(state);
-                _this.resetActivationState();
-            });
-        }
-    };
-    MDCRippleFoundation.prototype.animateDeactivation = function (_a) {
-        var wasActivatedByPointer = _a.wasActivatedByPointer, wasElementMadeActive = _a.wasElementMadeActive;
-        if (wasActivatedByPointer || wasElementMadeActive) {
-            this.runDeactivationUXLogicIfReady();
-        }
-    };
-    MDCRippleFoundation.prototype.layoutInternal = function () {
-        var _this = this;
-        this.frame = this.adapter.computeBoundingRect();
-        var maxDim = Math.max(this.frame.height, this.frame.width);
-        // Surface diameter is treated differently for unbounded vs. bounded ripples.
-        // Unbounded ripple diameter is calculated smaller since the surface is expected to already be padded appropriately
-        // to extend the hitbox, and the ripple is expected to meet the edges of the padded hitbox (which is typically
-        // square). Bounded ripples, on the other hand, are fully expected to expand beyond the surface's longest diameter
-        // (calculated based on the diagonal plus a constant padding), and are clipped at the surface's border via
-        // `overflow: hidden`.
-        var getBoundedRadius = function () {
-            var hypotenuse = Math.sqrt(Math.pow(_this.frame.width, 2) + Math.pow(_this.frame.height, 2));
-            return hypotenuse + MDCRippleFoundation.numbers.PADDING;
-        };
-        this.maxRadius = this.adapter.isUnbounded() ? maxDim : getBoundedRadius();
-        // Ripple is sized as a fraction of the largest dimension of the surface, then scales up using a CSS scale transform
-        var initialSize = Math.floor(maxDim * MDCRippleFoundation.numbers.INITIAL_ORIGIN_SCALE);
-        // Unbounded ripple size should always be even number to equally center align.
-        if (this.adapter.isUnbounded() && initialSize % 2 !== 0) {
-            this.initialSize = initialSize - 1;
-        }
-        else {
-            this.initialSize = initialSize;
-        }
-        this.fgScale = "" + this.maxRadius / this.initialSize;
-        this.updateLayoutCssVars();
-    };
-    MDCRippleFoundation.prototype.updateLayoutCssVars = function () {
-        var _a = MDCRippleFoundation.strings, VAR_FG_SIZE = _a.VAR_FG_SIZE, VAR_LEFT = _a.VAR_LEFT, VAR_TOP = _a.VAR_TOP, VAR_FG_SCALE = _a.VAR_FG_SCALE;
-        this.adapter.updateCssVariable(VAR_FG_SIZE, this.initialSize + "px");
-        this.adapter.updateCssVariable(VAR_FG_SCALE, this.fgScale);
-        if (this.adapter.isUnbounded()) {
-            this.unboundedCoords = {
-                left: Math.round((this.frame.width / 2) - (this.initialSize / 2)),
-                top: Math.round((this.frame.height / 2) - (this.initialSize / 2)),
-            };
-            this.adapter.updateCssVariable(VAR_LEFT, this.unboundedCoords.left + "px");
-            this.adapter.updateCssVariable(VAR_TOP, this.unboundedCoords.top + "px");
-        }
-    };
-    return MDCRippleFoundation;
-}(MDCFoundation));
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-var MDCRippleFoundation$1 = MDCRippleFoundation;
-
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */const i=e$1(class extends i$1{constructor(t$1){var e;if(super(t$1),t$1.type!==t.ATTRIBUTE||"style"!==t$1.name||(null===(e=t$1.strings)||void 0===e?void 0:e.length)>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(t){return Object.keys(t).reduce(((e,r)=>{const s=t[r];return null==s?e:e+`${r=r.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${s};`}),"")}update(e,[r]){const{style:s}=e.element;if(void 0===this.vt){this.vt=new Set;for(const t in r)this.vt.add(t);return this.render(r)}this.vt.forEach((t=>{null==r[t]&&(this.vt.delete(t),t.includes("-")?s.removeProperty(t):s[t]="");}));for(const t in r){const e=r[t];null!=e&&(this.vt.add(t),t.includes("-")?s.setProperty(t,e):s[t]=e);}return x}});
-
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-class RippleBase extends BaseElement {
-    constructor() {
-        super(...arguments);
-        this.primary = false;
-        this.accent = false;
-        this.unbounded = false;
-        this.disabled = false;
-        this.activated = false;
-        this.selected = false;
-        this.internalUseStateLayerCustomProperties = false;
-        this.hovering = false;
-        this.bgFocused = false;
-        this.fgActivation = false;
-        this.fgDeactivation = false;
-        this.fgScale = '';
-        this.fgSize = '';
-        this.translateStart = '';
-        this.translateEnd = '';
-        this.leftPos = '';
-        this.topPos = '';
-        this.mdcFoundationClass = MDCRippleFoundation$1;
-    }
-    get isActive() {
-        return matches(this.parentElement || this, ':active');
-    }
-    createAdapter() {
-        return {
-            browserSupportsCssVars: () => true,
-            isUnbounded: () => this.unbounded,
-            isSurfaceActive: () => this.isActive,
-            isSurfaceDisabled: () => this.disabled,
-            addClass: (className) => {
-                switch (className) {
-                    case 'mdc-ripple-upgraded--background-focused':
-                        this.bgFocused = true;
-                        break;
-                    case 'mdc-ripple-upgraded--foreground-activation':
-                        this.fgActivation = true;
-                        break;
-                    case 'mdc-ripple-upgraded--foreground-deactivation':
-                        this.fgDeactivation = true;
-                        break;
-                }
-            },
-            removeClass: (className) => {
-                switch (className) {
-                    case 'mdc-ripple-upgraded--background-focused':
-                        this.bgFocused = false;
-                        break;
-                    case 'mdc-ripple-upgraded--foreground-activation':
-                        this.fgActivation = false;
-                        break;
-                    case 'mdc-ripple-upgraded--foreground-deactivation':
-                        this.fgDeactivation = false;
-                        break;
-                }
-            },
-            containsEventTarget: () => true,
-            registerInteractionHandler: () => undefined,
-            deregisterInteractionHandler: () => undefined,
-            registerDocumentInteractionHandler: () => undefined,
-            deregisterDocumentInteractionHandler: () => undefined,
-            registerResizeHandler: () => undefined,
-            deregisterResizeHandler: () => undefined,
-            updateCssVariable: (varName, value) => {
-                switch (varName) {
-                    case '--mdc-ripple-fg-scale':
-                        this.fgScale = value;
-                        break;
-                    case '--mdc-ripple-fg-size':
-                        this.fgSize = value;
-                        break;
-                    case '--mdc-ripple-fg-translate-end':
-                        this.translateEnd = value;
-                        break;
-                    case '--mdc-ripple-fg-translate-start':
-                        this.translateStart = value;
-                        break;
-                    case '--mdc-ripple-left':
-                        this.leftPos = value;
-                        break;
-                    case '--mdc-ripple-top':
-                        this.topPos = value;
-                        break;
-                }
-            },
-            computeBoundingRect: () => (this.parentElement || this).getBoundingClientRect(),
-            getWindowPageOffset: () => ({ x: window.pageXOffset, y: window.pageYOffset }),
-        };
-    }
-    startPress(ev) {
-        this.waitForFoundation(() => {
-            this.mdcFoundation.activate(ev);
-        });
-    }
-    endPress() {
-        this.waitForFoundation(() => {
-            this.mdcFoundation.deactivate();
-        });
-    }
-    startFocus() {
-        this.waitForFoundation(() => {
-            this.mdcFoundation.handleFocus();
-        });
-    }
-    endFocus() {
-        this.waitForFoundation(() => {
-            this.mdcFoundation.handleBlur();
-        });
-    }
-    startHover() {
-        this.hovering = true;
-    }
-    endHover() {
-        this.hovering = false;
-    }
-    /**
-     * Wait for the MDCFoundation to be created by `firstUpdated`
-     */
-    waitForFoundation(fn) {
-        if (this.mdcFoundation) {
-            fn();
-        }
-        else {
-            this.updateComplete.then(fn);
-        }
-    }
-    update(changedProperties) {
-        if (changedProperties.has('disabled')) {
-            // stop hovering when ripple is disabled to prevent a stuck "hover" state
-            // When re-enabled, the outer component will get a `mouseenter` event on
-            // the first movement, which will call `startHover()`
-            if (this.disabled) {
-                this.endHover();
-            }
-        }
-        super.update(changedProperties);
-    }
-    /** @soyTemplate */
-    render() {
-        const shouldActivateInPrimary = this.activated && (this.primary || !this.accent);
-        const shouldSelectInPrimary = this.selected && (this.primary || !this.accent);
-        /** @classMap */
-        const classes = {
-            'mdc-ripple-surface--accent': this.accent,
-            'mdc-ripple-surface--primary--activated': shouldActivateInPrimary,
-            'mdc-ripple-surface--accent--activated': this.accent && this.activated,
-            'mdc-ripple-surface--primary--selected': shouldSelectInPrimary,
-            'mdc-ripple-surface--accent--selected': this.accent && this.selected,
-            'mdc-ripple-surface--disabled': this.disabled,
-            'mdc-ripple-surface--hover': this.hovering,
-            'mdc-ripple-surface--primary': this.primary,
-            'mdc-ripple-surface--selected': this.selected,
-            'mdc-ripple-upgraded--background-focused': this.bgFocused,
-            'mdc-ripple-upgraded--foreground-activation': this.fgActivation,
-            'mdc-ripple-upgraded--foreground-deactivation': this.fgDeactivation,
-            'mdc-ripple-upgraded--unbounded': this.unbounded,
-            'mdc-ripple-surface--internal-use-state-layer-custom-properties': this.internalUseStateLayerCustomProperties,
-        };
-        return y `
-        <div class="mdc-ripple-surface mdc-ripple-upgraded ${o$1(classes)}"
-          style="${i({
-            '--mdc-ripple-fg-scale': this.fgScale,
-            '--mdc-ripple-fg-size': this.fgSize,
-            '--mdc-ripple-fg-translate-end': this.translateEnd,
-            '--mdc-ripple-fg-translate-start': this.translateStart,
-            '--mdc-ripple-left': this.leftPos,
-            '--mdc-ripple-top': this.topPos,
-        })}"></div>`;
-    }
-}
-__decorate([
-    i$2('.mdc-ripple-surface')
-], RippleBase.prototype, "mdcRoot", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "primary", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "accent", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "unbounded", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "disabled", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "activated", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "selected", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], RippleBase.prototype, "internalUseStateLayerCustomProperties", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "hovering", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "bgFocused", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "fgActivation", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "fgDeactivation", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "fgScale", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "fgSize", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "translateStart", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "translateEnd", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "leftPos", void 0);
-__decorate([
-    t$1()
-], RippleBase.prototype, "topPos", void 0);
-
+var t,e}createAdapter(){return{browserSupportsCssVars:()=>!0,isUnbounded:()=>this.unbounded,isSurfaceActive:()=>this.isActive,isSurfaceDisabled:()=>this.disabled,addClass:t=>{switch(t){case"mdc-ripple-upgraded--background-focused":this.bgFocused=!0;break;case"mdc-ripple-upgraded--foreground-activation":this.fgActivation=!0;break;case"mdc-ripple-upgraded--foreground-deactivation":this.fgDeactivation=!0}},removeClass:t=>{switch(t){case"mdc-ripple-upgraded--background-focused":this.bgFocused=!1;break;case"mdc-ripple-upgraded--foreground-activation":this.fgActivation=!1;break;case"mdc-ripple-upgraded--foreground-deactivation":this.fgDeactivation=!1}},containsEventTarget:()=>!0,registerInteractionHandler:()=>{},deregisterInteractionHandler:()=>{},registerDocumentInteractionHandler:()=>{},deregisterDocumentInteractionHandler:()=>{},registerResizeHandler:()=>{},deregisterResizeHandler:()=>{},updateCssVariable:(t,e)=>{switch(t){case"--mdc-ripple-fg-scale":this.fgScale=e;break;case"--mdc-ripple-fg-size":this.fgSize=e;break;case"--mdc-ripple-fg-translate-end":this.translateEnd=e;break;case"--mdc-ripple-fg-translate-start":this.translateStart=e;break;case"--mdc-ripple-left":this.leftPos=e;break;case"--mdc-ripple-top":this.topPos=e}},computeBoundingRect:()=>(this.parentElement||this).getBoundingClientRect(),getWindowPageOffset:()=>({x:window.pageXOffset,y:window.pageYOffset})}}startPress(t){this.waitForFoundation((()=>{this.mdcFoundation.activate(t)}))}endPress(){this.waitForFoundation((()=>{this.mdcFoundation.deactivate()}))}startFocus(){this.waitForFoundation((()=>{this.mdcFoundation.handleFocus()}))}endFocus(){this.waitForFoundation((()=>{this.mdcFoundation.handleBlur()}))}startHover(){this.hovering=!0}endHover(){this.hovering=!1}waitForFoundation(t){this.mdcFoundation?t():this.updateComplete.then(t)}update(t){t.has("disabled")&&this.disabled&&this.endHover(),super.update(t)}render(){const t=this.activated&&(this.primary||!this.accent),e=this.selected&&(this.primary||!this.accent),i={"mdc-ripple-surface--accent":this.accent,"mdc-ripple-surface--primary--activated":t,"mdc-ripple-surface--accent--activated":this.accent&&this.activated,"mdc-ripple-surface--primary--selected":e,"mdc-ripple-surface--accent--selected":this.accent&&this.selected,"mdc-ripple-surface--disabled":this.disabled,"mdc-ripple-surface--hover":this.hovering,"mdc-ripple-surface--primary":this.primary,"mdc-ripple-surface--selected":this.selected,"mdc-ripple-upgraded--background-focused":this.bgFocused,"mdc-ripple-upgraded--foreground-activation":this.fgActivation,"mdc-ripple-upgraded--foreground-deactivation":this.fgDeactivation,"mdc-ripple-upgraded--unbounded":this.unbounded,"mdc-ripple-surface--internal-use-state-layer-custom-properties":this.internalUseStateLayerCustomProperties};return L`
+        <div class="mdc-ripple-surface mdc-ripple-upgraded ${Nt(i)}"
+          style="${se({"--mdc-ripple-fg-scale":this.fgScale,"--mdc-ripple-fg-size":this.fgSize,"--mdc-ripple-fg-translate-end":this.translateEnd,"--mdc-ripple-fg-translate-start":this.translateStart,"--mdc-ripple-left":this.leftPos,"--mdc-ripple-top":this.topPos})}"></div>`}}r([ht(".mdc-ripple-surface")],de.prototype,"mdcRoot",void 0),r([ct({type:Boolean})],de.prototype,"primary",void 0),r([ct({type:Boolean})],de.prototype,"accent",void 0),r([ct({type:Boolean})],de.prototype,"unbounded",void 0),r([ct({type:Boolean})],de.prototype,"disabled",void 0),r([ct({type:Boolean})],de.prototype,"activated",void 0),r([ct({type:Boolean})],de.prototype,"selected",void 0),r([ct({type:Boolean})],de.prototype,"internalUseStateLayerCustomProperties",void 0),r([lt()],de.prototype,"hovering",void 0),r([lt()],de.prototype,"bgFocused",void 0),r([lt()],de.prototype,"fgActivation",void 0),r([lt()],de.prototype,"fgDeactivation",void 0),r([lt()],de.prototype,"fgScale",void 0),r([lt()],de.prototype,"fgSize",void 0),r([lt()],de.prototype,"translateStart",void 0),r([lt()],de.prototype,"translateEnd",void 0),r([lt()],de.prototype,"leftPos",void 0),r([lt()],de.prototype,"topPos",void 0);
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-LIcense-Identifier: Apache-2.0
  */
-const styles$3 = i$5 `.mdc-ripple-surface{--mdc-ripple-fg-size: 0;--mdc-ripple-left: 0;--mdc-ripple-top: 0;--mdc-ripple-fg-scale: 1;--mdc-ripple-fg-translate-end: 0;--mdc-ripple-fg-translate-start: 0;-webkit-tap-highlight-color:rgba(0,0,0,0);will-change:transform,opacity;position:relative;outline:none;overflow:hidden}.mdc-ripple-surface::before,.mdc-ripple-surface::after{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:""}.mdc-ripple-surface::before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1;z-index:var(--mdc-ripple-z-index, 1)}.mdc-ripple-surface::after{z-index:0;z-index:var(--mdc-ripple-z-index, 0)}.mdc-ripple-surface.mdc-ripple-upgraded::before{transform:scale(var(--mdc-ripple-fg-scale, 1))}.mdc-ripple-surface.mdc-ripple-upgraded::after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded::after{top:var(--mdc-ripple-top, 0);left:var(--mdc-ripple-left, 0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation::after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation::after{animation:mdc-ripple-fg-opacity-out 150ms;transform:translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1))}.mdc-ripple-surface::before,.mdc-ripple-surface::after{top:calc(50% - 100%);left:calc(50% - 100%);width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded::after{width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded],.mdc-ripple-upgraded--unbounded{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]::before,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]::after,.mdc-ripple-upgraded--unbounded::before,.mdc-ripple-upgraded--unbounded::after{top:calc(50% - 50%);left:calc(50% - 50%);width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::before,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::after,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::before,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::after{top:var(--mdc-ripple-top, calc(50% - 50%));left:var(--mdc-ripple-left, calc(50% - 50%));width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::after,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::after{width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface::before,.mdc-ripple-surface::after{background-color:#000;background-color:var(--mdc-ripple-color, #000)}.mdc-ripple-surface:hover::before,.mdc-ripple-surface.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}@keyframes mdc-ripple-fg-radius-in{from{animation-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transform:translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1))}}@keyframes mdc-ripple-fg-opacity-in{from{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity, 0)}}@keyframes mdc-ripple-fg-opacity-out{from{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity, 0)}to{opacity:0}}:host{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:block}:host .mdc-ripple-surface{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;will-change:unset}.mdc-ripple-surface--primary::before,.mdc-ripple-surface--primary::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary:hover::before,.mdc-ripple-surface--primary.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--primary--activated::before{opacity:0.12;opacity:var(--mdc-ripple-activated-opacity, 0.12)}.mdc-ripple-surface--primary--activated::before,.mdc-ripple-surface--primary--activated::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary--activated:hover::before,.mdc-ripple-surface--primary--activated.mdc-ripple-surface--hover::before{opacity:0.16;opacity:var(--mdc-ripple-hover-opacity, 0.16)}.mdc-ripple-surface--primary--activated.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--primary--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--primary--selected::before{opacity:0.08;opacity:var(--mdc-ripple-selected-opacity, 0.08)}.mdc-ripple-surface--primary--selected::before,.mdc-ripple-surface--primary--selected::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary--selected:hover::before,.mdc-ripple-surface--primary--selected.mdc-ripple-surface--hover::before{opacity:0.12;opacity:var(--mdc-ripple-hover-opacity, 0.12)}.mdc-ripple-surface--primary--selected.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-focus-opacity, 0.2)}.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--primary--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--accent::before,.mdc-ripple-surface--accent::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent:hover::before,.mdc-ripple-surface--accent.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--accent--activated::before{opacity:0.12;opacity:var(--mdc-ripple-activated-opacity, 0.12)}.mdc-ripple-surface--accent--activated::before,.mdc-ripple-surface--accent--activated::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent--activated:hover::before,.mdc-ripple-surface--accent--activated.mdc-ripple-surface--hover::before{opacity:0.16;opacity:var(--mdc-ripple-hover-opacity, 0.16)}.mdc-ripple-surface--accent--activated.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--accent--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--accent--selected::before{opacity:0.08;opacity:var(--mdc-ripple-selected-opacity, 0.08)}.mdc-ripple-surface--accent--selected::before,.mdc-ripple-surface--accent--selected::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent--selected:hover::before,.mdc-ripple-surface--accent--selected.mdc-ripple-surface--hover::before{opacity:0.12;opacity:var(--mdc-ripple-hover-opacity, 0.12)}.mdc-ripple-surface--accent--selected.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-focus-opacity, 0.2)}.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--accent--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--disabled{opacity:0}.mdc-ripple-surface--internal-use-state-layer-custom-properties::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties::after{background-color:#000;background-color:var(--mdc-ripple-hover-state-layer-color, #000)}.mdc-ripple-surface--internal-use-state-layer-custom-properties:hover::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-state-layer-opacity, 0.04)}.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-state-layer-opacity, 0.12)}.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-pressed-state-layer-opacity, 0.12)}.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-pressed-state-layer-opacity, 0.12)}`;
-
+const ce=l`.mdc-ripple-surface{--mdc-ripple-fg-size: 0;--mdc-ripple-left: 0;--mdc-ripple-top: 0;--mdc-ripple-fg-scale: 1;--mdc-ripple-fg-translate-end: 0;--mdc-ripple-fg-translate-start: 0;-webkit-tap-highlight-color:rgba(0,0,0,0);will-change:transform,opacity;position:relative;outline:none;overflow:hidden}.mdc-ripple-surface::before,.mdc-ripple-surface::after{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:""}.mdc-ripple-surface::before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1;z-index:var(--mdc-ripple-z-index, 1)}.mdc-ripple-surface::after{z-index:0;z-index:var(--mdc-ripple-z-index, 0)}.mdc-ripple-surface.mdc-ripple-upgraded::before{transform:scale(var(--mdc-ripple-fg-scale, 1))}.mdc-ripple-surface.mdc-ripple-upgraded::after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded::after{top:var(--mdc-ripple-top, 0);left:var(--mdc-ripple-left, 0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation::after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation::after{animation:mdc-ripple-fg-opacity-out 150ms;transform:translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1))}.mdc-ripple-surface::before,.mdc-ripple-surface::after{top:calc(50% - 100%);left:calc(50% - 100%);width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded::after{width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded],.mdc-ripple-upgraded--unbounded{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]::before,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]::after,.mdc-ripple-upgraded--unbounded::before,.mdc-ripple-upgraded--unbounded::after{top:calc(50% - 50%);left:calc(50% - 50%);width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::before,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::after,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::before,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::after{top:var(--mdc-ripple-top, calc(50% - 50%));left:var(--mdc-ripple-left, calc(50% - 50%));width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded::after,.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded::after{width:var(--mdc-ripple-fg-size, 100%);height:var(--mdc-ripple-fg-size, 100%)}.mdc-ripple-surface::before,.mdc-ripple-surface::after{background-color:#000;background-color:var(--mdc-ripple-color, #000)}.mdc-ripple-surface:hover::before,.mdc-ripple-surface.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}@keyframes mdc-ripple-fg-radius-in{from{animation-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transform:translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1))}}@keyframes mdc-ripple-fg-opacity-in{from{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity, 0)}}@keyframes mdc-ripple-fg-opacity-out{from{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity, 0)}to{opacity:0}}:host{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:block}:host .mdc-ripple-surface{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;will-change:unset}.mdc-ripple-surface--primary::before,.mdc-ripple-surface--primary::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary:hover::before,.mdc-ripple-surface--primary.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--primary--activated::before{opacity:0.12;opacity:var(--mdc-ripple-activated-opacity, 0.12)}.mdc-ripple-surface--primary--activated::before,.mdc-ripple-surface--primary--activated::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary--activated:hover::before,.mdc-ripple-surface--primary--activated.mdc-ripple-surface--hover::before{opacity:0.16;opacity:var(--mdc-ripple-hover-opacity, 0.16)}.mdc-ripple-surface--primary--activated.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary--activated:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--primary--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--primary--selected::before{opacity:0.08;opacity:var(--mdc-ripple-selected-opacity, 0.08)}.mdc-ripple-surface--primary--selected::before,.mdc-ripple-surface--primary--selected::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-ripple-surface--primary--selected:hover::before,.mdc-ripple-surface--primary--selected.mdc-ripple-surface--hover::before{opacity:0.12;opacity:var(--mdc-ripple-hover-opacity, 0.12)}.mdc-ripple-surface--primary--selected.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-focus-opacity, 0.2)}.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--primary--selected:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--primary--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--accent::before,.mdc-ripple-surface--accent::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent:hover::before,.mdc-ripple-surface--accent.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-ripple-surface--accent--activated::before{opacity:0.12;opacity:var(--mdc-ripple-activated-opacity, 0.12)}.mdc-ripple-surface--accent--activated::before,.mdc-ripple-surface--accent--activated::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent--activated:hover::before,.mdc-ripple-surface--accent--activated.mdc-ripple-surface--hover::before{opacity:0.16;opacity:var(--mdc-ripple-hover-opacity, 0.16)}.mdc-ripple-surface--accent--activated.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-focus-opacity, 0.24)}.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent--activated:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.24;opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--accent--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.24)}.mdc-ripple-surface--accent--selected::before{opacity:0.08;opacity:var(--mdc-ripple-selected-opacity, 0.08)}.mdc-ripple-surface--accent--selected::before,.mdc-ripple-surface--accent--selected::after{background-color:#018786;background-color:var(--mdc-ripple-color, var(--mdc-theme-secondary, #018786))}.mdc-ripple-surface--accent--selected:hover::before,.mdc-ripple-surface--accent--selected.mdc-ripple-surface--hover::before{opacity:0.12;opacity:var(--mdc-ripple-hover-opacity, 0.12)}.mdc-ripple-surface--accent--selected.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-focus-opacity, 0.2)}.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--accent--selected:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.2;opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--accent--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.2)}.mdc-ripple-surface--disabled{opacity:0}.mdc-ripple-surface--internal-use-state-layer-custom-properties::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties::after{background-color:#000;background-color:var(--mdc-ripple-hover-state-layer-color, #000)}.mdc-ripple-surface--internal-use-state-layer-custom-properties:hover::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-state-layer-opacity, 0.04)}.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-upgraded--background-focused::before,.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-state-layer-opacity, 0.12)}.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-ripple-surface--internal-use-state-layer-custom-properties:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-pressed-state-layer-opacity, 0.12)}.mdc-ripple-surface--internal-use-state-layer-custom-properties.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-pressed-state-layer-opacity, 0.12)}`
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-let Ripple = class Ripple extends RippleBase {
-};
-Ripple.styles = [styles$3];
-Ripple = __decorate([
-    e$5('mwc-ripple')
-], Ripple);
-
+ */;let le=class extends de{};function pe(t,e,i){if(void 0!==e)
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-/**
- * TypeScript version of the decorator
- * @see https://www.typescriptlang.org/docs/handbook/decorators.html#property-decorators
- */
-function tsDecorator(prototype, name, descriptor) {
-    const constructor = prototype.constructor;
-    if (!descriptor) {
-        /**
-         * lit uses internal properties with two leading underscores to
-         * provide storage for accessors
-         */
-        const litInternalPropertyKey = `__${name}`;
-        descriptor =
-            constructor.getPropertyDescriptor(name, litInternalPropertyKey);
-        if (!descriptor) {
-            throw new Error('@ariaProperty must be used after a @property decorator');
-        }
-    }
-    // descriptor must exist at this point, reassign so typescript understands
-    const propDescriptor = descriptor;
-    let attribute = '';
-    if (!propDescriptor.set) {
-        throw new Error(`@ariaProperty requires a setter for ${name}`);
-    }
-    // TODO(b/202853219): Remove this check when internal tooling is
-    // compatible
-    // tslint:disable-next-line:no-any bail if applied to internal generated class
-    if (prototype.dispatchWizEvent) {
-        return descriptor;
-    }
-    const wrappedDescriptor = {
-        configurable: true,
-        enumerable: true,
-        set(value) {
-            if (attribute === '') {
-                const options = constructor.getPropertyOptions(name);
-                // if attribute is not a string, use `name` instead
-                attribute =
-                    typeof options.attribute === 'string' ? options.attribute : name;
-            }
-            if (this.hasAttribute(attribute)) {
-                this.removeAttribute(attribute);
-            }
-            propDescriptor.set.call(this, value);
-        }
-    };
-    if (propDescriptor.get) {
-        wrappedDescriptor.get = function () {
-            return propDescriptor.get.call(this);
-        };
-    }
-    return wrappedDescriptor;
-}
-/**
- * A property decorator proxies an aria attribute to an internal node
- *
- * This decorator is only intended for use with ARIA attributes, such as `role`
- * and `aria-label` due to screenreader needs.
- *
- * Upon first render, `@ariaProperty` will remove the attribute from the host
- * element to prevent screenreaders from reading the host instead of the
- * internal node.
- *
- * This decorator should only be used for non-Symbol public fields decorated
- * with `@property`, or on a setter with an optional getter.
- *
- * @example
- * ```ts
- * class MyElement {
- *   @ariaProperty
- *   @property({ type: String, attribute: 'aria-label' })
- *   ariaLabel!: string;
- * }
- * ```
- * @category Decorator
- * @ExportDecoratedItems
- */
-function ariaProperty(protoOrDescriptor, name, 
-// tslint:disable-next-line:no-any any is required as a return type from decorators
-descriptor) {
-    if (name !== undefined) {
-        return tsDecorator(protoOrDescriptor, name, descriptor);
-    }
-    else {
-        throw new Error('@ariaProperty only supports TypeScript Decorators');
-    }
-}
-
+return function(t,e,i){const r=t.constructor;if(!i){const t=`__${e}`;if(!(i=r.getPropertyDescriptor(e,t)))throw new Error("@ariaProperty must be used after a @property decorator")}const n=i;let a="";if(!n.set)throw new Error(`@ariaProperty requires a setter for ${e}`);if(t.dispatchWizEvent)return i;const o={configurable:!0,enumerable:!0,set(t){if(""===a){const t=r.getPropertyOptions(e);a="string"==typeof t.attribute?t.attribute:e}this.hasAttribute(a)&&this.removeAttribute(a),n.set.call(this,t)}};return n.get&&(o.get=function(){return n.get.call(this)}),o}(t,e,i);throw new Error("@ariaProperty only supports TypeScript Decorators")}
 /**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * Class that encapsulates the events handlers for `mwc-ripple`
- *
- *
- * Example:
- * ```
- * class XFoo extends LitElement {
- *   async getRipple() {
- *     this.renderRipple = true;
- *     await this.updateComplete;
- *     return this.renderRoot.querySelector('mwc-ripple');
- *   }
- *   rippleHandlers = new RippleHandlers(() => this.getRipple());
- *
- *   render() {
- *     return html`
- *       <div @mousedown=${this.rippleHandlers.startPress}></div>
- *       ${this.renderRipple ? html`<mwc-ripple></mwc-ripple>` : ''}
- *     `;
- *   }
- * }
- * ```
- */
-class RippleHandlers {
-    constructor(
-    /** Function that returns a `mwc-ripple` */
-    rippleFn) {
-        this.startPress = (ev) => {
-            rippleFn().then((r) => {
-                r && r.startPress(ev);
-            });
-        };
-        this.endPress = () => {
-            rippleFn().then((r) => {
-                r && r.endPress();
-            });
-        };
-        this.startFocus = () => {
-            rippleFn().then((r) => {
-                r && r.startFocus();
-            });
-        };
-        this.endFocus = () => {
-            rippleFn().then((r) => {
-                r && r.endFocus();
-            });
-        };
-        this.startHover = () => {
-            rippleFn().then((r) => {
-                r && r.startHover();
-            });
-        };
-        this.endHover = () => {
-            rippleFn().then((r) => {
-                r && r.endHover();
-            });
-        };
-    }
-}
-
+ */le.styles=[ce],le=r([st("mwc-ripple")],le);class ue{constructor(t){this.startPress=e=>{t().then((t=>{t&&t.startPress(e)}))},this.endPress=()=>{t().then((t=>{t&&t.endPress()}))},this.startFocus=()=>{t().then((t=>{t&&t.startFocus()}))},this.endFocus=()=>{t().then((t=>{t&&t.endFocus()}))},this.startHover=()=>{t().then((t=>{t&&t.startHover()}))},this.endHover=()=>{t().then((t=>{t&&t.endHover()}))}}}
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */const l=l=>null!=l?l:b;
-
+ */const he=t=>null!=t?t:U
 /**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-class ButtonBase extends s$1 {
-    constructor() {
-        super(...arguments);
-        this.raised = false;
-        this.unelevated = false;
-        this.outlined = false;
-        this.dense = false;
-        this.disabled = false;
-        this.trailingIcon = false;
-        this.fullwidth = false;
-        this.icon = '';
-        this.label = '';
-        this.expandContent = false;
-        this.shouldRenderRipple = false;
-        this.rippleHandlers = new RippleHandlers(() => {
-            this.shouldRenderRipple = true;
-            return this.ripple;
-        });
-    }
-    /** @soyTemplate */
-    renderOverlay() {
-        return y ``;
-    }
-    /** @soyTemplate */
-    renderRipple() {
-        const filled = this.raised || this.unelevated;
-        return this.shouldRenderRipple ?
-            y `<mwc-ripple class="ripple" .primary="${!filled}" .disabled="${this.disabled}"></mwc-ripple>` :
-            '';
-    }
-    focus() {
-        const buttonElement = this.buttonElement;
-        if (buttonElement) {
-            this.rippleHandlers.startFocus();
-            buttonElement.focus();
-        }
-    }
-    blur() {
-        const buttonElement = this.buttonElement;
-        if (buttonElement) {
-            this.rippleHandlers.endFocus();
-            buttonElement.blur();
-        }
-    }
-    /** @soyTemplate */
-    getRenderClasses() {
-        return {
-            'mdc-button--raised': this.raised,
-            'mdc-button--unelevated': this.unelevated,
-            'mdc-button--outlined': this.outlined,
-            'mdc-button--dense': this.dense,
-        };
-    }
-    /**
-     * @soyTemplate
-     * @soyAttributes buttonAttributes: #button
-     * @soyClasses buttonClasses: #button
-     */
-    render() {
-        return y `
+ */;class me extends at{constructor(){super(...arguments),this.raised=!1,this.unelevated=!1,this.outlined=!1,this.dense=!1,this.disabled=!1,this.trailingIcon=!1,this.fullwidth=!1,this.icon="",this.label="",this.expandContent=!1,this.shouldRenderRipple=!1,this.rippleHandlers=new ue((()=>(this.shouldRenderRipple=!0,this.ripple)))}renderOverlay(){return L``}renderRipple(){const t=this.raised||this.unelevated;return this.shouldRenderRipple?L`<mwc-ripple class="ripple" .primary="${!t}" .disabled="${this.disabled}"></mwc-ripple>`:""}focus(){const t=this.buttonElement;t&&(this.rippleHandlers.startFocus(),t.focus())}blur(){const t=this.buttonElement;t&&(this.rippleHandlers.endFocus(),t.blur())}getRenderClasses(){return{"mdc-button--raised":this.raised,"mdc-button--unelevated":this.unelevated,"mdc-button--outlined":this.outlined,"mdc-button--dense":this.dense}}render(){return L`
       <button
           id="button"
-          class="mdc-button ${o$1(this.getRenderClasses())}"
+          class="mdc-button ${Nt(this.getRenderClasses())}"
           ?disabled="${this.disabled}"
-          aria-label="${this.label || this.icon}"
-          aria-haspopup="${l(this.ariaHasPopup)}"
+          aria-label="${this.label||this.icon}"
+          aria-haspopup="${he(this.ariaHasPopup)}"
           @focus="${this.handleRippleFocus}"
           @blur="${this.handleRippleBlur}"
           @mousedown="${this.handleRippleActivate}"
@@ -2034,167 +318,46 @@ class ButtonBase extends s$1 {
         ${this.renderRipple()}
         <span class="leading-icon">
           <slot name="icon">
-            ${this.icon && !this.trailingIcon ? this.renderIcon() : ''}
+            ${this.icon&&!this.trailingIcon?this.renderIcon():""}
           </slot>
         </span>
         <span class="mdc-button__label">${this.label}</span>
-        <span class="slot-container ${o$1({
-            flex: this.expandContent
-        })}">
+        <span class="slot-container ${Nt({flex:this.expandContent})}">
           <slot></slot>
         </span>
         <span class="trailing-icon">
           <slot name="trailingIcon">
-            ${this.icon && this.trailingIcon ? this.renderIcon() : ''}
+            ${this.icon&&this.trailingIcon?this.renderIcon():""}
           </slot>
         </span>
-      </button>`;
-    }
-    /** @soyTemplate */
-    renderIcon() {
-        return y `
+      </button>`}renderIcon(){return L`
     <mwc-icon class="mdc-button__icon">
       ${this.icon}
-    </mwc-icon>`;
-    }
-    handleRippleActivate(evt) {
-        const onUp = () => {
-            window.removeEventListener('mouseup', onUp);
-            this.handleRippleDeactivate();
-        };
-        window.addEventListener('mouseup', onUp);
-        this.rippleHandlers.startPress(evt);
-    }
-    handleRippleDeactivate() {
-        this.rippleHandlers.endPress();
-    }
-    handleRippleMouseEnter() {
-        this.rippleHandlers.startHover();
-    }
-    handleRippleMouseLeave() {
-        this.rippleHandlers.endHover();
-    }
-    handleRippleFocus() {
-        this.rippleHandlers.startFocus();
-    }
-    handleRippleBlur() {
-        this.rippleHandlers.endFocus();
-    }
-}
-ButtonBase.shadowRootOptions = { mode: 'open', delegatesFocus: true };
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-haspopup' })
-], ButtonBase.prototype, "ariaHasPopup", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], ButtonBase.prototype, "raised", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], ButtonBase.prototype, "unelevated", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], ButtonBase.prototype, "outlined", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], ButtonBase.prototype, "dense", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], ButtonBase.prototype, "disabled", void 0);
-__decorate([
-    e$4({ type: Boolean, attribute: 'trailingicon' })
-], ButtonBase.prototype, "trailingIcon", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], ButtonBase.prototype, "fullwidth", void 0);
-__decorate([
-    e$4({ type: String })
-], ButtonBase.prototype, "icon", void 0);
-__decorate([
-    e$4({ type: String })
-], ButtonBase.prototype, "label", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], ButtonBase.prototype, "expandContent", void 0);
-__decorate([
-    i$2('#button')
-], ButtonBase.prototype, "buttonElement", void 0);
-__decorate([
-    e$2('mwc-ripple')
-], ButtonBase.prototype, "ripple", void 0);
-__decorate([
-    t$1()
-], ButtonBase.prototype, "shouldRenderRipple", void 0);
-__decorate([
-    e$3({ passive: true })
-], ButtonBase.prototype, "handleRippleActivate", null);
-
+    </mwc-icon>`}handleRippleActivate(t){const e=()=>{window.removeEventListener("mouseup",e),this.handleRippleDeactivate()};window.addEventListener("mouseup",e),this.rippleHandlers.startPress(t)}handleRippleDeactivate(){this.rippleHandlers.endPress()}handleRippleMouseEnter(){this.rippleHandlers.startHover()}handleRippleMouseLeave(){this.rippleHandlers.endHover()}handleRippleFocus(){this.rippleHandlers.startFocus()}handleRippleBlur(){this.rippleHandlers.endFocus()}}me.shadowRootOptions={mode:"open",delegatesFocus:!0},r([pe,ct({type:String,attribute:"aria-haspopup"})],me.prototype,"ariaHasPopup",void 0),r([ct({type:Boolean,reflect:!0})],me.prototype,"raised",void 0),r([ct({type:Boolean,reflect:!0})],me.prototype,"unelevated",void 0),r([ct({type:Boolean,reflect:!0})],me.prototype,"outlined",void 0),r([ct({type:Boolean})],me.prototype,"dense",void 0),r([ct({type:Boolean,reflect:!0})],me.prototype,"disabled",void 0),r([ct({type:Boolean,attribute:"trailingicon"})],me.prototype,"trailingIcon",void 0),r([ct({type:Boolean,reflect:!0})],me.prototype,"fullwidth",void 0),r([ct({type:String})],me.prototype,"icon",void 0),r([ct({type:String})],me.prototype,"label",void 0),r([ct({type:Boolean})],me.prototype,"expandContent",void 0),r([ht("#button")],me.prototype,"buttonElement",void 0),r([mt("mwc-ripple")],me.prototype,"ripple",void 0),r([lt()],me.prototype,"shouldRenderRipple",void 0),r([ut({passive:!0})],me.prototype,"handleRippleActivate",null);
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-LIcense-Identifier: Apache-2.0
  */
-const styles$2 = i$5 `.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-button-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-button-font-size, 0.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height, 2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight, 500);letter-spacing:0.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing, 0.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration, none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform, uppercase)}.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:0;opacity:var(--mdc-elevation-overlay-opacity, 0);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);background-color:#fff;background-color:var(--mdc-elevation-overlay-color, #fff)}.mdc-button{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;background:transparent}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top}[dir=rtl] .mdc-button .mdc-button__icon,.mdc-button .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.mdc-button .mdc-button__label{position:relative}.mdc-button .mdc-button__focus-ring{display:none}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc( 100% + 4px );width:calc( 100% + 4px );display:block}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring::after,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring::after,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring::after{border-color:CanvasText}}.mdc-button .mdc-button__touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .mdc-button__label+.mdc-button__icon,.mdc-button__label+.mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--touch{margin-top:6px;margin-bottom:6px}.mdc-button{padding:0 8px 0 8px}.mdc-button--unelevated{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--unelevated.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--unelevated.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--raised{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--raised.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--raised.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--outlined{border-style:solid;transition:border 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--outlined .mdc-button__ripple{border-style:solid;border-color:transparent}.mdc-button{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary, #6200ee)}.mdc-button:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--raised,.mdc-button--unelevated{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0, 0, 0, 0.12)}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){color:#fff;color:var(--mdc-theme-on-primary, #fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button--raised .mdc-button__ripple,.mdc-button--unelevated .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--outlined{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px);padding:0 15px 0 15px;border-width:1px}.mdc-button--outlined:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary, #6200ee)}.mdc-button--outlined:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button--outlined .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button--outlined .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--outlined:not(:disabled){border-color:rgba(0, 0, 0, 0.12)}.mdc-button--outlined:disabled{border-color:rgba(0, 0, 0, 0.12)}.mdc-button--outlined.mdc-button--icon-trailing{padding:0 11px 0 15px}.mdc-button--outlined.mdc-button--icon-leading{padding:0 15px 0 11px}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:1px}.mdc-button--outlined .mdc-button__touch{left:calc(-1 * 1px);width:calc(100% + 2 * 1px)}.mdc-button--raised{box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--raised:hover,.mdc-button--raised:focus{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2),0px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 0px 0px rgba(0,0,0,.12)}:host{display:inline-flex;outline:none;-webkit-tap-highlight-color:transparent;vertical-align:top}:host([fullwidth]){width:100%}:host([raised]),:host([unelevated]){--mdc-ripple-color:#fff;--mdc-ripple-focus-opacity:0.24;--mdc-ripple-hover-opacity:0.08;--mdc-ripple-press-opacity:0.24}.trailing-icon ::slotted(*),.trailing-icon .mdc-button__icon,.leading-icon ::slotted(*),.leading-icon .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem}[dir=rtl] .trailing-icon ::slotted(*),[dir=rtl] .trailing-icon .mdc-button__icon,[dir=rtl] .leading-icon ::slotted(*),[dir=rtl] .leading-icon .mdc-button__icon,.trailing-icon ::slotted(*[dir=rtl]),.trailing-icon .mdc-button__icon[dir=rtl],.leading-icon ::slotted(*[dir=rtl]),.leading-icon .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.trailing-icon ::slotted(*),.trailing-icon .mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .trailing-icon ::slotted(*),[dir=rtl] .trailing-icon .mdc-button__icon,.trailing-icon ::slotted(*[dir=rtl]),.trailing-icon .mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}.slot-container{display:inline-flex;align-items:center;justify-content:center}.slot-container.flex{flex:auto}.mdc-button{flex:auto;overflow:hidden;padding-left:8px;padding-left:var(--mdc-button-horizontal-padding, 8px);padding-right:8px;padding-right:var(--mdc-button-horizontal-padding, 8px)}.mdc-button--raised{box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised:focus{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-focus, var(--mdc-button-raised-box-shadow-hover, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)))}.mdc-button--raised:hover{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-hover, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised:active{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-active, 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12))}.mdc-button--raised:disabled{box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-disabled, 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised,.mdc-button--unelevated{padding-left:16px;padding-left:var(--mdc-button-horizontal-padding, 16px);padding-right:16px;padding-right:var(--mdc-button-horizontal-padding, 16px)}.mdc-button--outlined{border-width:1px;border-width:var(--mdc-button-outline-width, 1px);padding-left:calc(16px - 1px);padding-left:calc(var(--mdc-button-horizontal-padding, 16px) - var(--mdc-button-outline-width, 1px));padding-right:calc(16px - 1px);padding-right:calc(var(--mdc-button-horizontal-padding, 16px) - var(--mdc-button-outline-width, 1px))}.mdc-button--outlined:not(:disabled){border-color:rgba(0, 0, 0, 0.12);border-color:var(--mdc-button-outline-color, rgba(0, 0, 0, 0.12))}.mdc-button--outlined .ripple{top:calc(-1 * 1px);top:calc(-1 * var(--mdc-button-outline-width, 1px));left:calc(-1 * 1px);left:calc(-1 * var(--mdc-button-outline-width, 1px));right:initial;right:initial;border-width:1px;border-width:var(--mdc-button-outline-width, 1px);border-style:solid;border-color:transparent}[dir=rtl] .mdc-button--outlined .ripple,.mdc-button--outlined .ripple[dir=rtl]{left:initial;left:initial;right:calc(-1 * 1px);right:calc(-1 * var(--mdc-button-outline-width, 1px))}.mdc-button--dense{height:28px;margin-top:0;margin-bottom:0}.mdc-button--dense .mdc-button__touch{height:100%}:host([disabled]){pointer-events:none}:host([disabled]) .mdc-button{color:rgba(0, 0, 0, 0.38);color:var(--mdc-button-disabled-ink-color, rgba(0, 0, 0, 0.38))}:host([disabled]) .mdc-button--raised,:host([disabled]) .mdc-button--unelevated{background-color:rgba(0, 0, 0, 0.12);background-color:var(--mdc-button-disabled-fill-color, rgba(0, 0, 0, 0.12))}:host([disabled]) .mdc-button--outlined{border-color:rgba(0, 0, 0, 0.12);border-color:var(--mdc-button-disabled-outline-color, rgba(0, 0, 0, 0.12))}`;
-
+const be=l`.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-button-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-button-font-size, 0.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height, 2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight, 500);letter-spacing:0.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing, 0.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration, none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform, uppercase)}.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:0;opacity:var(--mdc-elevation-overlay-opacity, 0);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);background-color:#fff;background-color:var(--mdc-elevation-overlay-color, #fff)}.mdc-button{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;background:transparent}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top}[dir=rtl] .mdc-button .mdc-button__icon,.mdc-button .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.mdc-button .mdc-button__label{position:relative}.mdc-button .mdc-button__focus-ring{display:none}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc( 100% + 4px );width:calc( 100% + 4px );display:block}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring::after,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring::after,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring::after{border-color:CanvasText}}.mdc-button .mdc-button__touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .mdc-button__label+.mdc-button__icon,.mdc-button__label+.mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--touch{margin-top:6px;margin-bottom:6px}.mdc-button{padding:0 8px 0 8px}.mdc-button--unelevated{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--unelevated.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--unelevated.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--raised{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--raised.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--raised.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--outlined{border-style:solid;transition:border 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--outlined .mdc-button__ripple{border-style:solid;border-color:transparent}.mdc-button{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary, #6200ee)}.mdc-button:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--raised,.mdc-button--unelevated{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0, 0, 0, 0.12)}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){color:#fff;color:var(--mdc-theme-on-primary, #fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button--raised .mdc-button__ripple,.mdc-button--unelevated .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--outlined{height:36px;border-radius:4px;border-radius:var(--mdc-shape-small, 4px);padding:0 15px 0 15px;border-width:1px}.mdc-button--outlined:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary, #6200ee)}.mdc-button--outlined:disabled{color:rgba(0, 0, 0, 0.38)}.mdc-button--outlined .mdc-button__icon{font-size:1.125rem;width:1.125rem;height:1.125rem}.mdc-button--outlined .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small, 4px)}.mdc-button--outlined:not(:disabled){border-color:rgba(0, 0, 0, 0.12)}.mdc-button--outlined:disabled{border-color:rgba(0, 0, 0, 0.12)}.mdc-button--outlined.mdc-button--icon-trailing{padding:0 11px 0 15px}.mdc-button--outlined.mdc-button--icon-leading{padding:0 15px 0 11px}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:1px}.mdc-button--outlined .mdc-button__touch{left:calc(-1 * 1px);width:calc(100% + 2 * 1px)}.mdc-button--raised{box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--raised:hover,.mdc-button--raised:focus{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2),0px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 0px 0px rgba(0,0,0,.12)}:host{display:inline-flex;outline:none;-webkit-tap-highlight-color:transparent;vertical-align:top}:host([fullwidth]){width:100%}:host([raised]),:host([unelevated]){--mdc-ripple-color:#fff;--mdc-ripple-focus-opacity:0.24;--mdc-ripple-hover-opacity:0.08;--mdc-ripple-press-opacity:0.24}.trailing-icon ::slotted(*),.trailing-icon .mdc-button__icon,.leading-icon ::slotted(*),.leading-icon .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem}[dir=rtl] .trailing-icon ::slotted(*),[dir=rtl] .trailing-icon .mdc-button__icon,[dir=rtl] .leading-icon ::slotted(*),[dir=rtl] .leading-icon .mdc-button__icon,.trailing-icon ::slotted(*[dir=rtl]),.trailing-icon .mdc-button__icon[dir=rtl],.leading-icon ::slotted(*[dir=rtl]),.leading-icon .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.trailing-icon ::slotted(*),.trailing-icon .mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .trailing-icon ::slotted(*),[dir=rtl] .trailing-icon .mdc-button__icon,.trailing-icon ::slotted(*[dir=rtl]),.trailing-icon .mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}.slot-container{display:inline-flex;align-items:center;justify-content:center}.slot-container.flex{flex:auto}.mdc-button{flex:auto;overflow:hidden;padding-left:8px;padding-left:var(--mdc-button-horizontal-padding, 8px);padding-right:8px;padding-right:var(--mdc-button-horizontal-padding, 8px)}.mdc-button--raised{box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised:focus{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-focus, var(--mdc-button-raised-box-shadow-hover, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)))}.mdc-button--raised:hover{box-shadow:0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-hover, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised:active{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-active, 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12))}.mdc-button--raised:disabled{box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);box-shadow:var(--mdc-button-raised-box-shadow-disabled, 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12))}.mdc-button--raised,.mdc-button--unelevated{padding-left:16px;padding-left:var(--mdc-button-horizontal-padding, 16px);padding-right:16px;padding-right:var(--mdc-button-horizontal-padding, 16px)}.mdc-button--outlined{border-width:1px;border-width:var(--mdc-button-outline-width, 1px);padding-left:calc(16px - 1px);padding-left:calc(var(--mdc-button-horizontal-padding, 16px) - var(--mdc-button-outline-width, 1px));padding-right:calc(16px - 1px);padding-right:calc(var(--mdc-button-horizontal-padding, 16px) - var(--mdc-button-outline-width, 1px))}.mdc-button--outlined:not(:disabled){border-color:rgba(0, 0, 0, 0.12);border-color:var(--mdc-button-outline-color, rgba(0, 0, 0, 0.12))}.mdc-button--outlined .ripple{top:calc(-1 * 1px);top:calc(-1 * var(--mdc-button-outline-width, 1px));left:calc(-1 * 1px);left:calc(-1 * var(--mdc-button-outline-width, 1px));right:initial;right:initial;border-width:1px;border-width:var(--mdc-button-outline-width, 1px);border-style:solid;border-color:transparent}[dir=rtl] .mdc-button--outlined .ripple,.mdc-button--outlined .ripple[dir=rtl]{left:initial;left:initial;right:calc(-1 * 1px);right:calc(-1 * var(--mdc-button-outline-width, 1px))}.mdc-button--dense{height:28px;margin-top:0;margin-bottom:0}.mdc-button--dense .mdc-button__touch{height:100%}:host([disabled]){pointer-events:none}:host([disabled]) .mdc-button{color:rgba(0, 0, 0, 0.38);color:var(--mdc-button-disabled-ink-color, rgba(0, 0, 0, 0.38))}:host([disabled]) .mdc-button--raised,:host([disabled]) .mdc-button--unelevated{background-color:rgba(0, 0, 0, 0.12);background-color:var(--mdc-button-disabled-fill-color, rgba(0, 0, 0, 0.12))}:host([disabled]) .mdc-button--outlined{border-color:rgba(0, 0, 0, 0.12);border-color:var(--mdc-button-disabled-outline-color, rgba(0, 0, 0, 0.12))}`
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */;let fe=class extends me{};fe.styles=[be],fe=r([st("mwc-button")],fe);
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-/** @soyCompatible */
-let Button = class Button extends ButtonBase {
-};
-Button.styles = [styles$2];
-Button = __decorate([
-    e$5('mwc-button')
-], Button);
-
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-class IconButtonBase extends s$1 {
-    constructor() {
-        super(...arguments);
-        this.disabled = false;
-        this.icon = '';
-        this.shouldRenderRipple = false;
-        this.rippleHandlers = new RippleHandlers(() => {
-            this.shouldRenderRipple = true;
-            return this.ripple;
-        });
-    }
-    /** @soyTemplate */
-    renderRipple() {
-        return this.shouldRenderRipple ? y `
+class ve extends at{constructor(){super(...arguments),this.disabled=!1,this.icon="",this.shouldRenderRipple=!1,this.rippleHandlers=new ue((()=>(this.shouldRenderRipple=!0,this.ripple)))}renderRipple(){return this.shouldRenderRipple?L`
             <mwc-ripple
                 .disabled="${this.disabled}"
                 unbounded>
-            </mwc-ripple>` :
-            '';
-    }
-    focus() {
-        const buttonElement = this.buttonElement;
-        if (buttonElement) {
-            this.rippleHandlers.startFocus();
-            buttonElement.focus();
-        }
-    }
-    blur() {
-        const buttonElement = this.buttonElement;
-        if (buttonElement) {
-            this.rippleHandlers.endFocus();
-            buttonElement.blur();
-        }
-    }
-    /** @soyTemplate */
-    render() {
-        return y `<button
+            </mwc-ripple>`:""}focus(){const t=this.buttonElement;t&&(this.rippleHandlers.startFocus(),t.focus())}blur(){const t=this.buttonElement;t&&(this.rippleHandlers.endFocus(),t.blur())}render(){return L`<button
         class="mdc-icon-button mdc-icon-button--display-flex"
-        aria-label="${this.ariaLabel || this.icon}"
-        aria-haspopup="${l(this.ariaHasPopup)}"
+        aria-label="${this.ariaLabel||this.icon}"
+        aria-haspopup="${he(this.ariaHasPopup)}"
         ?disabled="${this.disabled}"
         @focus="${this.handleRippleFocus}"
         @blur="${this.handleRippleBlur}"
@@ -2205,96 +368,50 @@ class IconButtonBase extends s$1 {
         @touchend="${this.handleRippleDeactivate}"
         @touchcancel="${this.handleRippleDeactivate}"
     >${this.renderRipple()}
-    ${this.icon ? y `<i class="material-icons">${this.icon}</i>` : ''}
+    ${this.icon?L`<i class="material-icons">${this.icon}</i>`:""}
     <span
       ><slot></slot
     ></span>
-  </button>`;
-    }
-    handleRippleMouseDown(event) {
-        const onUp = () => {
-            window.removeEventListener('mouseup', onUp);
-            this.handleRippleDeactivate();
-        };
-        window.addEventListener('mouseup', onUp);
-        this.rippleHandlers.startPress(event);
-    }
-    handleRippleTouchStart(event) {
-        this.rippleHandlers.startPress(event);
-    }
-    handleRippleDeactivate() {
-        this.rippleHandlers.endPress();
-    }
-    handleRippleMouseEnter() {
-        this.rippleHandlers.startHover();
-    }
-    handleRippleMouseLeave() {
-        this.rippleHandlers.endHover();
-    }
-    handleRippleFocus() {
-        this.rippleHandlers.startFocus();
-    }
-    handleRippleBlur() {
-        this.rippleHandlers.endFocus();
-    }
-}
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], IconButtonBase.prototype, "disabled", void 0);
-__decorate([
-    e$4({ type: String })
-], IconButtonBase.prototype, "icon", void 0);
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-label' })
-], IconButtonBase.prototype, "ariaLabel", void 0);
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-haspopup' })
-], IconButtonBase.prototype, "ariaHasPopup", void 0);
-__decorate([
-    i$2('button')
-], IconButtonBase.prototype, "buttonElement", void 0);
-__decorate([
-    e$2('mwc-ripple')
-], IconButtonBase.prototype, "ripple", void 0);
-__decorate([
-    t$1()
-], IconButtonBase.prototype, "shouldRenderRipple", void 0);
-__decorate([
-    e$3({ passive: true })
-], IconButtonBase.prototype, "handleRippleMouseDown", null);
-__decorate([
-    e$3({ passive: true })
-], IconButtonBase.prototype, "handleRippleTouchStart", null);
-
+  </button>`}handleRippleMouseDown(t){const e=()=>{window.removeEventListener("mouseup",e),this.handleRippleDeactivate()};window.addEventListener("mouseup",e),this.rippleHandlers.startPress(t)}handleRippleTouchStart(t){this.rippleHandlers.startPress(t)}handleRippleDeactivate(){this.rippleHandlers.endPress()}handleRippleMouseEnter(){this.rippleHandlers.startHover()}handleRippleMouseLeave(){this.rippleHandlers.endHover()}handleRippleFocus(){this.rippleHandlers.startFocus()}handleRippleBlur(){this.rippleHandlers.endFocus()}}r([ct({type:Boolean,reflect:!0})],ve.prototype,"disabled",void 0),r([ct({type:String})],ve.prototype,"icon",void 0),r([pe,ct({type:String,attribute:"aria-label"})],ve.prototype,"ariaLabel",void 0),r([pe,ct({type:String,attribute:"aria-haspopup"})],ve.prototype,"ariaHasPopup",void 0),r([ht("button")],ve.prototype,"buttonElement",void 0),r([mt("mwc-ripple")],ve.prototype,"ripple",void 0),r([lt()],ve.prototype,"shouldRenderRipple",void 0),r([ut({passive:!0})],ve.prototype,"handleRippleMouseDown",null),r([ut({passive:!0})],ve.prototype,"handleRippleTouchStart",null);
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-LIcense-Identifier: Apache-2.0
  */
-const styles$1 = i$5 `.material-icons{font-family:var(--mdc-icon-font, "Material Icons");font-weight:normal;font-style:normal;font-size:var(--mdc-icon-size, 24px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:"liga"}.mdc-icon-button{font-size:24px;width:48px;height:48px;padding:12px}.mdc-icon-button .mdc-icon-button__focus-ring{display:none}.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block;max-height:48px;max-width:48px}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-icon-button.mdc-icon-button--reduced-size .mdc-icon-button__ripple{width:40px;height:40px;margin-top:4px;margin-bottom:4px;margin-right:4px;margin-left:4px}.mdc-icon-button.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{max-height:40px;max-width:40px}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{color:rgba(0, 0, 0, 0.38);color:var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38))}.mdc-icon-button svg,.mdc-icon-button img{width:24px;height:24px}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}:host{display:inline-block;outline:none}:host([disabled]){pointer-events:none}.mdc-icon-button i,.mdc-icon-button svg,.mdc-icon-button img,.mdc-icon-button ::slotted(*){display:block}:host{--mdc-ripple-color: currentcolor;-webkit-tap-highlight-color:transparent}:host,.mdc-icon-button{vertical-align:top}.mdc-icon-button{width:var(--mdc-icon-button-size, 48px);height:var(--mdc-icon-button-size, 48px);padding:calc( (var(--mdc-icon-button-size, 48px) - var(--mdc-icon-size, 24px)) / 2 )}.mdc-icon-button i,.mdc-icon-button svg,.mdc-icon-button img,.mdc-icon-button ::slotted(*){display:block;width:var(--mdc-icon-size, 24px);height:var(--mdc-icon-size, 24px)}`;
-
+const ge=l`.material-icons{font-family:var(--mdc-icon-font, "Material Icons");font-weight:normal;font-style:normal;font-size:var(--mdc-icon-size, 24px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:"liga"}.mdc-icon-button{font-size:24px;width:48px;height:48px;padding:12px}.mdc-icon-button .mdc-icon-button__focus-ring{display:none}.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block;max-height:48px;max-width:48px}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{pointer-events:none;border:2px solid transparent;border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{content:"";border:2px solid transparent;border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}}@media screen and (forced-colors: active)and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-icon-button.mdc-icon-button--reduced-size .mdc-icon-button__ripple{width:40px;height:40px;margin-top:4px;margin-bottom:4px;margin-right:4px;margin-left:4px}.mdc-icon-button.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{max-height:40px;max-width:40px}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{color:rgba(0, 0, 0, 0.38);color:var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38))}.mdc-icon-button svg,.mdc-icon-button img{width:24px;height:24px}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}:host{display:inline-block;outline:none}:host([disabled]){pointer-events:none}.mdc-icon-button i,.mdc-icon-button svg,.mdc-icon-button img,.mdc-icon-button ::slotted(*){display:block}:host{--mdc-ripple-color: currentcolor;-webkit-tap-highlight-color:transparent}:host,.mdc-icon-button{vertical-align:top}.mdc-icon-button{width:var(--mdc-icon-button-size, 48px);height:var(--mdc-icon-button-size, 48px);padding:calc( (var(--mdc-icon-button-size, 48px) - var(--mdc-icon-size, 24px)) / 2 )}.mdc-icon-button i,.mdc-icon-button svg,.mdc-icon-button img,.mdc-icon-button ::slotted(*){display:block;width:var(--mdc-icon-size, 24px);height:var(--mdc-icon-size, 24px)}`
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-/** @soyCompatible */
-let IconButton = class IconButton extends IconButtonBase {
-};
-IconButton.styles = [styles$1];
-IconButton = __decorate([
-    e$5('mwc-icon-button')
-], IconButton);
-
+ */;let ye=class extends ve{};ye.styles=[ge],ye=r([st("mwc-icon-button")],ye);
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-LIcense-Identifier: Apache-2.0
  */
-const styles = i$5 `.mdc-slider{cursor:pointer;height:48px;margin:0 24px;position:relative;touch-action:pan-y}.mdc-slider .mdc-slider__track{height:4px;position:absolute;top:50%;transform:translateY(-50%);width:100%}.mdc-slider .mdc-slider__track--active,.mdc-slider .mdc-slider__track--inactive{display:flex;height:100%;position:absolute;width:100%}.mdc-slider .mdc-slider__track--active{border-radius:3px;height:6px;overflow:hidden;top:-1px}.mdc-slider .mdc-slider__track--active_fill{border-top:6px solid;box-sizing:border-box;height:100%;width:100%;position:relative;-webkit-transform-origin:left;transform-origin:left}[dir=rtl] .mdc-slider .mdc-slider__track--active_fill,.mdc-slider .mdc-slider__track--active_fill[dir=rtl]{-webkit-transform-origin:right;transform-origin:right}.mdc-slider .mdc-slider__track--inactive{border-radius:2px;height:4px;left:0;top:0}.mdc-slider .mdc-slider__track--inactive::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-slider .mdc-slider__track--inactive::before{border-color:CanvasText}}.mdc-slider .mdc-slider__track--active_fill{border-color:#6200ee;border-color:var(--mdc-theme-primary, #6200ee)}.mdc-slider.mdc-slider--disabled .mdc-slider__track--active_fill{border-color:#000;border-color:var(--mdc-theme-on-surface, #000)}.mdc-slider .mdc-slider__track--inactive{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);opacity:.24}.mdc-slider.mdc-slider--disabled .mdc-slider__track--inactive{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);opacity:.24}.mdc-slider .mdc-slider__value-indicator-container{bottom:44px;left:50%;left:var(--slider-value-indicator-container-left, 50%);pointer-events:none;position:absolute;right:var(--slider-value-indicator-container-right);transform:translateX(-50%);transform:var(--slider-value-indicator-container-transform, translateX(-50%))}.mdc-slider .mdc-slider__value-indicator{transition:transform 100ms 0ms cubic-bezier(0.4, 0, 1, 1);align-items:center;border-radius:4px;display:flex;height:32px;padding:0 12px;transform:scale(0);transform-origin:bottom}.mdc-slider .mdc-slider__value-indicator::before{border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid;bottom:-5px;content:"";height:0;left:50%;left:var(--slider-value-indicator-caret-left, 50%);position:absolute;right:var(--slider-value-indicator-caret-right);transform:translateX(-50%);transform:var(--slider-value-indicator-caret-transform, translateX(-50%));width:0}.mdc-slider .mdc-slider__value-indicator::after{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-slider .mdc-slider__value-indicator::after{border-color:CanvasText}}.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator-container{pointer-events:auto}.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator{transition:transform 100ms 0ms cubic-bezier(0, 0, 0.2, 1);transform:scale(1)}@media(prefers-reduced-motion){.mdc-slider .mdc-slider__value-indicator,.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator{transition:none}}.mdc-slider .mdc-slider__value-indicator-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-subtitle2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-subtitle2-font-size, 0.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height, 1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight, 500);letter-spacing:0.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing, 0.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration, inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform, inherit)}.mdc-slider .mdc-slider__value-indicator{background-color:#000;opacity:.6}.mdc-slider .mdc-slider__value-indicator::before{border-top-color:#000}.mdc-slider .mdc-slider__value-indicator{color:#fff;color:var(--mdc-theme-on-primary, #fff)}.mdc-slider .mdc-slider__thumb{display:flex;height:48px;left:-24px;outline:none;position:absolute;user-select:none;width:48px}.mdc-slider .mdc-slider__thumb--top{z-index:1}.mdc-slider .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-style:solid;border-width:1px;box-sizing:content-box}.mdc-slider .mdc-slider__thumb-knob{box-shadow:0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0,0,0,.12);border:10px solid;border-radius:50%;box-sizing:border-box;height:20px;left:50%;position:absolute;top:50%;transform:translate(-50%, -50%);width:20px}.mdc-slider .mdc-slider__thumb-knob{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);border-color:#6200ee;border-color:var(--mdc-theme-primary, #6200ee)}.mdc-slider .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-color:#fff}.mdc-slider.mdc-slider--disabled .mdc-slider__thumb-knob{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);border-color:#000;border-color:var(--mdc-theme-on-surface, #000)}.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-color:#fff}.mdc-slider .mdc-slider__thumb::before,.mdc-slider .mdc-slider__thumb::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-slider .mdc-slider__thumb:hover::before,.mdc-slider .mdc-slider__thumb.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-slider .mdc-slider__thumb.mdc-ripple-upgraded--background-focused::before,.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-slider .mdc-slider__thumb.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-slider .mdc-slider__tick-marks{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:space-between;padding:0 1px;position:absolute;width:100%}.mdc-slider .mdc-slider__tick-mark--active,.mdc-slider .mdc-slider__tick-mark--inactive{border-radius:50%;height:2px;width:2px}.mdc-slider .mdc-slider__tick-mark--active{background-color:#fff;background-color:var(--mdc-theme-on-primary, #fff);opacity:.6}.mdc-slider.mdc-slider--disabled .mdc-slider__tick-mark--active{background-color:#fff;background-color:var(--mdc-theme-on-primary, #fff);opacity:.6}.mdc-slider .mdc-slider__tick-mark--inactive{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);opacity:.6}.mdc-slider.mdc-slider--disabled .mdc-slider__tick-mark--inactive{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);opacity:.6}.mdc-slider--discrete .mdc-slider__thumb,.mdc-slider--discrete .mdc-slider__track--active_fill{transition:transform 80ms ease}@media(prefers-reduced-motion){.mdc-slider--discrete .mdc-slider__thumb,.mdc-slider--discrete .mdc-slider__track--active_fill{transition:none}}.mdc-slider--disabled{opacity:.38;cursor:auto}.mdc-slider--disabled .mdc-slider__thumb{pointer-events:none}.mdc-slider__input{cursor:pointer;left:0;margin:0;height:100%;opacity:0;pointer-events:none;position:absolute;top:0;width:100%}:host{outline:none;display:block;-webkit-tap-highlight-color:transparent}.ripple{--mdc-ripple-color:#6200ee;--mdc-ripple-color:var(--mdc-theme-primary, #6200ee)}`;
-
+const _e=l`.mdc-slider{cursor:pointer;height:48px;margin:0 24px;position:relative;touch-action:pan-y}.mdc-slider .mdc-slider__track{height:4px;position:absolute;top:50%;transform:translateY(-50%);width:100%}.mdc-slider .mdc-slider__track--active,.mdc-slider .mdc-slider__track--inactive{display:flex;height:100%;position:absolute;width:100%}.mdc-slider .mdc-slider__track--active{border-radius:3px;height:6px;overflow:hidden;top:-1px}.mdc-slider .mdc-slider__track--active_fill{border-top:6px solid;box-sizing:border-box;height:100%;width:100%;position:relative;-webkit-transform-origin:left;transform-origin:left}[dir=rtl] .mdc-slider .mdc-slider__track--active_fill,.mdc-slider .mdc-slider__track--active_fill[dir=rtl]{-webkit-transform-origin:right;transform-origin:right}.mdc-slider .mdc-slider__track--inactive{border-radius:2px;height:4px;left:0;top:0}.mdc-slider .mdc-slider__track--inactive::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-slider .mdc-slider__track--inactive::before{border-color:CanvasText}}.mdc-slider .mdc-slider__track--active_fill{border-color:#6200ee;border-color:var(--mdc-theme-primary, #6200ee)}.mdc-slider.mdc-slider--disabled .mdc-slider__track--active_fill{border-color:#000;border-color:var(--mdc-theme-on-surface, #000)}.mdc-slider .mdc-slider__track--inactive{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);opacity:.24}.mdc-slider.mdc-slider--disabled .mdc-slider__track--inactive{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);opacity:.24}.mdc-slider .mdc-slider__value-indicator-container{bottom:44px;left:50%;left:var(--slider-value-indicator-container-left, 50%);pointer-events:none;position:absolute;right:var(--slider-value-indicator-container-right);transform:translateX(-50%);transform:var(--slider-value-indicator-container-transform, translateX(-50%))}.mdc-slider .mdc-slider__value-indicator{transition:transform 100ms 0ms cubic-bezier(0.4, 0, 1, 1);align-items:center;border-radius:4px;display:flex;height:32px;padding:0 12px;transform:scale(0);transform-origin:bottom}.mdc-slider .mdc-slider__value-indicator::before{border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid;bottom:-5px;content:"";height:0;left:50%;left:var(--slider-value-indicator-caret-left, 50%);position:absolute;right:var(--slider-value-indicator-caret-right);transform:translateX(-50%);transform:var(--slider-value-indicator-caret-transform, translateX(-50%));width:0}.mdc-slider .mdc-slider__value-indicator::after{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-slider .mdc-slider__value-indicator::after{border-color:CanvasText}}.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator-container{pointer-events:auto}.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator{transition:transform 100ms 0ms cubic-bezier(0, 0, 0.2, 1);transform:scale(1)}@media(prefers-reduced-motion){.mdc-slider .mdc-slider__value-indicator,.mdc-slider .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator{transition:none}}.mdc-slider .mdc-slider__value-indicator-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto, sans-serif;font-family:var(--mdc-typography-subtitle2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));font-size:0.875rem;font-size:var(--mdc-typography-subtitle2-font-size, 0.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height, 1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight, 500);letter-spacing:0.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing, 0.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration, inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform, inherit)}.mdc-slider .mdc-slider__value-indicator{background-color:#000;opacity:.6}.mdc-slider .mdc-slider__value-indicator::before{border-top-color:#000}.mdc-slider .mdc-slider__value-indicator{color:#fff;color:var(--mdc-theme-on-primary, #fff)}.mdc-slider .mdc-slider__thumb{display:flex;height:48px;left:-24px;outline:none;position:absolute;user-select:none;width:48px}.mdc-slider .mdc-slider__thumb--top{z-index:1}.mdc-slider .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-style:solid;border-width:1px;box-sizing:content-box}.mdc-slider .mdc-slider__thumb-knob{box-shadow:0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0,0,0,.12);border:10px solid;border-radius:50%;box-sizing:border-box;height:20px;left:50%;position:absolute;top:50%;transform:translate(-50%, -50%);width:20px}.mdc-slider .mdc-slider__thumb-knob{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);border-color:#6200ee;border-color:var(--mdc-theme-primary, #6200ee)}.mdc-slider .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-color:#fff}.mdc-slider.mdc-slider--disabled .mdc-slider__thumb-knob{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);border-color:#000;border-color:var(--mdc-theme-on-surface, #000)}.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top .mdc-slider__thumb-knob,.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,.mdc-slider.mdc-slider--disabled .mdc-slider__thumb--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob{border-color:#fff}.mdc-slider .mdc-slider__thumb::before,.mdc-slider .mdc-slider__thumb::after{background-color:#6200ee;background-color:var(--mdc-ripple-color, var(--mdc-theme-primary, #6200ee))}.mdc-slider .mdc-slider__thumb:hover::before,.mdc-slider .mdc-slider__thumb.mdc-ripple-surface--hover::before{opacity:0.04;opacity:var(--mdc-ripple-hover-opacity, 0.04)}.mdc-slider .mdc-slider__thumb.mdc-ripple-upgraded--background-focused::before,.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded):focus::before{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-focus-opacity, 0.12)}.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded)::after{transition:opacity 150ms linear}.mdc-slider .mdc-slider__thumb:not(.mdc-ripple-upgraded):active::after{transition-duration:75ms;opacity:0.12;opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-slider .mdc-slider__thumb.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:var(--mdc-ripple-press-opacity, 0.12)}.mdc-slider .mdc-slider__tick-marks{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:space-between;padding:0 1px;position:absolute;width:100%}.mdc-slider .mdc-slider__tick-mark--active,.mdc-slider .mdc-slider__tick-mark--inactive{border-radius:50%;height:2px;width:2px}.mdc-slider .mdc-slider__tick-mark--active{background-color:#fff;background-color:var(--mdc-theme-on-primary, #fff);opacity:.6}.mdc-slider.mdc-slider--disabled .mdc-slider__tick-mark--active{background-color:#fff;background-color:var(--mdc-theme-on-primary, #fff);opacity:.6}.mdc-slider .mdc-slider__tick-mark--inactive{background-color:#6200ee;background-color:var(--mdc-theme-primary, #6200ee);opacity:.6}.mdc-slider.mdc-slider--disabled .mdc-slider__tick-mark--inactive{background-color:#000;background-color:var(--mdc-theme-on-surface, #000);opacity:.6}.mdc-slider--discrete .mdc-slider__thumb,.mdc-slider--discrete .mdc-slider__track--active_fill{transition:transform 80ms ease}@media(prefers-reduced-motion){.mdc-slider--discrete .mdc-slider__thumb,.mdc-slider--discrete .mdc-slider__track--active_fill{transition:none}}.mdc-slider--disabled{opacity:.38;cursor:auto}.mdc-slider--disabled .mdc-slider__thumb{pointer-events:none}.mdc-slider__input{cursor:pointer;left:0;margin:0;height:100%;opacity:0;pointer-events:none;position:absolute;top:0;width:100%}:host{outline:none;display:block;-webkit-tap-highlight-color:transparent}.ripple{--mdc-ripple-color:#6200ee;--mdc-ripple-color:var(--mdc-theme-primary, #6200ee)}`
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */;var xe,Te,Ee,Se;!function(t){t[t.ACTIVE=0]="ACTIVE",t[t.INACTIVE=1]="INACTIVE"}(xe||(xe={})),function(t){t[t.START=1]="START",t[t.END=2]="END"}(Te||(Te={}));const Ae=null!==(Se=null===(Ee=window.ShadyDOM)||void 0===Ee?void 0:Ee.inUse)&&void 0!==Se&&Se;class ke extends gt{constructor(){super(...arguments),this.disabled=!1,this.containingForm=null,this.formDataListener=t=>{this.disabled||this.setFormData(t.formData)}}findFormElement(){if(!this.shadowRoot||Ae)return null;const t=this.getRootNode().querySelectorAll("form");for(const e of Array.from(t))if(e.contains(this))return e;return null}connectedCallback(){var t;super.connectedCallback(),this.containingForm=this.findFormElement(),null===(t=this.containingForm)||void 0===t||t.addEventListener("formdata",this.formDataListener)}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this.containingForm)||void 0===t||t.removeEventListener("formdata",this.formDataListener),this.containingForm=null}click(){this.formElement&&!this.disabled&&(this.formElement.focus(),this.formElement.click())}firstUpdated(){super.firstUpdated(),this.shadowRoot&&this.mdcRoot.addEventListener("change",(t=>{this.dispatchEvent(new Event("change",t))}))}}ke.shadowRootOptions={mode:"open",delegatesFocus:!0},r([ct({type:Boolean})],ke.prototype,"disabled",void 0);
 /**
  * @license
  * Copyright 2020 Google Inc.
@@ -2317,185 +434,7 @@ const styles = i$5 `.mdc-slider{cursor:pointer;height:48px;margin:0 24px;positio
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/** Tick mark enum, for discrete sliders. */
-var TickMark;
-(function (TickMark) {
-    TickMark[TickMark["ACTIVE"] = 0] = "ACTIVE";
-    TickMark[TickMark["INACTIVE"] = 1] = "INACTIVE";
-})(TickMark || (TickMark = {}));
-/**
- * Thumb types: range slider has two thumbs (START, END) whereas single point
- * slider only has one thumb (END).
- */
-var Thumb;
-(function (Thumb) {
-    // Thumb at start of slider (e.g. in LTR mode, left thumb on range slider).
-    Thumb[Thumb["START"] = 1] = "START";
-    // Thumb at end of slider (e.g. in LTR mode, right thumb on range slider,
-    // or only thumb on single point slider).
-    Thumb[Thumb["END"] = 2] = "END";
-})(Thumb || (Thumb = {}));
-
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-var _a, _b;
-// ShadyDOM should submit <input> elements in component internals
-const USING_SHADY_DOM = (_b = (_a = window.ShadyDOM) === null || _a === void 0 ? void 0 : _a.inUse) !== null && _b !== void 0 ? _b : false;
-/** @soyCompatible */
-class FormElement extends BaseElement {
-    constructor() {
-        super(...arguments);
-        /**
-         * Disabled state for the component. When `disabled` is set to `true`, the
-         * component will not be added to form submission.
-         */
-        this.disabled = false;
-        /**
-         * Form element that contains this element
-         */
-        this.containingForm = null;
-        this.formDataListener = (ev) => {
-            if (!this.disabled) {
-                this.setFormData(ev.formData);
-            }
-        };
-    }
-    findFormElement() {
-        // If the component internals are not in Shadow DOM, subscribing to form
-        // data events could lead to duplicated data, which may not work correctly
-        // on the server side.
-        if (!this.shadowRoot || USING_SHADY_DOM) {
-            return null;
-        }
-        const root = this.getRootNode();
-        const forms = root.querySelectorAll('form');
-        for (const form of Array.from(forms)) {
-            if (form.contains(this)) {
-                return form;
-            }
-        }
-        return null;
-    }
-    connectedCallback() {
-        var _a;
-        super.connectedCallback();
-        this.containingForm = this.findFormElement();
-        (_a = this.containingForm) === null || _a === void 0 ? void 0 : _a.addEventListener('formdata', this.formDataListener);
-    }
-    disconnectedCallback() {
-        var _a;
-        super.disconnectedCallback();
-        (_a = this.containingForm) === null || _a === void 0 ? void 0 : _a.removeEventListener('formdata', this.formDataListener);
-        this.containingForm = null;
-    }
-    click() {
-        if (this.formElement && !this.disabled) {
-            this.formElement.focus();
-            this.formElement.click();
-        }
-    }
-    firstUpdated() {
-        super.firstUpdated();
-        if (this.shadowRoot) {
-            this.mdcRoot.addEventListener('change', (e) => {
-                this.dispatchEvent(new Event('change', e));
-            });
-        }
-    }
-}
-FormElement.shadowRootOptions = { mode: 'open', delegatesFocus: true };
-__decorate([
-    e$4({ type: Boolean })
-], FormElement.prototype, "disabled", void 0);
-
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * AnimationFrame provides a user-friendly abstraction around requesting
- * and canceling animation frames.
- */
-var AnimationFrame = /** @class */ (function () {
-    function AnimationFrame() {
-        this.rafIDs = new Map();
-    }
-    /**
-     * Requests an animation frame. Cancels any existing frame with the same key.
-     * @param {string} key The key for this callback.
-     * @param {FrameRequestCallback} callback The callback to be executed.
-     */
-    AnimationFrame.prototype.request = function (key, callback) {
-        var _this = this;
-        this.cancel(key);
-        var frameID = requestAnimationFrame(function (frame) {
-            _this.rafIDs.delete(key);
-            // Callback must come *after* the key is deleted so that nested calls to
-            // request with the same key are not deleted.
-            callback(frame);
-        });
-        this.rafIDs.set(key, frameID);
-    };
-    /**
-     * Cancels a queued callback with the given key.
-     * @param {string} key The key for this callback.
-     */
-    AnimationFrame.prototype.cancel = function (key) {
-        var rafID = this.rafIDs.get(key);
-        if (rafID) {
-            cancelAnimationFrame(rafID);
-            this.rafIDs.delete(key);
-        }
-    };
-    /**
-     * Cancels all queued callback.
-     */
-    AnimationFrame.prototype.cancelAll = function () {
-        var _this = this;
-        // Need to use forEach because it's the only iteration method supported
-        // by IE11. Suppress the underscore because we don't need it.
-        // tslint:disable-next-line:enforce-name-casing
-        this.rafIDs.forEach(function (_, key) {
-            _this.cancel(key);
-        });
-    };
-    /**
-     * Returns the queue of unexecuted callback keys.
-     */
-    AnimationFrame.prototype.getQueue = function () {
-        var queue = [];
-        // Need to use forEach because it's the only iteration method supported
-        // by IE11. Suppress the underscore because we don't need it.
-        // tslint:disable-next-line:enforce-name-casing
-        this.rafIDs.forEach(function (_, key) {
-            queue.push(key);
-        });
-        return queue;
-    };
-    return AnimationFrame;
-}());
-
+var we=function(){function t(){this.rafIDs=new Map}return t.prototype.request=function(t,e){var i=this;this.cancel(t);var r=requestAnimationFrame((function(r){i.rafIDs.delete(t),e(r)}));this.rafIDs.set(t,r)},t.prototype.cancel=function(t){var e=this.rafIDs.get(t);e&&(cancelAnimationFrame(e),this.rafIDs.delete(t))},t.prototype.cancelAll=function(){var t=this;this.rafIDs.forEach((function(e,i){t.cancel(i)}))},t.prototype.getQueue=function(){var t=[];return this.rafIDs.forEach((function(e,i){t.push(i)})),t},t}(),Re={animation:{prefixed:"-webkit-animation",standard:"animation"},transform:{prefixed:"-webkit-transform",standard:"transform"},transition:{prefixed:"-webkit-transition",standard:"transition"}};
 /**
  * @license
  * Copyright 2016 Google Inc.
@@ -2517,34 +456,7 @@ var AnimationFrame = /** @class */ (function () {
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
-var cssPropertyNameMap = {
-    animation: {
-        prefixed: '-webkit-animation',
-        standard: 'animation',
-    },
-    transform: {
-        prefixed: '-webkit-transform',
-        standard: 'transform',
-    },
-    transition: {
-        prefixed: '-webkit-transition',
-        standard: 'transition',
-    },
-};
-function isWindow(windowObj) {
-    return Boolean(windowObj.document) && typeof windowObj.document.createElement === 'function';
-}
-function getCorrectPropertyName(windowObj, cssProperty) {
-    if (isWindow(windowObj) && cssProperty in cssPropertyNameMap) {
-        var el = windowObj.document.createElement('div');
-        var _a = cssPropertyNameMap[cssProperty], standard = _a.standard, prefixed = _a.prefixed;
-        var isStandard = standard in el.style;
-        return isStandard ? standard : prefixed;
-    }
-    return cssProperty;
-}
-
+ */function Ce(t,e){if(function(t){return Boolean(t.document)&&"function"==typeof t.document.createElement}(t)&&e in Re){var i=t.document.createElement("div"),r=Re[e],n=r.standard,a=r.prefixed;return n in i.style?n:a}return e}
 /**
  * @license
  * Copyright 2020 Google Inc.
@@ -2566,1172 +478,25 @@ function getCorrectPropertyName(windowObj, cssProperty) {
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
-/** Slider element classes. */
-var cssClasses = {
-    DISABLED: 'mdc-slider--disabled',
-    DISCRETE: 'mdc-slider--discrete',
-    INPUT: 'mdc-slider__input',
-    RANGE: 'mdc-slider--range',
-    THUMB: 'mdc-slider__thumb',
-    // Applied when thumb is in the focused state.
-    THUMB_FOCUSED: 'mdc-slider__thumb--focused',
-    THUMB_KNOB: 'mdc-slider__thumb-knob',
-    // Class added to the top thumb (for overlapping thumbs in range slider).
-    THUMB_TOP: 'mdc-slider__thumb--top',
-    THUMB_WITH_INDICATOR: 'mdc-slider__thumb--with-indicator',
-    TICK_MARKS: 'mdc-slider--tick-marks',
-    TICK_MARKS_CONTAINER: 'mdc-slider__tick-marks',
-    TICK_MARK_ACTIVE: 'mdc-slider__tick-mark--active',
-    TICK_MARK_INACTIVE: 'mdc-slider__tick-mark--inactive',
-    TRACK: 'mdc-slider__track',
-    // The active track fill element that will be scaled as the value changes.
-    TRACK_ACTIVE: 'mdc-slider__track--active_fill',
-    VALUE_INDICATOR_CONTAINER: 'mdc-slider__value-indicator-container',
-    VALUE_INDICATOR_TEXT: 'mdc-slider__value-indicator-text',
-};
-/** Slider numbers. */
-var numbers = {
-    // Default step size.
-    STEP_SIZE: 1,
-    // Default minimum difference between the start and end values.
-    MIN_RANGE: 0,
-    // Minimum absolute difference between clientX of move event / down event
-    // for which to update thumb, in the case of overlapping thumbs.
-    // This is needed to reduce chances of choosing the thumb based on
-    // pointer jitter.
-    THUMB_UPDATE_MIN_PX: 5,
-};
-/** Slider attributes. */
-var attributes = {
-    ARIA_VALUETEXT: 'aria-valuetext',
-    INPUT_DISABLED: 'disabled',
-    INPUT_MIN: 'min',
-    INPUT_MAX: 'max',
-    INPUT_VALUE: 'value',
-    INPUT_STEP: 'step',
-    DATA_MIN_RANGE: 'data-min-range',
-};
-/** Slider strings. */
-var strings = {
-    VAR_VALUE_INDICATOR_CARET_LEFT: '--slider-value-indicator-caret-left',
-    VAR_VALUE_INDICATOR_CARET_RIGHT: '--slider-value-indicator-caret-right',
-    VAR_VALUE_INDICATOR_CARET_TRANSFORM: '--slider-value-indicator-caret-transform',
-    VAR_VALUE_INDICATOR_CONTAINER_LEFT: '--slider-value-indicator-container-left',
-    VAR_VALUE_INDICATOR_CONTAINER_RIGHT: '--slider-value-indicator-container-right',
-    VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM: '--slider-value-indicator-container-transform',
-};
-
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-var AnimationKeys;
-(function (AnimationKeys) {
-    AnimationKeys["SLIDER_UPDATE"] = "slider_update";
-})(AnimationKeys || (AnimationKeys = {}));
-// Accessing `window` without a `typeof` check will throw on Node environments.
-var HAS_WINDOW = typeof window !== 'undefined';
-/**
- * Foundation class for slider. Responsibilities include:
- * - Updating slider values (internal state and DOM updates) based on client
- *   'x' position.
- * - Updating DOM after slider property updates (e.g. min, max).
- */
-var MDCSliderFoundation = /** @class */ (function (_super) {
-    __extends(MDCSliderFoundation, _super);
-    function MDCSliderFoundation(adapter) {
-        var _this = _super.call(this, __assign(__assign({}, MDCSliderFoundation.defaultAdapter), adapter)) || this;
-        // Whether the initial styles (to position the thumb, before component
-        // initialization) have been removed.
-        _this.initialStylesRemoved = false;
-        _this.isDisabled = false;
-        _this.isDiscrete = false;
-        _this.step = numbers.STEP_SIZE;
-        _this.minRange = numbers.MIN_RANGE;
-        _this.hasTickMarks = false;
-        // The following properties are only set for range sliders.
-        _this.isRange = false;
-        // Tracks the thumb being moved across a slider pointer interaction (down,
-        // move event).
-        _this.thumb = null;
-        // `clientX` from the most recent down event. Used in subsequent move
-        // events to determine which thumb to move (in the case of
-        // overlapping thumbs).
-        _this.downEventClientX = null;
-        // Width of the start thumb knob.
-        _this.startThumbKnobWidth = 0;
-        // Width of the end thumb knob.
-        _this.endThumbKnobWidth = 0;
-        _this.animFrame = new AnimationFrame();
-        return _this;
-    }
-    Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
-        get: function () {
-            // tslint:disable:object-literal-sort-keys Methods should be in the same
-            // order as the adapter interface.
-            return {
-                hasClass: function () { return false; },
-                addClass: function () { return undefined; },
-                removeClass: function () { return undefined; },
-                addThumbClass: function () { return undefined; },
-                removeThumbClass: function () { return undefined; },
-                getAttribute: function () { return null; },
-                getInputValue: function () { return ''; },
-                setInputValue: function () { return undefined; },
-                getInputAttribute: function () { return null; },
-                setInputAttribute: function () { return null; },
-                removeInputAttribute: function () { return null; },
-                focusInput: function () { return undefined; },
-                isInputFocused: function () { return false; },
-                shouldHideFocusStylesForPointerEvents: function () { return false; },
-                getThumbKnobWidth: function () { return 0; },
-                getValueIndicatorContainerWidth: function () { return 0; },
-                getThumbBoundingClientRect: function () {
-                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
-                },
-                getBoundingClientRect: function () {
-                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
-                },
-                isRTL: function () { return false; },
-                setThumbStyleProperty: function () { return undefined; },
-                removeThumbStyleProperty: function () { return undefined; },
-                setTrackActiveStyleProperty: function () { return undefined; },
-                removeTrackActiveStyleProperty: function () { return undefined; },
-                setValueIndicatorText: function () { return undefined; },
-                getValueToAriaValueTextFn: function () { return null; },
-                updateTickMarks: function () { return undefined; },
-                setPointerCapture: function () { return undefined; },
-                emitChangeEvent: function () { return undefined; },
-                emitInputEvent: function () { return undefined; },
-                emitDragStartEvent: function () { return undefined; },
-                emitDragEndEvent: function () { return undefined; },
-                registerEventHandler: function () { return undefined; },
-                deregisterEventHandler: function () { return undefined; },
-                registerThumbEventHandler: function () { return undefined; },
-                deregisterThumbEventHandler: function () { return undefined; },
-                registerInputEventHandler: function () { return undefined; },
-                deregisterInputEventHandler: function () { return undefined; },
-                registerBodyEventHandler: function () { return undefined; },
-                deregisterBodyEventHandler: function () { return undefined; },
-                registerWindowEventHandler: function () { return undefined; },
-                deregisterWindowEventHandler: function () { return undefined; },
-            };
-            // tslint:enable:object-literal-sort-keys
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCSliderFoundation.prototype.init = function () {
-        var _this = this;
-        this.isDisabled = this.adapter.hasClass(cssClasses.DISABLED);
-        this.isDiscrete = this.adapter.hasClass(cssClasses.DISCRETE);
-        this.hasTickMarks = this.adapter.hasClass(cssClasses.TICK_MARKS);
-        this.isRange = this.adapter.hasClass(cssClasses.RANGE);
-        var min = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(attributes.INPUT_MIN, this.isRange ? Thumb.START : Thumb.END), attributes.INPUT_MIN);
-        var max = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(attributes.INPUT_MAX, Thumb.END), attributes.INPUT_MAX);
-        var value = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(attributes.INPUT_VALUE, Thumb.END), attributes.INPUT_VALUE);
-        var valueStart = this.isRange ?
-            this.convertAttributeValueToNumber(this.adapter.getInputAttribute(attributes.INPUT_VALUE, Thumb.START), attributes.INPUT_VALUE) :
-            min;
-        var stepAttr = this.adapter.getInputAttribute(attributes.INPUT_STEP, Thumb.END);
-        var step = stepAttr ?
-            this.convertAttributeValueToNumber(stepAttr, attributes.INPUT_STEP) :
-            this.step;
-        var minRangeAttr = this.adapter.getAttribute(attributes.DATA_MIN_RANGE);
-        var minRange = minRangeAttr ?
-            this.convertAttributeValueToNumber(minRangeAttr, attributes.DATA_MIN_RANGE) :
-            this.minRange;
-        this.validateProperties({ min: min, max: max, value: value, valueStart: valueStart, step: step, minRange: minRange });
-        this.min = min;
-        this.max = max;
-        this.value = value;
-        this.valueStart = valueStart;
-        this.step = step;
-        this.minRange = minRange;
-        this.numDecimalPlaces = getNumDecimalPlaces(this.step);
-        this.valueBeforeDownEvent = value;
-        this.valueStartBeforeDownEvent = valueStart;
-        this.mousedownOrTouchstartListener =
-            this.handleMousedownOrTouchstart.bind(this);
-        this.moveListener = this.handleMove.bind(this);
-        this.pointerdownListener = this.handlePointerdown.bind(this);
-        this.pointerupListener = this.handlePointerup.bind(this);
-        this.thumbMouseenterListener = this.handleThumbMouseenter.bind(this);
-        this.thumbMouseleaveListener = this.handleThumbMouseleave.bind(this);
-        this.inputStartChangeListener = function () {
-            _this.handleInputChange(Thumb.START);
-        };
-        this.inputEndChangeListener = function () {
-            _this.handleInputChange(Thumb.END);
-        };
-        this.inputStartFocusListener = function () {
-            _this.handleInputFocus(Thumb.START);
-        };
-        this.inputEndFocusListener = function () {
-            _this.handleInputFocus(Thumb.END);
-        };
-        this.inputStartBlurListener = function () {
-            _this.handleInputBlur(Thumb.START);
-        };
-        this.inputEndBlurListener = function () {
-            _this.handleInputBlur(Thumb.END);
-        };
-        this.resizeListener = this.handleResize.bind(this);
-        this.registerEventHandlers();
-    };
-    MDCSliderFoundation.prototype.destroy = function () {
-        this.deregisterEventHandlers();
-    };
-    MDCSliderFoundation.prototype.setMin = function (value) {
-        this.min = value;
-        if (!this.isRange) {
-            this.valueStart = value;
-        }
-        this.updateUI();
-    };
-    MDCSliderFoundation.prototype.setMax = function (value) {
-        this.max = value;
-        this.updateUI();
-    };
-    MDCSliderFoundation.prototype.getMin = function () {
-        return this.min;
-    };
-    MDCSliderFoundation.prototype.getMax = function () {
-        return this.max;
-    };
-    /**
-     * - For single point sliders, returns the thumb value.
-     * - For range (two-thumb) sliders, returns the end thumb's value.
-     */
-    MDCSliderFoundation.prototype.getValue = function () {
-        return this.value;
-    };
-    /**
-     * - For single point sliders, sets the thumb value.
-     * - For range (two-thumb) sliders, sets the end thumb's value.
-     */
-    MDCSliderFoundation.prototype.setValue = function (value) {
-        if (this.isRange && value < this.valueStart + this.minRange) {
-            throw new Error("end thumb value (" + value + ") must be >= start thumb " +
-                ("value (" + this.valueStart + ") + min range (" + this.minRange + ")"));
-        }
-        this.updateValue(value, Thumb.END);
-    };
-    /**
-     * Only applicable for range sliders.
-     * @return The start thumb's value.
-     */
-    MDCSliderFoundation.prototype.getValueStart = function () {
-        if (!this.isRange) {
-            throw new Error('`valueStart` is only applicable for range sliders.');
-        }
-        return this.valueStart;
-    };
-    /**
-     * Only applicable for range sliders. Sets the start thumb's value.
-     */
-    MDCSliderFoundation.prototype.setValueStart = function (valueStart) {
-        if (!this.isRange) {
-            throw new Error('`valueStart` is only applicable for range sliders.');
-        }
-        if (this.isRange && valueStart > this.value - this.minRange) {
-            throw new Error("start thumb value (" + valueStart + ") must be <= end thumb " +
-                ("value (" + this.value + ") - min range (" + this.minRange + ")"));
-        }
-        this.updateValue(valueStart, Thumb.START);
-    };
-    MDCSliderFoundation.prototype.setStep = function (value) {
-        this.step = value;
-        this.numDecimalPlaces = getNumDecimalPlaces(value);
-        this.updateUI();
-    };
-    /**
-     * Only applicable for range sliders. Sets the minimum difference between the
-     * start and end values.
-     */
-    MDCSliderFoundation.prototype.setMinRange = function (value) {
-        if (!this.isRange) {
-            throw new Error('`minRange` is only applicable for range sliders.');
-        }
-        if (value < 0) {
-            throw new Error('`minRange` must be non-negative. ' +
-                ("Current value: " + value));
-        }
-        if (this.value - this.valueStart < value) {
-            throw new Error("start thumb value (" + this.valueStart + ") and end thumb value " +
-                ("(" + this.value + ") must differ by at least " + value + "."));
-        }
-        this.minRange = value;
-    };
-    MDCSliderFoundation.prototype.setIsDiscrete = function (value) {
-        this.isDiscrete = value;
-        this.updateValueIndicatorUI();
-        this.updateTickMarksUI();
-    };
-    MDCSliderFoundation.prototype.getStep = function () {
-        return this.step;
-    };
-    MDCSliderFoundation.prototype.getMinRange = function () {
-        if (!this.isRange) {
-            throw new Error('`minRange` is only applicable for range sliders.');
-        }
-        return this.minRange;
-    };
-    MDCSliderFoundation.prototype.setHasTickMarks = function (value) {
-        this.hasTickMarks = value;
-        this.updateTickMarksUI();
-    };
-    MDCSliderFoundation.prototype.getDisabled = function () {
-        return this.isDisabled;
-    };
-    /**
-     * Sets disabled state, including updating styles and thumb tabindex.
-     */
-    MDCSliderFoundation.prototype.setDisabled = function (disabled) {
-        this.isDisabled = disabled;
-        if (disabled) {
-            this.adapter.addClass(cssClasses.DISABLED);
-            if (this.isRange) {
-                this.adapter.setInputAttribute(attributes.INPUT_DISABLED, '', Thumb.START);
-            }
-            this.adapter.setInputAttribute(attributes.INPUT_DISABLED, '', Thumb.END);
-        }
-        else {
-            this.adapter.removeClass(cssClasses.DISABLED);
-            if (this.isRange) {
-                this.adapter.removeInputAttribute(attributes.INPUT_DISABLED, Thumb.START);
-            }
-            this.adapter.removeInputAttribute(attributes.INPUT_DISABLED, Thumb.END);
-        }
-    };
-    /** @return Whether the slider is a range slider. */
-    MDCSliderFoundation.prototype.getIsRange = function () {
-        return this.isRange;
-    };
-    /**
-     * - Syncs slider boundingClientRect with the current DOM.
-     * - Updates UI based on internal state.
-     */
-    MDCSliderFoundation.prototype.layout = function (_a) {
-        var _b = _a === void 0 ? {} : _a, skipUpdateUI = _b.skipUpdateUI;
-        this.rect = this.adapter.getBoundingClientRect();
-        if (this.isRange) {
-            this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);
-            this.endThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.END);
-        }
-        if (!skipUpdateUI) {
-            this.updateUI();
-        }
-    };
-    /** Handles resize events on the window. */
-    MDCSliderFoundation.prototype.handleResize = function () {
-        this.layout();
-    };
-    /**
-     * Handles pointer down events on the slider root element.
-     */
-    MDCSliderFoundation.prototype.handleDown = function (event) {
-        if (this.isDisabled)
-            return;
-        this.valueStartBeforeDownEvent = this.valueStart;
-        this.valueBeforeDownEvent = this.value;
-        var clientX = event.clientX != null ?
-            event.clientX :
-            event.targetTouches[0].clientX;
-        this.downEventClientX = clientX;
-        var value = this.mapClientXOnSliderScale(clientX);
-        this.thumb = this.getThumbFromDownEvent(clientX, value);
-        if (this.thumb === null)
-            return;
-        this.handleDragStart(event, value, this.thumb);
-        this.updateValue(value, this.thumb, { emitInputEvent: true });
-    };
-    /**
-     * Handles pointer move events on the slider root element.
-     */
-    MDCSliderFoundation.prototype.handleMove = function (event) {
-        if (this.isDisabled)
-            return;
-        // Prevent scrolling.
-        event.preventDefault();
-        var clientX = event.clientX != null ?
-            event.clientX :
-            event.targetTouches[0].clientX;
-        var dragAlreadyStarted = this.thumb != null;
-        this.thumb = this.getThumbFromMoveEvent(clientX);
-        if (this.thumb === null)
-            return;
-        var value = this.mapClientXOnSliderScale(clientX);
-        if (!dragAlreadyStarted) {
-            this.handleDragStart(event, value, this.thumb);
-            this.adapter.emitDragStartEvent(value, this.thumb);
-        }
-        this.updateValue(value, this.thumb, { emitInputEvent: true });
-    };
-    /**
-     * Handles pointer up events on the slider root element.
-     */
-    MDCSliderFoundation.prototype.handleUp = function () {
-        var _a, _b;
-        if (this.isDisabled || this.thumb === null)
-            return;
-        // Remove the focused state and hide the value indicator(s) (if present)
-        // if focus state is meant to be hidden.
-        if ((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) {
-            this.handleInputBlur(this.thumb);
-        }
-        var oldValue = this.thumb === Thumb.START ?
-            this.valueStartBeforeDownEvent :
-            this.valueBeforeDownEvent;
-        var newValue = this.thumb === Thumb.START ? this.valueStart : this.value;
-        if (oldValue !== newValue) {
-            this.adapter.emitChangeEvent(newValue, this.thumb);
-        }
-        this.adapter.emitDragEndEvent(newValue, this.thumb);
-        this.thumb = null;
-    };
-    /**
-     * For range, discrete slider, shows the value indicator on both thumbs.
-     */
-    MDCSliderFoundation.prototype.handleThumbMouseenter = function () {
-        if (!this.isDiscrete || !this.isRange)
-            return;
-        this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
-        this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-    };
-    /**
-     * For range, discrete slider, hides the value indicator on both thumbs.
-     */
-    MDCSliderFoundation.prototype.handleThumbMouseleave = function () {
-        var _a, _b;
-        if (!this.isDiscrete || !this.isRange)
-            return;
-        if ((!((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) &&
-            (this.adapter.isInputFocused(Thumb.START) ||
-                this.adapter.isInputFocused(Thumb.END))) ||
-            this.thumb) {
-            // Leave value indicator shown if either input is focused or the thumb is
-            // being dragged.
-            return;
-        }
-        this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
-        this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-    };
-    MDCSliderFoundation.prototype.handleMousedownOrTouchstart = function (event) {
-        var _this = this;
-        var moveEventType = event.type === 'mousedown' ? 'mousemove' : 'touchmove';
-        // After a down event on the slider root, listen for move events on
-        // body (so the slider value is updated for events outside of the
-        // slider root).
-        this.adapter.registerBodyEventHandler(moveEventType, this.moveListener);
-        var upHandler = function () {
-            _this.handleUp();
-            // Once the drag is finished (up event on body), remove the move
-            // handler.
-            _this.adapter.deregisterBodyEventHandler(moveEventType, _this.moveListener);
-            // Also stop listening for subsequent up events.
-            _this.adapter.deregisterEventHandler('mouseup', upHandler);
-            _this.adapter.deregisterEventHandler('touchend', upHandler);
-        };
-        this.adapter.registerBodyEventHandler('mouseup', upHandler);
-        this.adapter.registerBodyEventHandler('touchend', upHandler);
-        this.handleDown(event);
-    };
-    MDCSliderFoundation.prototype.handlePointerdown = function (event) {
-        var isPrimaryButton = event.button === 0;
-        if (!isPrimaryButton)
-            return;
-        if (event.pointerId != null) {
-            this.adapter.setPointerCapture(event.pointerId);
-        }
-        this.adapter.registerEventHandler('pointermove', this.moveListener);
-        this.handleDown(event);
-    };
-    /**
-     * Handles input `change` event by setting internal slider value to match
-     * input's new value.
-     */
-    MDCSliderFoundation.prototype.handleInputChange = function (thumb) {
-        var value = Number(this.adapter.getInputValue(thumb));
-        if (thumb === Thumb.START) {
-            this.setValueStart(value);
-        }
-        else {
-            this.setValue(value);
-        }
-        this.adapter.emitChangeEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
-        this.adapter.emitInputEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
-    };
-    /** Shows activated state and value indicator on thumb(s). */
-    MDCSliderFoundation.prototype.handleInputFocus = function (thumb) {
-        this.adapter.addThumbClass(cssClasses.THUMB_FOCUSED, thumb);
-        if (!this.isDiscrete)
-            return;
-        this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, thumb);
-        if (this.isRange) {
-            var otherThumb = thumb === Thumb.START ? Thumb.END : Thumb.START;
-            this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, otherThumb);
-        }
-    };
-    /** Removes activated state and value indicator from thumb(s). */
-    MDCSliderFoundation.prototype.handleInputBlur = function (thumb) {
-        this.adapter.removeThumbClass(cssClasses.THUMB_FOCUSED, thumb);
-        if (!this.isDiscrete)
-            return;
-        this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, thumb);
-        if (this.isRange) {
-            var otherThumb = thumb === Thumb.START ? Thumb.END : Thumb.START;
-            this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, otherThumb);
-        }
-    };
-    /**
-     * Emits custom dragStart event, along with focusing the underlying input.
-     */
-    MDCSliderFoundation.prototype.handleDragStart = function (event, value, thumb) {
-        var _a, _b;
-        this.adapter.emitDragStartEvent(value, thumb);
-        this.adapter.focusInput(thumb);
-        // Restore focused state and show the value indicator(s) (if present)
-        // in case they were previously hidden on dragEnd.
-        // This is needed if the input is already focused, in which case
-        // #focusInput above wouldn't actually trigger #handleInputFocus,
-        // which is why we need to invoke it manually here.
-        if ((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) {
-            this.handleInputFocus(thumb);
-        }
-        // Prevent the input (that we just focused) from losing focus.
-        event.preventDefault();
-    };
-    /**
-     * @return The thumb to be moved based on initial down event.
-     */
-    MDCSliderFoundation.prototype.getThumbFromDownEvent = function (clientX, value) {
-        // For single point slider, thumb to be moved is always the END (only)
-        // thumb.
-        if (!this.isRange)
-            return Thumb.END;
-        // Check if event press point is in the bounds of any thumb.
-        var thumbStartRect = this.adapter.getThumbBoundingClientRect(Thumb.START);
-        var thumbEndRect = this.adapter.getThumbBoundingClientRect(Thumb.END);
-        var inThumbStartBounds = clientX >= thumbStartRect.left && clientX <= thumbStartRect.right;
-        var inThumbEndBounds = clientX >= thumbEndRect.left && clientX <= thumbEndRect.right;
-        if (inThumbStartBounds && inThumbEndBounds) {
-            // Thumbs overlapping. Thumb to be moved cannot be determined yet.
-            return null;
-        }
-        // If press is in bounds for either thumb on down event, that's the thumb
-        // to be moved.
-        if (inThumbStartBounds) {
-            return Thumb.START;
-        }
-        if (inThumbEndBounds) {
-            return Thumb.END;
-        }
-        // For presses outside the range, return whichever thumb is closer.
-        if (value < this.valueStart) {
-            return Thumb.START;
-        }
-        if (value > this.value) {
-            return Thumb.END;
-        }
-        // For presses inside the range, return whichever thumb is closer.
-        return (value - this.valueStart <= this.value - value) ? Thumb.START :
-            Thumb.END;
-    };
-    /**
-     * @return The thumb to be moved based on move event (based on drag
-     *     direction from original down event). Only applicable if thumbs
-     *     were overlapping in the down event.
-     */
-    MDCSliderFoundation.prototype.getThumbFromMoveEvent = function (clientX) {
-        // Thumb has already been chosen.
-        if (this.thumb !== null)
-            return this.thumb;
-        if (this.downEventClientX === null) {
-            throw new Error('`downEventClientX` is null after move event.');
-        }
-        var moveDistanceUnderThreshold = Math.abs(this.downEventClientX - clientX) < numbers.THUMB_UPDATE_MIN_PX;
-        if (moveDistanceUnderThreshold)
-            return this.thumb;
-        var draggedThumbToLeft = clientX < this.downEventClientX;
-        if (draggedThumbToLeft) {
-            return this.adapter.isRTL() ? Thumb.END : Thumb.START;
-        }
-        else {
-            return this.adapter.isRTL() ? Thumb.START : Thumb.END;
-        }
-    };
-    /**
-     * Updates UI based on internal state.
-     * @param thumb Thumb whose value is being updated. If undefined, UI is
-     *     updated for both thumbs based on current internal state.
-     */
-    MDCSliderFoundation.prototype.updateUI = function (thumb) {
-        if (thumb) {
-            this.updateThumbAndInputAttributes(thumb);
-        }
-        else {
-            this.updateThumbAndInputAttributes(Thumb.START);
-            this.updateThumbAndInputAttributes(Thumb.END);
-        }
-        this.updateThumbAndTrackUI(thumb);
-        this.updateValueIndicatorUI(thumb);
-        this.updateTickMarksUI();
-    };
-    /**
-     * Updates thumb and input attributes based on current value.
-     * @param thumb Thumb whose aria attributes to update.
-     */
-    MDCSliderFoundation.prototype.updateThumbAndInputAttributes = function (thumb) {
-        if (!thumb)
-            return;
-        var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
-        var valueStr = String(value);
-        this.adapter.setInputAttribute(attributes.INPUT_VALUE, valueStr, thumb);
-        if (this.isRange && thumb === Thumb.START) {
-            this.adapter.setInputAttribute(attributes.INPUT_MIN, String(value + this.minRange), Thumb.END);
-        }
-        else if (this.isRange && thumb === Thumb.END) {
-            this.adapter.setInputAttribute(attributes.INPUT_MAX, String(value - this.minRange), Thumb.START);
-        }
-        // Sync attribute with property.
-        if (this.adapter.getInputValue(thumb) !== valueStr) {
-            this.adapter.setInputValue(valueStr, thumb);
-        }
-        var valueToAriaValueTextFn = this.adapter.getValueToAriaValueTextFn();
-        if (valueToAriaValueTextFn) {
-            this.adapter.setInputAttribute(attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value, thumb), thumb);
-        }
-    };
-    /**
-     * Updates value indicator UI based on current value.
-     * @param thumb Thumb whose value indicator to update. If undefined, all
-     *     thumbs' value indicators are updated.
-     */
-    MDCSliderFoundation.prototype.updateValueIndicatorUI = function (thumb) {
-        if (!this.isDiscrete)
-            return;
-        var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
-        this.adapter.setValueIndicatorText(value, thumb === Thumb.START ? Thumb.START : Thumb.END);
-        if (!thumb && this.isRange) {
-            this.adapter.setValueIndicatorText(this.valueStart, Thumb.START);
-        }
-    };
-    /**
-     * Updates tick marks UI within slider, based on current min, max, and step.
-     */
-    MDCSliderFoundation.prototype.updateTickMarksUI = function () {
-        if (!this.isDiscrete || !this.hasTickMarks)
-            return;
-        var numTickMarksInactiveStart = (this.valueStart - this.min) / this.step;
-        var numTickMarksActive = (this.value - this.valueStart) / this.step + 1;
-        var numTickMarksInactiveEnd = (this.max - this.value) / this.step;
-        var tickMarksInactiveStart = Array.from({ length: numTickMarksInactiveStart })
-            .fill(TickMark.INACTIVE);
-        var tickMarksActive = Array.from({ length: numTickMarksActive })
-            .fill(TickMark.ACTIVE);
-        var tickMarksInactiveEnd = Array.from({ length: numTickMarksInactiveEnd })
-            .fill(TickMark.INACTIVE);
-        this.adapter.updateTickMarks(tickMarksInactiveStart.concat(tickMarksActive)
-            .concat(tickMarksInactiveEnd));
-    };
-    /** Maps clientX to a value on the slider scale. */
-    MDCSliderFoundation.prototype.mapClientXOnSliderScale = function (clientX) {
-        var xPos = clientX - this.rect.left;
-        var pctComplete = xPos / this.rect.width;
-        if (this.adapter.isRTL()) {
-            pctComplete = 1 - pctComplete;
-        }
-        // Fit the percentage complete between the range [min,max]
-        // by remapping from [0, 1] to [min, min+(max-min)].
-        var value = this.min + pctComplete * (this.max - this.min);
-        if (value === this.max || value === this.min) {
-            return value;
-        }
-        return Number(this.quantize(value).toFixed(this.numDecimalPlaces));
-    };
-    /** Calculates the quantized value based on step value. */
-    MDCSliderFoundation.prototype.quantize = function (value) {
-        var numSteps = Math.round((value - this.min) / this.step);
-        return this.min + numSteps * this.step;
-    };
-    /**
-     * Updates slider value (internal state and UI) based on the given value.
-     */
-    MDCSliderFoundation.prototype.updateValue = function (value, thumb, _a) {
-        var _b = _a === void 0 ? {} : _a, emitInputEvent = _b.emitInputEvent;
-        value = this.clampValue(value, thumb);
-        if (this.isRange && thumb === Thumb.START) {
-            // Exit early if current value is the same as the new value.
-            if (this.valueStart === value)
-                return;
-            this.valueStart = value;
-        }
-        else {
-            // Exit early if current value is the same as the new value.
-            if (this.value === value)
-                return;
-            this.value = value;
-        }
-        this.updateUI(thumb);
-        if (emitInputEvent) {
-            this.adapter.emitInputEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
-        }
-    };
-    /**
-     * Clamps the given value for the given thumb based on slider properties:
-     * - Restricts value within [min, max].
-     * - If range slider, clamp start value <= end value - min range, and
-     *   end value >= start value + min range.
-     */
-    MDCSliderFoundation.prototype.clampValue = function (value, thumb) {
-        // Clamp value to [min, max] range.
-        value = Math.min(Math.max(value, this.min), this.max);
-        var thumbStartMovedPastThumbEnd = this.isRange && thumb === Thumb.START &&
-            value > this.value - this.minRange;
-        if (thumbStartMovedPastThumbEnd) {
-            return this.value - this.minRange;
-        }
-        var thumbEndMovedPastThumbStart = this.isRange && thumb === Thumb.END &&
-            value < this.valueStart + this.minRange;
-        if (thumbEndMovedPastThumbStart) {
-            return this.valueStart + this.minRange;
-        }
-        return value;
-    };
-    /**
-     * Updates the active track and thumb style properties to reflect current
-     * value.
-     */
-    MDCSliderFoundation.prototype.updateThumbAndTrackUI = function (thumb) {
-        var _this = this;
-        var _a = this, max = _a.max, min = _a.min;
-        var pctComplete = (this.value - this.valueStart) / (max - min);
-        var rangePx = pctComplete * this.rect.width;
-        var isRtl = this.adapter.isRTL();
-        var transformProp = HAS_WINDOW ? getCorrectPropertyName(window, 'transform') : 'transform';
-        if (this.isRange) {
-            var thumbLeftPos_1 = this.adapter.isRTL() ?
-                (max - this.value) / (max - min) * this.rect.width :
-                (this.valueStart - min) / (max - min) * this.rect.width;
-            var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
-            this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
-                // Set active track styles, accounting for animation direction by
-                // setting `transform-origin`.
-                var trackAnimatesFromRight = (!isRtl && thumb === Thumb.START) ||
-                    (isRtl && thumb !== Thumb.START);
-                if (trackAnimatesFromRight) {
-                    _this.adapter.setTrackActiveStyleProperty('transform-origin', 'right');
-                    _this.adapter.setTrackActiveStyleProperty('left', 'auto');
-                    _this.adapter.setTrackActiveStyleProperty('right', _this.rect.width - thumbRightPos_1 + "px");
-                }
-                else {
-                    _this.adapter.setTrackActiveStyleProperty('transform-origin', 'left');
-                    _this.adapter.setTrackActiveStyleProperty('right', 'auto');
-                    _this.adapter.setTrackActiveStyleProperty('left', thumbLeftPos_1 + "px");
-                }
-                _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
-                // Set thumb styles.
-                var thumbStartPos = isRtl ? thumbRightPos_1 : thumbLeftPos_1;
-                var thumbEndPos = _this.adapter.isRTL() ? thumbLeftPos_1 : thumbRightPos_1;
-                if (thumb === Thumb.START || !thumb || !_this.initialStylesRemoved) {
-                    _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.START);
-                    _this.alignValueIndicator(Thumb.START, thumbStartPos);
-                }
-                if (thumb === Thumb.END || !thumb || !_this.initialStylesRemoved) {
-                    _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbEndPos + "px)", Thumb.END);
-                    _this.alignValueIndicator(Thumb.END, thumbEndPos);
-                }
-                _this.removeInitialStyles(isRtl);
-                _this.updateOverlappingThumbsUI(thumbStartPos, thumbEndPos, thumb);
-            });
-        }
-        else {
-            this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
-                var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
-                _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
-                _this.alignValueIndicator(Thumb.END, thumbStartPos);
-                _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
-                _this.removeInitialStyles(isRtl);
-            });
-        }
-    };
-    /**
-     * Shifts the value indicator to either side if it would otherwise stick
-     * beyond the slider's length while keeping the caret above the knob.
-     */
-    MDCSliderFoundation.prototype.alignValueIndicator = function (thumb, thumbPos) {
-        if (!this.isDiscrete)
-            return;
-        var thumbHalfWidth = this.adapter.getThumbBoundingClientRect(thumb).width / 2;
-        var containerWidth = this.adapter.getValueIndicatorContainerWidth(thumb);
-        var sliderWidth = this.adapter.getBoundingClientRect().width;
-        if (containerWidth / 2 > thumbPos + thumbHalfWidth) {
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, thumbHalfWidth + "px", thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(-50%)', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, '0', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'none', thumb);
-        }
-        else if (containerWidth / 2 > sliderWidth - thumbPos + thumbHalfWidth) {
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, thumbHalfWidth + "px", thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(50%)', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, '0', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'none', thumb);
-        }
-        else {
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, '50%', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(-50%)', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, '50%', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, 'auto', thumb);
-            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'translateX(-50%)', thumb);
-        }
-    };
-    /**
-     * Removes initial inline styles if not already removed. `left:<...>%`
-     * inline styles can be added to position the thumb correctly before JS
-     * initialization. However, they need to be removed before the JS starts
-     * positioning the thumb. This is because the JS uses
-     * `transform:translateX(<...>)px` (for performance reasons) to position
-     * the thumb (which is not possible for initial styles since we need the
-     * bounding rect measurements).
-     */
-    MDCSliderFoundation.prototype.removeInitialStyles = function (isRtl) {
-        if (this.initialStylesRemoved)
-            return;
-        // Remove thumb position properties that were added for initial render.
-        var position = isRtl ? 'right' : 'left';
-        this.adapter.removeThumbStyleProperty(position, Thumb.END);
-        if (this.isRange) {
-            this.adapter.removeThumbStyleProperty(position, Thumb.START);
-        }
-        this.initialStylesRemoved = true;
-        this.resetTrackAndThumbAnimation();
-    };
-    /**
-     * Resets track/thumb animation to prevent animation when adding
-     * `transform` styles to thumb initially.
-     */
-    MDCSliderFoundation.prototype.resetTrackAndThumbAnimation = function () {
-        var _this = this;
-        if (!this.isDiscrete)
-            return;
-        // Set transition properties to default (no animation), so that the
-        // newly added `transform` styles do not animate thumb/track from
-        // their default positions.
-        var transitionProp = HAS_WINDOW ?
-            getCorrectPropertyName(window, 'transition') :
-            'transition';
-        var transitionDefault = 'none 0s ease 0s';
-        this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.END);
-        if (this.isRange) {
-            this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.START);
-        }
-        this.adapter.setTrackActiveStyleProperty(transitionProp, transitionDefault);
-        // In the next frame, remove the transition inline styles we just
-        // added, such that any animations added in the CSS can now take effect.
-        requestAnimationFrame(function () {
-            _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.END);
-            _this.adapter.removeTrackActiveStyleProperty(transitionProp);
-            if (_this.isRange) {
-                _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.START);
-            }
-        });
-    };
-    /**
-     * Adds THUMB_TOP class to active thumb if thumb knobs overlap; otherwise
-     * removes THUMB_TOP class from both thumbs.
-     * @param thumb Thumb that is active (being moved).
-     */
-    MDCSliderFoundation.prototype.updateOverlappingThumbsUI = function (thumbStartPos, thumbEndPos, thumb) {
-        var thumbsOverlap = false;
-        if (this.adapter.isRTL()) {
-            var startThumbLeftEdge = thumbStartPos - this.startThumbKnobWidth / 2;
-            var endThumbRightEdge = thumbEndPos + this.endThumbKnobWidth / 2;
-            thumbsOverlap = endThumbRightEdge >= startThumbLeftEdge;
-        }
-        else {
-            var startThumbRightEdge = thumbStartPos + this.startThumbKnobWidth / 2;
-            var endThumbLeftEdge = thumbEndPos - this.endThumbKnobWidth / 2;
-            thumbsOverlap = startThumbRightEdge >= endThumbLeftEdge;
-        }
-        if (thumbsOverlap) {
-            this.adapter.addThumbClass(cssClasses.THUMB_TOP, 
-            // If no thumb was dragged (in the case of initial layout), end
-            // thumb is on top by default.
-            thumb || Thumb.END);
-            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, thumb === Thumb.START ? Thumb.END : Thumb.START);
-        }
-        else {
-            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, Thumb.START);
-            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, Thumb.END);
-        }
-    };
-    /**
-     * Converts attribute value to a number, e.g. '100' => 100. Throws errors
-     * for invalid values.
-     * @param attributeValue Attribute value, e.g. 100.
-     * @param attributeName Attribute name, e.g. `aria-valuemax`.
-     */
-    MDCSliderFoundation.prototype.convertAttributeValueToNumber = function (attributeValue, attributeName) {
-        if (attributeValue === null) {
-            throw new Error('MDCSliderFoundation: `' + attributeName + '` must be non-null.');
-        }
-        var value = Number(attributeValue);
-        if (isNaN(value)) {
-            throw new Error('MDCSliderFoundation: `' + attributeName + '` value is `' +
-                attributeValue + '`, but must be a number.');
-        }
-        return value;
-    };
-    /** Checks that the given properties are valid slider values. */
-    MDCSliderFoundation.prototype.validateProperties = function (_a) {
-        var min = _a.min, max = _a.max, value = _a.value, valueStart = _a.valueStart, step = _a.step, minRange = _a.minRange;
-        if (min >= max) {
-            throw new Error("MDCSliderFoundation: min must be strictly less than max. " +
-                ("Current: [min: " + min + ", max: " + max + "]"));
-        }
-        if (step <= 0) {
-            throw new Error("MDCSliderFoundation: step must be a positive number. " +
-                ("Current step: " + step));
-        }
-        if (this.isRange) {
-            if (value < min || value > max || valueStart < min || valueStart > max) {
-                throw new Error("MDCSliderFoundation: values must be in [min, max] range. " +
-                    ("Current values: [start value: " + valueStart + ", end value: ") +
-                    (value + ", min: " + min + ", max: " + max + "]"));
-            }
-            if (valueStart > value) {
-                throw new Error("MDCSliderFoundation: start value must be <= end value. " +
-                    ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
-            }
-            if (minRange < 0) {
-                throw new Error("MDCSliderFoundation: minimum range must be non-negative. " +
-                    ("Current min range: " + minRange));
-            }
-            if (value - valueStart < minRange) {
-                throw new Error("MDCSliderFoundation: start value and end value must differ by at least " +
-                    (minRange + ". Current values: [start value: " + valueStart + ", ") +
-                    ("end value: " + value + "]"));
-            }
-            var numStepsValueStartFromMin = (valueStart - min) / step;
-            var numStepsValueFromMin = (value - min) / step;
-            if (!Number.isInteger(parseFloat(numStepsValueStartFromMin.toFixed(6))) ||
-                !Number.isInteger(parseFloat(numStepsValueFromMin.toFixed(6)))) {
-                throw new Error("MDCSliderFoundation: Slider values must be valid based on the " +
-                    ("step value (" + step + "). Current values: [start value: ") +
-                    (valueStart + ", end value: " + value + ", min: " + min + "]"));
-            }
-        }
-        else { // Single point slider.
-            if (value < min || value > max) {
-                throw new Error("MDCSliderFoundation: value must be in [min, max] range. " +
-                    ("Current values: [value: " + value + ", min: " + min + ", max: " + max + "]"));
-            }
-            var numStepsValueFromMin = (value - min) / step;
-            if (!Number.isInteger(parseFloat(numStepsValueFromMin.toFixed(6)))) {
-                throw new Error("MDCSliderFoundation: Slider value must be valid based on the " +
-                    ("step value (" + step + "). Current value: " + value));
-            }
-        }
-    };
-    MDCSliderFoundation.prototype.registerEventHandlers = function () {
-        this.adapter.registerWindowEventHandler('resize', this.resizeListener);
-        if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
-            // If supported, use pointer events API with #setPointerCapture.
-            this.adapter.registerEventHandler('pointerdown', this.pointerdownListener);
-            this.adapter.registerEventHandler('pointerup', this.pointerupListener);
-        }
-        else {
-            // Otherwise, fall back to mousedown/touchstart events.
-            this.adapter.registerEventHandler('mousedown', this.mousedownOrTouchstartListener);
-            this.adapter.registerEventHandler('touchstart', this.mousedownOrTouchstartListener);
-        }
-        if (this.isRange) {
-            this.adapter.registerThumbEventHandler(Thumb.START, 'mouseenter', this.thumbMouseenterListener);
-            this.adapter.registerThumbEventHandler(Thumb.START, 'mouseleave', this.thumbMouseleaveListener);
-            this.adapter.registerInputEventHandler(Thumb.START, 'change', this.inputStartChangeListener);
-            this.adapter.registerInputEventHandler(Thumb.START, 'focus', this.inputStartFocusListener);
-            this.adapter.registerInputEventHandler(Thumb.START, 'blur', this.inputStartBlurListener);
-        }
-        this.adapter.registerThumbEventHandler(Thumb.END, 'mouseenter', this.thumbMouseenterListener);
-        this.adapter.registerThumbEventHandler(Thumb.END, 'mouseleave', this.thumbMouseleaveListener);
-        this.adapter.registerInputEventHandler(Thumb.END, 'change', this.inputEndChangeListener);
-        this.adapter.registerInputEventHandler(Thumb.END, 'focus', this.inputEndFocusListener);
-        this.adapter.registerInputEventHandler(Thumb.END, 'blur', this.inputEndBlurListener);
-    };
-    MDCSliderFoundation.prototype.deregisterEventHandlers = function () {
-        this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
-        if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
-            this.adapter.deregisterEventHandler('pointerdown', this.pointerdownListener);
-            this.adapter.deregisterEventHandler('pointerup', this.pointerupListener);
-        }
-        else {
-            this.adapter.deregisterEventHandler('mousedown', this.mousedownOrTouchstartListener);
-            this.adapter.deregisterEventHandler('touchstart', this.mousedownOrTouchstartListener);
-        }
-        if (this.isRange) {
-            this.adapter.deregisterThumbEventHandler(Thumb.START, 'mouseenter', this.thumbMouseenterListener);
-            this.adapter.deregisterThumbEventHandler(Thumb.START, 'mouseleave', this.thumbMouseleaveListener);
-            this.adapter.deregisterInputEventHandler(Thumb.START, 'change', this.inputStartChangeListener);
-            this.adapter.deregisterInputEventHandler(Thumb.START, 'focus', this.inputStartFocusListener);
-            this.adapter.deregisterInputEventHandler(Thumb.START, 'blur', this.inputStartBlurListener);
-        }
-        this.adapter.deregisterThumbEventHandler(Thumb.END, 'mouseenter', this.thumbMouseenterListener);
-        this.adapter.deregisterThumbEventHandler(Thumb.END, 'mouseleave', this.thumbMouseleaveListener);
-        this.adapter.deregisterInputEventHandler(Thumb.END, 'change', this.inputEndChangeListener);
-        this.adapter.deregisterInputEventHandler(Thumb.END, 'focus', this.inputEndFocusListener);
-        this.adapter.deregisterInputEventHandler(Thumb.END, 'blur', this.inputEndBlurListener);
-    };
-    MDCSliderFoundation.prototype.handlePointerup = function () {
-        this.handleUp();
-        this.adapter.deregisterEventHandler('pointermove', this.moveListener);
-    };
-    MDCSliderFoundation.SUPPORTS_POINTER_EVENTS = HAS_WINDOW && Boolean(window.PointerEvent) &&
-        // #setPointerCapture is buggy on iOS, so we can't use pointer events
-        // until the following bug is fixed:
-        // https://bugs.webkit.org/show_bug.cgi?id=220196
-        !isIOS();
-    return MDCSliderFoundation;
-}(MDCFoundation));
-function isIOS() {
-    // Source:
-    // https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
-    return [
-        'iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone',
-        'iPod'
-    ].includes(navigator.platform)
-        // iPad on iOS 13 detection
-        || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
-}
-/**
- * Given a number, returns the number of digits that appear after the
- * decimal point.
- * See
- * https://stackoverflow.com/questions/9539513/is-there-a-reliable-way-in-javascript-to-obtain-the-number-of-decimal-places-of
- */
-function getNumDecimalPlaces(n) {
-    // Pull out the fraction and the exponent.
-    var match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(String(n));
-    // NaN or Infinity or integer.
-    // We arbitrarily decide that Infinity is integral.
-    if (!match)
-        return 0;
-    var fraction = match[1] || ''; // E.g. 1.234e-2 => 234
-    var exponent = match[2] || 0; // E.g. 1.234e-2 => -2
-    // Count the number of digits in the fraction and subtract the
-    // exponent to simulate moving the decimal point left by exponent places.
-    // 1.234e+2 has 1 fraction digit and '234'.length -  2 == 1
-    // 1.234e-2 has 5 fraction digit and '234'.length - -2 == 5
-    return Math.max(0, // lower limit
-    (fraction === '0' ? 0 : fraction.length) - Number(exponent));
-}
-
+ */var Ie,$e="mdc-slider--disabled",De="mdc-slider--discrete",Pe="mdc-slider--range",Ne="mdc-slider__thumb--focused",Me="mdc-slider__thumb--top",Fe="mdc-slider__thumb--with-indicator",He="mdc-slider--tick-marks",Oe=1,Le=0,ze=5,Ue="aria-valuetext",Ve="disabled",Be="min",je="max",Xe="value",Ge="step",We="data-min-range",qe="--slider-value-indicator-caret-left",Ke="--slider-value-indicator-caret-right",Je="--slider-value-indicator-caret-transform",Ye="--slider-value-indicator-container-left",Ze="--slider-value-indicator-container-right",Qe="--slider-value-indicator-container-transform";!function(t){t.SLIDER_UPDATE="slider_update"}(Ie||(Ie={}));var ti="undefined"!=typeof window,ei=function(t){function r(e){var n=t.call(this,i(i({},r.defaultAdapter),e))||this;return n.initialStylesRemoved=!1,n.isDisabled=!1,n.isDiscrete=!1,n.step=Oe,n.minRange=Le,n.hasTickMarks=!1,n.isRange=!1,n.thumb=null,n.downEventClientX=null,n.startThumbKnobWidth=0,n.endThumbKnobWidth=0,n.animFrame=new we,n}return e(r,t),Object.defineProperty(r,"defaultAdapter",{get:function(){return{hasClass:function(){return!1},addClass:function(){},removeClass:function(){},addThumbClass:function(){},removeThumbClass:function(){},getAttribute:function(){return null},getInputValue:function(){return""},setInputValue:function(){},getInputAttribute:function(){return null},setInputAttribute:function(){return null},removeInputAttribute:function(){return null},focusInput:function(){},isInputFocused:function(){return!1},shouldHideFocusStylesForPointerEvents:function(){return!1},getThumbKnobWidth:function(){return 0},getValueIndicatorContainerWidth:function(){return 0},getThumbBoundingClientRect:function(){return{top:0,right:0,bottom:0,left:0,width:0,height:0}},getBoundingClientRect:function(){return{top:0,right:0,bottom:0,left:0,width:0,height:0}},isRTL:function(){return!1},setThumbStyleProperty:function(){},removeThumbStyleProperty:function(){},setTrackActiveStyleProperty:function(){},removeTrackActiveStyleProperty:function(){},setValueIndicatorText:function(){},getValueToAriaValueTextFn:function(){return null},updateTickMarks:function(){},setPointerCapture:function(){},emitChangeEvent:function(){},emitInputEvent:function(){},emitDragStartEvent:function(){},emitDragEndEvent:function(){},registerEventHandler:function(){},deregisterEventHandler:function(){},registerThumbEventHandler:function(){},deregisterThumbEventHandler:function(){},registerInputEventHandler:function(){},deregisterInputEventHandler:function(){},registerBodyEventHandler:function(){},deregisterBodyEventHandler:function(){},registerWindowEventHandler:function(){},deregisterWindowEventHandler:function(){}}},enumerable:!1,configurable:!0}),r.prototype.init=function(){var t=this;this.isDisabled=this.adapter.hasClass($e),this.isDiscrete=this.adapter.hasClass(De),this.hasTickMarks=this.adapter.hasClass(He),this.isRange=this.adapter.hasClass(Pe);var e=this.convertAttributeValueToNumber(this.adapter.getInputAttribute(Be,this.isRange?Te.START:Te.END),Be),i=this.convertAttributeValueToNumber(this.adapter.getInputAttribute(je,Te.END),je),r=this.convertAttributeValueToNumber(this.adapter.getInputAttribute(Xe,Te.END),Xe),n=this.isRange?this.convertAttributeValueToNumber(this.adapter.getInputAttribute(Xe,Te.START),Xe):e,a=this.adapter.getInputAttribute(Ge,Te.END),o=a?this.convertAttributeValueToNumber(a,Ge):this.step,s=this.adapter.getAttribute(We),d=s?this.convertAttributeValueToNumber(s,We):this.minRange;this.validateProperties({min:e,max:i,value:r,valueStart:n,step:o,minRange:d}),this.min=e,this.max=i,this.value=r,this.valueStart=n,this.step=o,this.minRange=d,this.numDecimalPlaces=ii(this.step),this.valueBeforeDownEvent=r,this.valueStartBeforeDownEvent=n,this.mousedownOrTouchstartListener=this.handleMousedownOrTouchstart.bind(this),this.moveListener=this.handleMove.bind(this),this.pointerdownListener=this.handlePointerdown.bind(this),this.pointerupListener=this.handlePointerup.bind(this),this.thumbMouseenterListener=this.handleThumbMouseenter.bind(this),this.thumbMouseleaveListener=this.handleThumbMouseleave.bind(this),this.inputStartChangeListener=function(){t.handleInputChange(Te.START)},this.inputEndChangeListener=function(){t.handleInputChange(Te.END)},this.inputStartFocusListener=function(){t.handleInputFocus(Te.START)},this.inputEndFocusListener=function(){t.handleInputFocus(Te.END)},this.inputStartBlurListener=function(){t.handleInputBlur(Te.START)},this.inputEndBlurListener=function(){t.handleInputBlur(Te.END)},this.resizeListener=this.handleResize.bind(this),this.registerEventHandlers()},r.prototype.destroy=function(){this.deregisterEventHandlers()},r.prototype.setMin=function(t){this.min=t,this.isRange||(this.valueStart=t),this.updateUI()},r.prototype.setMax=function(t){this.max=t,this.updateUI()},r.prototype.getMin=function(){return this.min},r.prototype.getMax=function(){return this.max},r.prototype.getValue=function(){return this.value},r.prototype.setValue=function(t){if(this.isRange&&t<this.valueStart+this.minRange)throw new Error("end thumb value ("+t+") must be >= start thumb value ("+this.valueStart+") + min range ("+this.minRange+")");this.updateValue(t,Te.END)},r.prototype.getValueStart=function(){if(!this.isRange)throw new Error("`valueStart` is only applicable for range sliders.");return this.valueStart},r.prototype.setValueStart=function(t){if(!this.isRange)throw new Error("`valueStart` is only applicable for range sliders.");if(this.isRange&&t>this.value-this.minRange)throw new Error("start thumb value ("+t+") must be <= end thumb value ("+this.value+") - min range ("+this.minRange+")");this.updateValue(t,Te.START)},r.prototype.setStep=function(t){this.step=t,this.numDecimalPlaces=ii(t),this.updateUI()},r.prototype.setMinRange=function(t){if(!this.isRange)throw new Error("`minRange` is only applicable for range sliders.");if(t<0)throw new Error("`minRange` must be non-negative. Current value: "+t);if(this.value-this.valueStart<t)throw new Error("start thumb value ("+this.valueStart+") and end thumb value ("+this.value+") must differ by at least "+t+".");this.minRange=t},r.prototype.setIsDiscrete=function(t){this.isDiscrete=t,this.updateValueIndicatorUI(),this.updateTickMarksUI()},r.prototype.getStep=function(){return this.step},r.prototype.getMinRange=function(){if(!this.isRange)throw new Error("`minRange` is only applicable for range sliders.");return this.minRange},r.prototype.setHasTickMarks=function(t){this.hasTickMarks=t,this.updateTickMarksUI()},r.prototype.getDisabled=function(){return this.isDisabled},r.prototype.setDisabled=function(t){this.isDisabled=t,t?(this.adapter.addClass($e),this.isRange&&this.adapter.setInputAttribute(Ve,"",Te.START),this.adapter.setInputAttribute(Ve,"",Te.END)):(this.adapter.removeClass($e),this.isRange&&this.adapter.removeInputAttribute(Ve,Te.START),this.adapter.removeInputAttribute(Ve,Te.END))},r.prototype.getIsRange=function(){return this.isRange},r.prototype.layout=function(t){var e=(void 0===t?{}:t).skipUpdateUI;this.rect=this.adapter.getBoundingClientRect(),this.isRange&&(this.startThumbKnobWidth=this.adapter.getThumbKnobWidth(Te.START),this.endThumbKnobWidth=this.adapter.getThumbKnobWidth(Te.END)),e||this.updateUI()},r.prototype.handleResize=function(){this.layout()},r.prototype.handleDown=function(t){if(!this.isDisabled){this.valueStartBeforeDownEvent=this.valueStart,this.valueBeforeDownEvent=this.value;var e=null!=t.clientX?t.clientX:t.targetTouches[0].clientX;this.downEventClientX=e;var i=this.mapClientXOnSliderScale(e);this.thumb=this.getThumbFromDownEvent(e,i),null!==this.thumb&&(this.handleDragStart(t,i,this.thumb),this.updateValue(i,this.thumb,{emitInputEvent:!0}))}},r.prototype.handleMove=function(t){if(!this.isDisabled){t.preventDefault();var e=null!=t.clientX?t.clientX:t.targetTouches[0].clientX,i=null!=this.thumb;if(this.thumb=this.getThumbFromMoveEvent(e),null!==this.thumb){var r=this.mapClientXOnSliderScale(e);i||(this.handleDragStart(t,r,this.thumb),this.adapter.emitDragStartEvent(r,this.thumb)),this.updateValue(r,this.thumb,{emitInputEvent:!0})}}},r.prototype.handleUp=function(){var t,e;if(!this.isDisabled&&null!==this.thumb){(null===(e=(t=this.adapter).shouldHideFocusStylesForPointerEvents)||void 0===e?void 0:e.call(t))&&this.handleInputBlur(this.thumb);var i=this.thumb===Te.START?this.valueStartBeforeDownEvent:this.valueBeforeDownEvent,r=this.thumb===Te.START?this.valueStart:this.value;i!==r&&this.adapter.emitChangeEvent(r,this.thumb),this.adapter.emitDragEndEvent(r,this.thumb),this.thumb=null}},r.prototype.handleThumbMouseenter=function(){this.isDiscrete&&this.isRange&&(this.adapter.addThumbClass(Fe,Te.START),this.adapter.addThumbClass(Fe,Te.END))},r.prototype.handleThumbMouseleave=function(){var t,e;this.isDiscrete&&this.isRange&&(!(null===(e=(t=this.adapter).shouldHideFocusStylesForPointerEvents)||void 0===e?void 0:e.call(t))&&(this.adapter.isInputFocused(Te.START)||this.adapter.isInputFocused(Te.END))||this.thumb||(this.adapter.removeThumbClass(Fe,Te.START),this.adapter.removeThumbClass(Fe,Te.END)))},r.prototype.handleMousedownOrTouchstart=function(t){var e=this,i="mousedown"===t.type?"mousemove":"touchmove";this.adapter.registerBodyEventHandler(i,this.moveListener);var r=function(){e.handleUp(),e.adapter.deregisterBodyEventHandler(i,e.moveListener),e.adapter.deregisterEventHandler("mouseup",r),e.adapter.deregisterEventHandler("touchend",r)};this.adapter.registerBodyEventHandler("mouseup",r),this.adapter.registerBodyEventHandler("touchend",r),this.handleDown(t)},r.prototype.handlePointerdown=function(t){0===t.button&&(null!=t.pointerId&&this.adapter.setPointerCapture(t.pointerId),this.adapter.registerEventHandler("pointermove",this.moveListener),this.handleDown(t))},r.prototype.handleInputChange=function(t){var e=Number(this.adapter.getInputValue(t));t===Te.START?this.setValueStart(e):this.setValue(e),this.adapter.emitChangeEvent(t===Te.START?this.valueStart:this.value,t),this.adapter.emitInputEvent(t===Te.START?this.valueStart:this.value,t)},r.prototype.handleInputFocus=function(t){if(this.adapter.addThumbClass(Ne,t),this.isDiscrete&&(this.adapter.addThumbClass(Fe,t),this.isRange)){var e=t===Te.START?Te.END:Te.START;this.adapter.addThumbClass(Fe,e)}},r.prototype.handleInputBlur=function(t){if(this.adapter.removeThumbClass(Ne,t),this.isDiscrete&&(this.adapter.removeThumbClass(Fe,t),this.isRange)){var e=t===Te.START?Te.END:Te.START;this.adapter.removeThumbClass(Fe,e)}},r.prototype.handleDragStart=function(t,e,i){var r,n;this.adapter.emitDragStartEvent(e,i),this.adapter.focusInput(i),(null===(n=(r=this.adapter).shouldHideFocusStylesForPointerEvents)||void 0===n?void 0:n.call(r))&&this.handleInputFocus(i),t.preventDefault()},r.prototype.getThumbFromDownEvent=function(t,e){if(!this.isRange)return Te.END;var i=this.adapter.getThumbBoundingClientRect(Te.START),r=this.adapter.getThumbBoundingClientRect(Te.END),n=t>=i.left&&t<=i.right,a=t>=r.left&&t<=r.right;return n&&a?null:n?Te.START:a?Te.END:e<this.valueStart?Te.START:e>this.value?Te.END:e-this.valueStart<=this.value-e?Te.START:Te.END},r.prototype.getThumbFromMoveEvent=function(t){if(null!==this.thumb)return this.thumb;if(null===this.downEventClientX)throw new Error("`downEventClientX` is null after move event.");return Math.abs(this.downEventClientX-t)<ze?this.thumb:t<this.downEventClientX?this.adapter.isRTL()?Te.END:Te.START:this.adapter.isRTL()?Te.START:Te.END},r.prototype.updateUI=function(t){t?this.updateThumbAndInputAttributes(t):(this.updateThumbAndInputAttributes(Te.START),this.updateThumbAndInputAttributes(Te.END)),this.updateThumbAndTrackUI(t),this.updateValueIndicatorUI(t),this.updateTickMarksUI()},r.prototype.updateThumbAndInputAttributes=function(t){if(t){var e=this.isRange&&t===Te.START?this.valueStart:this.value,i=String(e);this.adapter.setInputAttribute(Xe,i,t),this.isRange&&t===Te.START?this.adapter.setInputAttribute(Be,String(e+this.minRange),Te.END):this.isRange&&t===Te.END&&this.adapter.setInputAttribute(je,String(e-this.minRange),Te.START),this.adapter.getInputValue(t)!==i&&this.adapter.setInputValue(i,t);var r=this.adapter.getValueToAriaValueTextFn();r&&this.adapter.setInputAttribute(Ue,r(e,t),t)}},r.prototype.updateValueIndicatorUI=function(t){if(this.isDiscrete){var e=this.isRange&&t===Te.START?this.valueStart:this.value;this.adapter.setValueIndicatorText(e,t===Te.START?Te.START:Te.END),!t&&this.isRange&&this.adapter.setValueIndicatorText(this.valueStart,Te.START)}},r.prototype.updateTickMarksUI=function(){if(this.isDiscrete&&this.hasTickMarks){var t=(this.valueStart-this.min)/this.step,e=(this.value-this.valueStart)/this.step+1,i=(this.max-this.value)/this.step,r=Array.from({length:t}).fill(xe.INACTIVE),n=Array.from({length:e}).fill(xe.ACTIVE),a=Array.from({length:i}).fill(xe.INACTIVE);this.adapter.updateTickMarks(r.concat(n).concat(a))}},r.prototype.mapClientXOnSliderScale=function(t){var e=(t-this.rect.left)/this.rect.width;this.adapter.isRTL()&&(e=1-e);var i=this.min+e*(this.max-this.min);return i===this.max||i===this.min?i:Number(this.quantize(i).toFixed(this.numDecimalPlaces))},r.prototype.quantize=function(t){var e=Math.round((t-this.min)/this.step);return this.min+e*this.step},r.prototype.updateValue=function(t,e,i){var r=(void 0===i?{}:i).emitInputEvent;if(t=this.clampValue(t,e),this.isRange&&e===Te.START){if(this.valueStart===t)return;this.valueStart=t}else{if(this.value===t)return;this.value=t}this.updateUI(e),r&&this.adapter.emitInputEvent(e===Te.START?this.valueStart:this.value,e)},r.prototype.clampValue=function(t,e){return t=Math.min(Math.max(t,this.min),this.max),this.isRange&&e===Te.START&&t>this.value-this.minRange?this.value-this.minRange:this.isRange&&e===Te.END&&t<this.valueStart+this.minRange?this.valueStart+this.minRange:t},r.prototype.updateThumbAndTrackUI=function(t){var e=this,i=this.max,r=this.min,n=(this.value-this.valueStart)/(i-r),a=n*this.rect.width,o=this.adapter.isRTL(),s=ti?Ce(window,"transform"):"transform";if(this.isRange){var d=this.adapter.isRTL()?(i-this.value)/(i-r)*this.rect.width:(this.valueStart-r)/(i-r)*this.rect.width,c=d+a;this.animFrame.request(Ie.SLIDER_UPDATE,(function(){!o&&t===Te.START||o&&t!==Te.START?(e.adapter.setTrackActiveStyleProperty("transform-origin","right"),e.adapter.setTrackActiveStyleProperty("left","auto"),e.adapter.setTrackActiveStyleProperty("right",e.rect.width-c+"px")):(e.adapter.setTrackActiveStyleProperty("transform-origin","left"),e.adapter.setTrackActiveStyleProperty("right","auto"),e.adapter.setTrackActiveStyleProperty("left",d+"px")),e.adapter.setTrackActiveStyleProperty(s,"scaleX("+n+")");var i=o?c:d,r=e.adapter.isRTL()?d:c;t!==Te.START&&t&&e.initialStylesRemoved||(e.adapter.setThumbStyleProperty(s,"translateX("+i+"px)",Te.START),e.alignValueIndicator(Te.START,i)),t!==Te.END&&t&&e.initialStylesRemoved||(e.adapter.setThumbStyleProperty(s,"translateX("+r+"px)",Te.END),e.alignValueIndicator(Te.END,r)),e.removeInitialStyles(o),e.updateOverlappingThumbsUI(i,r,t)}))}else this.animFrame.request(Ie.SLIDER_UPDATE,(function(){var t=o?e.rect.width-a:a;e.adapter.setThumbStyleProperty(s,"translateX("+t+"px)",Te.END),e.alignValueIndicator(Te.END,t),e.adapter.setTrackActiveStyleProperty(s,"scaleX("+n+")"),e.removeInitialStyles(o)}))},r.prototype.alignValueIndicator=function(t,e){if(this.isDiscrete){var i=this.adapter.getThumbBoundingClientRect(t).width/2,r=this.adapter.getValueIndicatorContainerWidth(t),n=this.adapter.getBoundingClientRect().width;r/2>e+i?(this.adapter.setThumbStyleProperty(qe,i+"px",t),this.adapter.setThumbStyleProperty(Ke,"auto",t),this.adapter.setThumbStyleProperty(Je,"translateX(-50%)",t),this.adapter.setThumbStyleProperty(Ye,"0",t),this.adapter.setThumbStyleProperty(Ze,"auto",t),this.adapter.setThumbStyleProperty(Qe,"none",t)):r/2>n-e+i?(this.adapter.setThumbStyleProperty(qe,"auto",t),this.adapter.setThumbStyleProperty(Ke,i+"px",t),this.adapter.setThumbStyleProperty(Je,"translateX(50%)",t),this.adapter.setThumbStyleProperty(Ye,"auto",t),this.adapter.setThumbStyleProperty(Ze,"0",t),this.adapter.setThumbStyleProperty(Qe,"none",t)):(this.adapter.setThumbStyleProperty(qe,"50%",t),this.adapter.setThumbStyleProperty(Ke,"auto",t),this.adapter.setThumbStyleProperty(Je,"translateX(-50%)",t),this.adapter.setThumbStyleProperty(Ye,"50%",t),this.adapter.setThumbStyleProperty(Ze,"auto",t),this.adapter.setThumbStyleProperty(Qe,"translateX(-50%)",t))}},r.prototype.removeInitialStyles=function(t){if(!this.initialStylesRemoved){var e=t?"right":"left";this.adapter.removeThumbStyleProperty(e,Te.END),this.isRange&&this.adapter.removeThumbStyleProperty(e,Te.START),this.initialStylesRemoved=!0,this.resetTrackAndThumbAnimation()}},r.prototype.resetTrackAndThumbAnimation=function(){var t=this;if(this.isDiscrete){var e=ti?Ce(window,"transition"):"transition",i="none 0s ease 0s";this.adapter.setThumbStyleProperty(e,i,Te.END),this.isRange&&this.adapter.setThumbStyleProperty(e,i,Te.START),this.adapter.setTrackActiveStyleProperty(e,i),requestAnimationFrame((function(){t.adapter.removeThumbStyleProperty(e,Te.END),t.adapter.removeTrackActiveStyleProperty(e),t.isRange&&t.adapter.removeThumbStyleProperty(e,Te.START)}))}},r.prototype.updateOverlappingThumbsUI=function(t,e,i){var r=!1;if(this.adapter.isRTL()){var n=t-this.startThumbKnobWidth/2;r=e+this.endThumbKnobWidth/2>=n}else{r=t+this.startThumbKnobWidth/2>=e-this.endThumbKnobWidth/2}r?(this.adapter.addThumbClass(Me,i||Te.END),this.adapter.removeThumbClass(Me,i===Te.START?Te.END:Te.START)):(this.adapter.removeThumbClass(Me,Te.START),this.adapter.removeThumbClass(Me,Te.END))},r.prototype.convertAttributeValueToNumber=function(t,e){if(null===t)throw new Error("MDCSliderFoundation: `"+e+"` must be non-null.");var i=Number(t);if(isNaN(i))throw new Error("MDCSliderFoundation: `"+e+"` value is `"+t+"`, but must be a number.");return i},r.prototype.validateProperties=function(t){var e=t.min,i=t.max,r=t.value,n=t.valueStart,a=t.step,o=t.minRange;if(e>=i)throw new Error("MDCSliderFoundation: min must be strictly less than max. Current: [min: "+e+", max: "+i+"]");if(a<=0)throw new Error("MDCSliderFoundation: step must be a positive number. Current step: "+a);if(this.isRange){if(r<e||r>i||n<e||n>i)throw new Error("MDCSliderFoundation: values must be in [min, max] range. Current values: [start value: "+n+", end value: "+r+", min: "+e+", max: "+i+"]");if(n>r)throw new Error("MDCSliderFoundation: start value must be <= end value. Current values: [start value: "+n+", end value: "+r+"]");if(o<0)throw new Error("MDCSliderFoundation: minimum range must be non-negative. Current min range: "+o);if(r-n<o)throw new Error("MDCSliderFoundation: start value and end value must differ by at least "+o+". Current values: [start value: "+n+", end value: "+r+"]");var s=(n-e)/a,d=(r-e)/a;if(!Number.isInteger(parseFloat(s.toFixed(6)))||!Number.isInteger(parseFloat(d.toFixed(6))))throw new Error("MDCSliderFoundation: Slider values must be valid based on the step value ("+a+"). Current values: [start value: "+n+", end value: "+r+", min: "+e+"]")}else{if(r<e||r>i)throw new Error("MDCSliderFoundation: value must be in [min, max] range. Current values: [value: "+r+", min: "+e+", max: "+i+"]");d=(r-e)/a;if(!Number.isInteger(parseFloat(d.toFixed(6))))throw new Error("MDCSliderFoundation: Slider value must be valid based on the step value ("+a+"). Current value: "+r)}},r.prototype.registerEventHandlers=function(){this.adapter.registerWindowEventHandler("resize",this.resizeListener),r.SUPPORTS_POINTER_EVENTS?(this.adapter.registerEventHandler("pointerdown",this.pointerdownListener),this.adapter.registerEventHandler("pointerup",this.pointerupListener)):(this.adapter.registerEventHandler("mousedown",this.mousedownOrTouchstartListener),this.adapter.registerEventHandler("touchstart",this.mousedownOrTouchstartListener)),this.isRange&&(this.adapter.registerThumbEventHandler(Te.START,"mouseenter",this.thumbMouseenterListener),this.adapter.registerThumbEventHandler(Te.START,"mouseleave",this.thumbMouseleaveListener),this.adapter.registerInputEventHandler(Te.START,"change",this.inputStartChangeListener),this.adapter.registerInputEventHandler(Te.START,"focus",this.inputStartFocusListener),this.adapter.registerInputEventHandler(Te.START,"blur",this.inputStartBlurListener)),this.adapter.registerThumbEventHandler(Te.END,"mouseenter",this.thumbMouseenterListener),this.adapter.registerThumbEventHandler(Te.END,"mouseleave",this.thumbMouseleaveListener),this.adapter.registerInputEventHandler(Te.END,"change",this.inputEndChangeListener),this.adapter.registerInputEventHandler(Te.END,"focus",this.inputEndFocusListener),this.adapter.registerInputEventHandler(Te.END,"blur",this.inputEndBlurListener)},r.prototype.deregisterEventHandlers=function(){this.adapter.deregisterWindowEventHandler("resize",this.resizeListener),r.SUPPORTS_POINTER_EVENTS?(this.adapter.deregisterEventHandler("pointerdown",this.pointerdownListener),this.adapter.deregisterEventHandler("pointerup",this.pointerupListener)):(this.adapter.deregisterEventHandler("mousedown",this.mousedownOrTouchstartListener),this.adapter.deregisterEventHandler("touchstart",this.mousedownOrTouchstartListener)),this.isRange&&(this.adapter.deregisterThumbEventHandler(Te.START,"mouseenter",this.thumbMouseenterListener),this.adapter.deregisterThumbEventHandler(Te.START,"mouseleave",this.thumbMouseleaveListener),this.adapter.deregisterInputEventHandler(Te.START,"change",this.inputStartChangeListener),this.adapter.deregisterInputEventHandler(Te.START,"focus",this.inputStartFocusListener),this.adapter.deregisterInputEventHandler(Te.START,"blur",this.inputStartBlurListener)),this.adapter.deregisterThumbEventHandler(Te.END,"mouseenter",this.thumbMouseenterListener),this.adapter.deregisterThumbEventHandler(Te.END,"mouseleave",this.thumbMouseleaveListener),this.adapter.deregisterInputEventHandler(Te.END,"change",this.inputEndChangeListener),this.adapter.deregisterInputEventHandler(Te.END,"focus",this.inputEndFocusListener),this.adapter.deregisterInputEventHandler(Te.END,"blur",this.inputEndBlurListener)},r.prototype.handlePointerup=function(){this.handleUp(),this.adapter.deregisterEventHandler("pointermove",this.moveListener)},r.SUPPORTS_POINTER_EVENTS=ti&&Boolean(window.PointerEvent)&&!(["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document),r}(_t);function ii(t){var e=/(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(String(t));if(!e)return 0;var i=e[1]||"",r=e[2]||0;return Math.max(0,("0"===i?0:i.length)-Number(r))}
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */
-class SliderBase extends FormElement {
-    constructor() {
-        super(...arguments);
-        this.mdcFoundationClass = MDCSliderFoundation;
-        this.disabled = false;
-        this.min = 0;
-        this.max = 100;
-        this.valueEnd = 0;
-        this.name = '';
-        this.step = 1;
-        this.withTickMarks = false;
-        this.discrete = false;
-        this.tickMarks = [];
-        this.trackTransformOriginStyle = '';
-        this.trackLeftStyle = '';
-        this.trackRightStyle = '';
-        this.trackTransitionStyle = '';
-        this.endThumbWithIndicator = false;
-        this.endThumbTop = false;
-        this.shouldRenderEndRipple = false;
-        this.endThumbTransformStyle = '';
-        this.endThumbTransitionStyle = '';
-        this.endThumbCssProperties = {};
-        this.valueToAriaTextTransform = null;
-        this.valueToValueIndicatorTransform = (value) => {
-            return `${value}`;
-        };
-        this.boundMoveListener = null;
-        this.endRippleHandlers = new RippleHandlers(() => {
-            this.shouldRenderEndRipple = true;
-            return this.endRipple;
-        });
-    }
-    update(changed) {
-        if (changed.has('valueEnd') && this.mdcFoundation) {
-            this.mdcFoundation.setValue(this.valueEnd);
-            const validVal = this.mdcFoundation.getValue();
-            if (validVal !== this.valueEnd) {
-                this.valueEnd = validVal;
-            }
-        }
-        if (changed.has('discrete')) {
-            if (!this.discrete) {
-                this.tickMarks = [];
-            }
-        }
-        super.update(changed);
-    }
-    render() {
-        return this.renderRootEl(y `
+ */class ri extends ke{constructor(){super(...arguments),this.mdcFoundationClass=ei,this.disabled=!1,this.min=0,this.max=100,this.valueEnd=0,this.name="",this.step=1,this.withTickMarks=!1,this.discrete=!1,this.tickMarks=[],this.trackTransformOriginStyle="",this.trackLeftStyle="",this.trackRightStyle="",this.trackTransitionStyle="",this.endThumbWithIndicator=!1,this.endThumbTop=!1,this.shouldRenderEndRipple=!1,this.endThumbTransformStyle="",this.endThumbTransitionStyle="",this.endThumbCssProperties={},this.valueToAriaTextTransform=null,this.valueToValueIndicatorTransform=t=>`${t}`,this.boundMoveListener=null,this.endRippleHandlers=new ue((()=>(this.shouldRenderEndRipple=!0,this.endRipple)))}update(t){if(t.has("valueEnd")&&this.mdcFoundation){this.mdcFoundation.setValue(this.valueEnd);const t=this.mdcFoundation.getValue();t!==this.valueEnd&&(this.valueEnd=t)}t.has("discrete")&&(this.discrete||(this.tickMarks=[])),super.update(t)}render(){return this.renderRootEl(L`
       ${this.renderStartInput()}
       ${this.renderEndInput()}
       ${this.renderTrack()}
       ${this.renderTickMarks()}
       ${this.renderStartThumb()}
-      ${this.renderEndThumb()}`);
-    }
-    renderRootEl(content) {
-        const rootClasses = o$1({
-            'mdc-slider--disabled': this.disabled,
-            'mdc-slider--discrete': this.discrete,
-        });
-        return y `
+      ${this.renderEndThumb()}`)}renderRootEl(t){const e=Nt({"mdc-slider--disabled":this.disabled,"mdc-slider--discrete":this.discrete});return L`
     <div
-        class="mdc-slider ${rootClasses}"
+        class="mdc-slider ${e}"
         @pointerdown=${this.onPointerdown}
         @pointerup=${this.onPointerup}
         @contextmenu=${this.onContextmenu}>
-      ${content}
-    </div>`;
-    }
-    renderStartInput() {
-        return b;
-    }
-    renderEndInput() {
-        var _a;
-        return y `
+      ${t}
+    </div>`}renderStartInput(){return U}renderEndInput(){var t;return L`
       <input
           class="mdc-slider__input end"
           type="range"
@@ -3744,579 +509,52 @@ class SliderBase extends FormElement {
           @blur=${this.onEndBlur}
           ?disabled=${this.disabled}
           name=${this.name}
-          aria-label=${l(this.ariaLabel)}
-          aria-labelledby=${l(this.ariaLabelledBy)}
-          aria-describedby=${l(this.ariaDescribedBy)}
-          aria-valuetext=${l((_a = this.valueToAriaTextTransform) === null || _a === void 0 ? void 0 : _a.call(this, this.valueEnd))}>
-    `;
-    }
-    renderTrack() {
-        return b;
-    }
-    renderTickMarks() {
-        return !this.withTickMarks ? b : y `
+          aria-label=${he(this.ariaLabel)}
+          aria-labelledby=${he(this.ariaLabelledBy)}
+          aria-describedby=${he(this.ariaDescribedBy)}
+          aria-valuetext=${he(null===(t=this.valueToAriaTextTransform)||void 0===t?void 0:t.call(this,this.valueEnd))}>
+    `}renderTrack(){return U}renderTickMarks(){return this.withTickMarks?L`
       <div class="mdc-slider__tick-marks">
-        ${this.tickMarks.map((tickMark) => {
-            const isActive = tickMark === TickMark.ACTIVE;
-            return y `<div class="${isActive ? 'mdc-slider__tick-mark--active' :
-                'mdc-slider__tick-mark--inactive'}"></div>`;
-        })}
-      </div>`;
-    }
-    renderStartThumb() {
-        return b;
-    }
-    renderEndThumb() {
-        const endThumbClasses = o$1({
-            'mdc-slider__thumb--with-indicator': this.endThumbWithIndicator,
-            'mdc-slider__thumb--top': this.endThumbTop,
-        });
-        const endThumbStyles = i(Object.assign({ '-webkit-transform': this.endThumbTransformStyle, 'transform': this.endThumbTransformStyle, '-webkit-transition': this.endThumbTransitionStyle, 'transition': this.endThumbTransitionStyle, 'left': this.endThumbTransformStyle ?
-                '' :
-                getComputedStyle(this).direction === 'rtl' ?
-                    '' :
-                    `calc(${(this.valueEnd - this.min) / (this.max - this.min) *
-                        100}% - 24px)`, 'right': this.endThumbTransformStyle ?
-                '' :
-                getComputedStyle(this).direction !== 'rtl' ?
-                    '' :
-                    `calc(${(this.valueEnd - this.min) / (this.max - this.min) *
-                        100}% - 24px)` }, this.endThumbCssProperties));
-        const ripple = !this.shouldRenderEndRipple ?
-            b :
-            y `<mwc-ripple class="ripple" unbounded></mwc-ripple>`;
-        return y `
+        ${this.tickMarks.map((t=>{const e=t===xe.ACTIVE;return L`<div class="${e?"mdc-slider__tick-mark--active":"mdc-slider__tick-mark--inactive"}"></div>`}))}
+      </div>`:U}renderStartThumb(){return U}renderEndThumb(){const t=Nt({"mdc-slider__thumb--with-indicator":this.endThumbWithIndicator,"mdc-slider__thumb--top":this.endThumbTop}),e=se(Object.assign({"-webkit-transform":this.endThumbTransformStyle,transform:this.endThumbTransformStyle,"-webkit-transition":this.endThumbTransitionStyle,transition:this.endThumbTransitionStyle,left:this.endThumbTransformStyle||"rtl"===getComputedStyle(this).direction?"":`calc(${(this.valueEnd-this.min)/(this.max-this.min)*100}% - 24px)`,right:this.endThumbTransformStyle||"rtl"!==getComputedStyle(this).direction?"":`calc(${(this.valueEnd-this.min)/(this.max-this.min)*100}% - 24px)`},this.endThumbCssProperties)),i=this.shouldRenderEndRipple?L`<mwc-ripple class="ripple" unbounded></mwc-ripple>`:U;return L`
       <div
-          class="mdc-slider__thumb end ${endThumbClasses}"
-          style=${endThumbStyles}
+          class="mdc-slider__thumb end ${t}"
+          style=${e}
           @mouseenter=${this.onEndMouseenter}
           @mouseleave=${this.onEndMouseleave}>
-        ${ripple}
+        ${i}
         ${this.renderValueIndicator(this.valueToValueIndicatorTransform(this.valueEnd))}
         <div class="mdc-slider__thumb-knob"></div>
       </div>
-    `;
-    }
-    renderValueIndicator(text) {
-        return this.discrete ? y `
+    `}renderValueIndicator(t){return this.discrete?L`
     <div class="mdc-slider__value-indicator-container" aria-hidden="true">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
-          ${text}
+          ${t}
         </span>
       </div>
-    </div>` :
-            b;
-    }
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        if (this.mdcFoundation) {
-            this.mdcFoundation.destroy();
-        }
-    }
-    createAdapter() { }
-    async firstUpdated() {
-        super.firstUpdated();
-        await this.layout(true);
-    }
-    updated(changed) {
-        super.updated(changed);
-        if (!this.mdcFoundation) {
-            return;
-        }
-        if (changed.has('disabled')) {
-            this.mdcFoundation.setDisabled(this.disabled);
-        }
-        if (changed.has('min')) {
-            this.mdcFoundation.setMin(this.min);
-        }
-        if (changed.has('max')) {
-            this.mdcFoundation.setMax(this.max);
-        }
-        if (changed.has('step')) {
-            this.mdcFoundation.setStep(this.step);
-        }
-        if (changed.has('discrete')) {
-            this.mdcFoundation.setIsDiscrete(this.discrete);
-        }
-        if (changed.has('withTickMarks')) {
-            this.mdcFoundation.setHasTickMarks(this.withTickMarks);
-        }
-    }
-    async layout(skipUpdateUI = false) {
-        var _a;
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.layout({ skipUpdateUI });
-        this.requestUpdate();
-        await this.updateComplete;
-    }
-    onEndChange(e) {
-        var _a;
-        this.valueEnd = Number(e.target.value);
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.handleInputChange(Thumb.END);
-    }
-    onEndFocus() {
-        var _a;
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.handleInputFocus(Thumb.END);
-        this.endRippleHandlers.startFocus();
-    }
-    onEndBlur() {
-        var _a;
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.handleInputBlur(Thumb.END);
-        this.endRippleHandlers.endFocus();
-    }
-    onEndMouseenter() {
-        var _a;
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.handleThumbMouseenter();
-        this.endRippleHandlers.startHover();
-    }
-    onEndMouseleave() {
-        var _a;
-        (_a = this.mdcFoundation) === null || _a === void 0 ? void 0 : _a.handleThumbMouseleave();
-        this.endRippleHandlers.endHover();
-    }
-    onPointerdown(e) {
-        this.layout();
-        if (this.mdcFoundation) {
-            this.mdcFoundation.handlePointerdown(e);
-            this.boundMoveListener =
-                this.mdcFoundation.handleMove.bind(this.mdcFoundation);
-            this.mdcRoot.addEventListener('pointermove', this.boundMoveListener);
-        }
-    }
-    onPointerup() {
-        if (this.mdcFoundation) {
-            this.mdcFoundation.handleUp();
-            if (this.boundMoveListener) {
-                this.mdcRoot.removeEventListener('pointermove', this.boundMoveListener);
-                this.boundMoveListener = null;
-            }
-        }
-    }
-    onContextmenu(e) {
-        // prevents context menu otherwise pointerdown will fire but not pointerup
-        e.preventDefault();
-    }
-    setFormData(formData) {
-        if (this.name) {
-            formData.append(this.name, `${this.valueEnd}`);
-        }
-    }
-}
-__decorate([
-    i$2('input.end')
-], SliderBase.prototype, "formElement", void 0);
-__decorate([
-    i$2('.mdc-slider')
-], SliderBase.prototype, "mdcRoot", void 0);
-__decorate([
-    i$2('.end.mdc-slider__thumb')
-], SliderBase.prototype, "endThumb", void 0);
-__decorate([
-    i$2('.end.mdc-slider__thumb .mdc-slider__thumb-knob')
-], SliderBase.prototype, "endThumbKnob", void 0);
-__decorate([
-    i$2('.end.mdc-slider__thumb .mdc-slider__value-indicator-container')
-], SliderBase.prototype, "endValueIndicatorContainer", void 0);
-__decorate([
-    e$2('.end .ripple')
-], SliderBase.prototype, "endRipple", void 0);
-__decorate([
-    e$4({ type: Boolean, reflect: true })
-], SliderBase.prototype, "disabled", void 0);
-__decorate([
-    e$4({ type: Number })
-], SliderBase.prototype, "min", void 0);
-__decorate([
-    e$4({ type: Number })
-], SliderBase.prototype, "max", void 0);
-__decorate([
-    e$4({ type: Number })
-], SliderBase.prototype, "valueEnd", void 0);
-__decorate([
-    e$4({ type: String })
-], SliderBase.prototype, "name", void 0);
-__decorate([
-    e$4({ type: Number })
-], SliderBase.prototype, "step", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], SliderBase.prototype, "withTickMarks", void 0);
-__decorate([
-    e$4({ type: Boolean })
-], SliderBase.prototype, "discrete", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "tickMarks", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "trackTransformOriginStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "trackLeftStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "trackRightStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "trackTransitionStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "endThumbWithIndicator", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "endThumbTop", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "shouldRenderEndRipple", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "endThumbTransformStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "endThumbTransitionStyle", void 0);
-__decorate([
-    t$1()
-], SliderBase.prototype, "endThumbCssProperties", void 0);
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-label' })
-], SliderBase.prototype, "ariaLabel", void 0);
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-labelledby' })
-], SliderBase.prototype, "ariaLabelledBy", void 0);
-__decorate([
-    ariaProperty,
-    e$4({ type: String, attribute: 'aria-describedby' })
-], SliderBase.prototype, "ariaDescribedBy", void 0);
-
+    </div>`:U}disconnectedCallback(){super.disconnectedCallback(),this.mdcFoundation&&this.mdcFoundation.destroy()}createAdapter(){}async firstUpdated(){super.firstUpdated(),await this.layout(!0)}updated(t){super.updated(t),this.mdcFoundation&&(t.has("disabled")&&this.mdcFoundation.setDisabled(this.disabled),t.has("min")&&this.mdcFoundation.setMin(this.min),t.has("max")&&this.mdcFoundation.setMax(this.max),t.has("step")&&this.mdcFoundation.setStep(this.step),t.has("discrete")&&this.mdcFoundation.setIsDiscrete(this.discrete),t.has("withTickMarks")&&this.mdcFoundation.setHasTickMarks(this.withTickMarks))}async layout(t=!1){var e;null===(e=this.mdcFoundation)||void 0===e||e.layout({skipUpdateUI:t}),this.requestUpdate(),await this.updateComplete}onEndChange(t){var e;this.valueEnd=Number(t.target.value),null===(e=this.mdcFoundation)||void 0===e||e.handleInputChange(Te.END)}onEndFocus(){var t;null===(t=this.mdcFoundation)||void 0===t||t.handleInputFocus(Te.END),this.endRippleHandlers.startFocus()}onEndBlur(){var t;null===(t=this.mdcFoundation)||void 0===t||t.handleInputBlur(Te.END),this.endRippleHandlers.endFocus()}onEndMouseenter(){var t;null===(t=this.mdcFoundation)||void 0===t||t.handleThumbMouseenter(),this.endRippleHandlers.startHover()}onEndMouseleave(){var t;null===(t=this.mdcFoundation)||void 0===t||t.handleThumbMouseleave(),this.endRippleHandlers.endHover()}onPointerdown(t){this.layout(),this.mdcFoundation&&(this.mdcFoundation.handlePointerdown(t),this.boundMoveListener=this.mdcFoundation.handleMove.bind(this.mdcFoundation),this.mdcRoot.addEventListener("pointermove",this.boundMoveListener))}onPointerup(){this.mdcFoundation&&(this.mdcFoundation.handleUp(),this.boundMoveListener&&(this.mdcRoot.removeEventListener("pointermove",this.boundMoveListener),this.boundMoveListener=null))}onContextmenu(t){t.preventDefault()}setFormData(t){this.name&&t.append(this.name,`${this.valueEnd}`)}}r([ht("input.end")],ri.prototype,"formElement",void 0),r([ht(".mdc-slider")],ri.prototype,"mdcRoot",void 0),r([ht(".end.mdc-slider__thumb")],ri.prototype,"endThumb",void 0),r([ht(".end.mdc-slider__thumb .mdc-slider__thumb-knob")],ri.prototype,"endThumbKnob",void 0),r([ht(".end.mdc-slider__thumb .mdc-slider__value-indicator-container")],ri.prototype,"endValueIndicatorContainer",void 0),r([mt(".end .ripple")],ri.prototype,"endRipple",void 0),r([ct({type:Boolean,reflect:!0})],ri.prototype,"disabled",void 0),r([ct({type:Number})],ri.prototype,"min",void 0),r([ct({type:Number})],ri.prototype,"max",void 0),r([ct({type:Number})],ri.prototype,"valueEnd",void 0),r([ct({type:String})],ri.prototype,"name",void 0),r([ct({type:Number})],ri.prototype,"step",void 0),r([ct({type:Boolean})],ri.prototype,"withTickMarks",void 0),r([ct({type:Boolean})],ri.prototype,"discrete",void 0),r([lt()],ri.prototype,"tickMarks",void 0),r([lt()],ri.prototype,"trackTransformOriginStyle",void 0),r([lt()],ri.prototype,"trackLeftStyle",void 0),r([lt()],ri.prototype,"trackRightStyle",void 0),r([lt()],ri.prototype,"trackTransitionStyle",void 0),r([lt()],ri.prototype,"endThumbWithIndicator",void 0),r([lt()],ri.prototype,"endThumbTop",void 0),r([lt()],ri.prototype,"shouldRenderEndRipple",void 0),r([lt()],ri.prototype,"endThumbTransformStyle",void 0),r([lt()],ri.prototype,"endThumbTransitionStyle",void 0),r([lt()],ri.prototype,"endThumbCssProperties",void 0),r([pe,ct({type:String,attribute:"aria-label"})],ri.prototype,"ariaLabel",void 0),r([pe,ct({type:String,attribute:"aria-labelledby"})],ri.prototype,"ariaLabelledBy",void 0),r([pe,ct({type:String,attribute:"aria-describedby"})],ri.prototype,"ariaDescribedBy",void 0);
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-class SliderSingleBase extends SliderBase {
-    get value() {
-        return this.valueEnd;
-    }
-    set value(newVal) {
-        this.valueEnd = newVal;
-    }
-    renderTrack() {
-        const trackStyles = i({
-            'transform-origin': this.trackTransformOriginStyle,
-            'left': this.trackLeftStyle,
-            'right': this.trackRightStyle,
-            '-webkit-transform': `scaleX(${(this.valueEnd - this.min) / (this.max - this.min)})`,
-            'transform': `scaleX(${(this.valueEnd - this.min) / (this.max - this.min)})`,
-            '-webkit-transition': this.trackTransitionStyle,
-            'transition': this.trackTransitionStyle,
-        });
-        return y `
+class ni extends ri{get value(){return this.valueEnd}set value(t){this.valueEnd=t}renderTrack(){const t=se({"transform-origin":this.trackTransformOriginStyle,left:this.trackLeftStyle,right:this.trackRightStyle,"-webkit-transform":`scaleX(${(this.valueEnd-this.min)/(this.max-this.min)})`,transform:`scaleX(${(this.valueEnd-this.min)/(this.max-this.min)})`,"-webkit-transition":this.trackTransitionStyle,transition:this.trackTransitionStyle});return L`
       <div class="mdc-slider__track">
         <div class="mdc-slider__track--inactive"></div>
         <div class="mdc-slider__track--active">
           <div
               class="mdc-slider__track--active_fill"
-              style=${trackStyles}>
+              style=${t}>
           </div>
         </div>
-      </div>`;
-    }
-    createAdapter() {
-        return {
-            addClass: (className) => {
-                switch (className) {
-                    case 'mdc-slider--disabled':
-                        this.disabled = true;
-                        break;
-                }
-            },
-            removeClass: (className) => {
-                switch (className) {
-                    case 'mdc-slider--disabled':
-                        this.disabled = false;
-                        break;
-                }
-            },
-            hasClass: (className) => {
-                switch (className) {
-                    case 'mdc-slider--disabled':
-                        return this.disabled;
-                    case 'mdc-slider--discrete':
-                        return this.discrete;
-                    default:
-                        return false;
-                }
-            },
-            addThumbClass: (className, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                switch (className) {
-                    case 'mdc-slider__thumb--with-indicator':
-                        this.endThumbWithIndicator = true;
-                        break;
-                }
-            },
-            removeThumbClass: (className, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                switch (className) {
-                    case 'mdc-slider__thumb--with-indicator':
-                        this.endThumbWithIndicator = false;
-                        break;
-                }
-            },
-            registerEventHandler: () => {
-                // handled in bindings
-            },
-            deregisterEventHandler: () => {
-                // handled in bindings
-            },
-            registerBodyEventHandler: (eventName, handler) => {
-                document.body.addEventListener(eventName, handler);
-            },
-            deregisterBodyEventHandler: (eventName, handler) => {
-                document.body.removeEventListener(eventName, handler);
-            },
-            registerInputEventHandler: (thumb, eventName, handler) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                this.formElement.addEventListener(eventName, handler);
-            },
-            deregisterInputEventHandler: (thumb, eventName, handler) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                this.formElement.removeEventListener(eventName, handler);
-            },
-            registerThumbEventHandler: () => {
-                // handled by bindings
-            },
-            deregisterThumbEventHandler: () => {
-                // handled by bindings
-            },
-            registerWindowEventHandler: (eventName, handler) => {
-                window.addEventListener(eventName, handler);
-            },
-            deregisterWindowEventHandler: (eventName, handler) => {
-                window.addEventListener(eventName, handler);
-            },
-            emitChangeEvent: (value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                const event = new CustomEvent('change', { bubbles: true, composed: true, detail: { value, thumb } });
-                this.dispatchEvent(event);
-            },
-            emitDragEndEvent: (_value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                // Emitting event is not yet implemented. See issue:
-                // https://github.com/material-components/material-components-web/issues/6448
-                this.endRippleHandlers.endPress();
-            },
-            emitDragStartEvent: (_value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                // Emitting event is not yet implemented. See issue:
-                // https://github.com/material-components/material-components-web/issues/6448
-                this.endRippleHandlers.startPress();
-            },
-            emitInputEvent: (value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                const event = new CustomEvent('input', { bubbles: true, composed: true, detail: { value, thumb } });
-                this.dispatchEvent(event);
-            },
-            focusInput: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                this.formElement.focus();
-            },
-            getAttribute: () => {
-                // never seems to actually be used
-                return '';
-            },
-            getBoundingClientRect: () => {
-                return this.mdcRoot.getBoundingClientRect();
-            },
-            getInputAttribute: (attrName, thumb) => {
-                if (thumb === Thumb.START) {
-                    return null;
-                }
-                switch (attrName) {
-                    case 'min':
-                        return this.min.toString();
-                    case 'max':
-                        return this.max.toString();
-                    case 'value':
-                        return this.valueEnd.toString();
-                    case 'step':
-                        return this.step.toString();
-                    default:
-                        return null;
-                }
-            },
-            getInputValue: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return '';
-                }
-                return this.valueEnd.toString();
-            },
-            getThumbBoundingClientRect: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return this.getBoundingClientRect();
-                }
-                return this.endThumb.getBoundingClientRect();
-            },
-            getThumbKnobWidth: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return 0;
-                }
-                return this.endThumbKnob.getBoundingClientRect().width;
-            },
-            getValueIndicatorContainerWidth: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return 0;
-                }
-                return this.endValueIndicatorContainer.getBoundingClientRect().width;
-            },
-            getValueToAriaValueTextFn: () => {
-                return this.valueToAriaTextTransform;
-            },
-            isInputFocused: (thumb) => {
-                if (thumb === Thumb.START) {
-                    return false;
-                }
-                const activeElements = deepActiveElementPath();
-                return activeElements[activeElements.length - 1] === this.formElement;
-            },
-            isRTL: () => {
-                return getComputedStyle(this).direction === 'rtl';
-            },
-            setInputAttribute: (attribute, _value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-            },
-            removeInputAttribute: (attribute) => {
-            },
-            setThumbStyleProperty: (name, value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                switch (name) {
-                    case 'transform':
-                    case '-webkit-transform':
-                        this.endThumbTransformStyle = value;
-                        break;
-                    case 'transition':
-                    case '-webkit-transition':
-                        this.endThumbTransitionStyle = value;
-                        break;
-                    default:
-                        if (name.startsWith('--')) {
-                            this.endThumbCssProperties[name] = value;
-                        }
-                }
-            },
-            removeThumbStyleProperty: (name, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                switch (name) {
-                    case 'left':
-                    case 'right':
-                        // handled by bindings
-                        break;
-                    case 'transition':
-                    case '-webkit-transition':
-                        this.endThumbTransitionStyle = '';
-                        break;
-                }
-            },
-            setTrackActiveStyleProperty: (name, value) => {
-                switch (name) {
-                    case 'transform-origin':
-                        this.trackTransformOriginStyle = value;
-                        break;
-                    case 'left':
-                        this.trackLeftStyle = value;
-                        break;
-                    case 'right':
-                        this.trackRightStyle = value;
-                        break;
-                    case 'transform':
-                    case '-webkit-transform':
-                        // handled by bindings
-                        break;
-                    case 'transition':
-                    case '-webkit-transition':
-                        this.trackTransitionStyle = value;
-                        break;
-                }
-            },
-            removeTrackActiveStyleProperty: (name) => {
-                switch (name) {
-                    case 'transition':
-                    case '-webkit-transition':
-                        this.trackTransitionStyle = '';
-                        break;
-                }
-            },
-            setInputValue: (value, thumb) => {
-                if (thumb === Thumb.START) {
-                    return;
-                }
-                this.valueEnd = Number(value);
-            },
-            setPointerCapture: (pointerId) => {
-                this.mdcRoot.setPointerCapture(pointerId);
-            },
-            setValueIndicatorText: () => {
-                // handled by bindings
-            },
-            updateTickMarks: (tickMarks) => {
-                this.tickMarks = tickMarks;
-            },
-        };
-    }
-}
-__decorate([
-    e$4({ type: Number })
-], SliderSingleBase.prototype, "value", null);
-
+      </div>`}createAdapter(){return{addClass:t=>{if("mdc-slider--disabled"===t)this.disabled=!0},removeClass:t=>{if("mdc-slider--disabled"===t)this.disabled=!1},hasClass:t=>{switch(t){case"mdc-slider--disabled":return this.disabled;case"mdc-slider--discrete":return this.discrete;default:return!1}},addThumbClass:(t,e)=>{if(e!==Te.START&&"mdc-slider__thumb--with-indicator"===t)this.endThumbWithIndicator=!0},removeThumbClass:(t,e)=>{if(e!==Te.START&&"mdc-slider__thumb--with-indicator"===t)this.endThumbWithIndicator=!1},registerEventHandler:()=>{},deregisterEventHandler:()=>{},registerBodyEventHandler:(t,e)=>{document.body.addEventListener(t,e)},deregisterBodyEventHandler:(t,e)=>{document.body.removeEventListener(t,e)},registerInputEventHandler:(t,e,i)=>{t!==Te.START&&this.formElement.addEventListener(e,i)},deregisterInputEventHandler:(t,e,i)=>{t!==Te.START&&this.formElement.removeEventListener(e,i)},registerThumbEventHandler:()=>{},deregisterThumbEventHandler:()=>{},registerWindowEventHandler:(t,e)=>{window.addEventListener(t,e)},deregisterWindowEventHandler:(t,e)=>{window.addEventListener(t,e)},emitChangeEvent:(t,e)=>{if(e===Te.START)return;const i=new CustomEvent("change",{bubbles:!0,composed:!0,detail:{value:t,thumb:e}});this.dispatchEvent(i)},emitDragEndEvent:(t,e)=>{e!==Te.START&&this.endRippleHandlers.endPress()},emitDragStartEvent:(t,e)=>{e!==Te.START&&this.endRippleHandlers.startPress()},emitInputEvent:(t,e)=>{if(e===Te.START)return;const i=new CustomEvent("input",{bubbles:!0,composed:!0,detail:{value:t,thumb:e}});this.dispatchEvent(i)},focusInput:t=>{t!==Te.START&&this.formElement.focus()},getAttribute:()=>"",getBoundingClientRect:()=>this.mdcRoot.getBoundingClientRect(),getInputAttribute:(t,e)=>{if(e===Te.START)return null;switch(t){case"min":return this.min.toString();case"max":return this.max.toString();case"value":return this.valueEnd.toString();case"step":return this.step.toString();default:return null}},getInputValue:t=>t===Te.START?"":this.valueEnd.toString(),getThumbBoundingClientRect:t=>t===Te.START?this.getBoundingClientRect():this.endThumb.getBoundingClientRect(),getThumbKnobWidth:t=>t===Te.START?0:this.endThumbKnob.getBoundingClientRect().width,getValueIndicatorContainerWidth:t=>t===Te.START?0:this.endValueIndicatorContainer.getBoundingClientRect().width,getValueToAriaValueTextFn:()=>this.valueToAriaTextTransform,isInputFocused:t=>{if(t===Te.START)return!1;const e=((t=window.document)=>{let e=t.activeElement;const i=[];if(!e)return i;for(;e&&(i.push(e),e.shadowRoot);)e=e.shadowRoot.activeElement;return i})();return e[e.length-1]===this.formElement},isRTL:()=>"rtl"===getComputedStyle(this).direction,setInputAttribute:(t,e,i)=>{Te.START},removeInputAttribute:t=>{},setThumbStyleProperty:(t,e,i)=>{if(i!==Te.START)switch(t){case"transform":case"-webkit-transform":this.endThumbTransformStyle=e;break;case"transition":case"-webkit-transition":this.endThumbTransitionStyle=e;break;default:t.startsWith("--")&&(this.endThumbCssProperties[t]=e)}},removeThumbStyleProperty:(t,e)=>{if(e!==Te.START)switch(t){case"left":case"right":break;case"transition":case"-webkit-transition":this.endThumbTransitionStyle=""}},setTrackActiveStyleProperty:(t,e)=>{switch(t){case"transform-origin":this.trackTransformOriginStyle=e;break;case"left":this.trackLeftStyle=e;break;case"right":this.trackRightStyle=e;break;case"transform":case"-webkit-transform":break;case"transition":case"-webkit-transition":this.trackTransitionStyle=e}},removeTrackActiveStyleProperty:t=>{switch(t){case"transition":case"-webkit-transition":this.trackTransitionStyle=""}},setInputValue:(t,e)=>{e!==Te.START&&(this.valueEnd=Number(t))},setPointerCapture:t=>{this.mdcRoot.setPointerCapture(t)},setValueIndicatorText:()=>{},updateTickMarks:t=>{this.tickMarks=t}}}}r([ct({type:Number})],ni.prototype,"value",null);
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-let Slider = class Slider extends SliderSingleBase {
-};
-Slider.styles = [styles];
-Slider = __decorate([
-    e$5('mwc-slider')
-], Slider);
-
-let InstagramName = class InstagramName extends s$1 {
-    constructor() {
-        super(...arguments);
-        this.url = '';
-    }
-    render() {
-        const name = this.url.split('/').filter(el => el).pop();
-        return y `<img src="./img/instagram.ico" width="16px" style="margin-right:4px;" /> <a href="${this.url}" target="_blank">${name}</a>`;
-    }
-};
-InstagramName.styles = i$5 `
+let ai=class extends ni{};ai.styles=[_e],ai=r([st("mwc-slider")],ai);let oi=class extends at{constructor(){super(...arguments),this.url=""}render(){const t=this.url.split("/").filter((t=>t)).pop();return L`<img src="./img/instagram.ico" width="16px" style="margin-right:4px;" /> <a href="${this.url}" target="_blank">${t}</a>`}};oi.styles=l`
   :host {
     display: inline-flex;
     align-items: center;
@@ -4325,79 +563,17 @@ InstagramName.styles = i$5 `
   a {
     color: white;
   }
-  `;
-__decorate([
-    e$4()
-], InstagramName.prototype, "url", void 0);
-InstagramName = __decorate([
-    e$5('instagram-name')
-], InstagramName);
-
-/* speech system */
-const spchsys = speechSynthesis;
-function getCandidates(langs, preferredNames) {
-    const candidates = spchsys.getVoices().filter(v => langs.includes(v.lang));
-    candidates.sort((v1, v2) => {
-        const v1index = preferredNames.indexOf(v1.voiceURI);
-        const v2index = preferredNames.indexOf(v2.voiceURI);
-        return (v1index >= 0 ? v1index : 99) - (v2index >= 0 ? v2index : 99);
-    });
-    return candidates;
-}
-function speak(voice, text, volume = .5, rate = .7) {
-    return new Promise((resolve, reject) => {
-        const utterance = new SpeechSynthesisUtterance();
-        Object.assign(utterance, { voice, text, volume, rate });
-        utterance.lang = voice.lang.replace(/_/, '-');
-        utterance.onend = () => {
-            resolve();
-        };
-        // utterance.voice = voice
-        // utterance.text = text
-        spchsys.speak(utterance);
-    });
-}
-function speakJapanese(text, volume = 1, rate = .9) {
-    const candidates = getCandidates(['ja-JP', 'ja_JP'], [
-        // pc
-        'Google 日本語',
-        'Microsoft Sayaka - Japanese (Japan)',
-        'Microsoft Ayumi - Japanese (Japan)',
-        'Microsoft Haruka - Japanese (Japan)',
-        'Microsoft Ichiro - Japanese (Japan)',
-        // mobile
-        'Japanese Japan'
-    ]);
-    // console.log(candidates)
-    return speak(candidates[0], text, volume, rate);
-}
-window.speechSynthesis.addEventListener('voiceschanged', () => {
-    // console.log(spchsys.getVoices())
-});
-// For some weird badly designed reasons
-// `voiceschanged` will only trigger if `getVoices` is called anywhre on mobile devices...
-// Maybe because it tells the device that the application is trying to use the speechSynthesis module
-// do not know.
-speechSynthesis.getVoices();
-
-let AppContainer = class AppContainer extends s$1 {
-    constructor() {
-        super();
-        this.length = 3;
-    }
-    render() {
-        this.newRandomee();
-        return y `
+  `,r([ct()],oi.prototype,"url",void 0),oi=r([st("instagram-name")],oi);const si=speechSynthesis;function di(t,e=1,i=.9){const r=function(t,e){const i=si.getVoices().filter((e=>t.includes(e.lang)));return i.sort(((t,i)=>{const r=e.indexOf(t.voiceURI),n=e.indexOf(i.voiceURI);return(r>=0?r:99)-(n>=0?n:99)})),i}(["ja-JP","ja_JP"],["Google 日本語","Microsoft Sayaka - Japanese (Japan)","Microsoft Ayumi - Japanese (Japan)","Microsoft Haruka - Japanese (Japan)","Microsoft Ichiro - Japanese (Japan)","Japanese Japan"]);return function(t,e,i=.5,r=.7){return new Promise(((n,a)=>{const o=new SpeechSynthesisUtterance;Object.assign(o,{voice:t,text:e,volume:i,rate:r}),o.lang=t.lang.replace(/_/,"-"),o.onend=()=>{n()},si.speak(o)}))}(r[0],t,e,i)}window.speechSynthesis.addEventListener("voiceschanged",(()=>{})),speechSynthesis.getVoices();let ci=class extends at{constructor(){super(),this.length=3}render(){return this.newRandomee(),L`
     <header style="position:fixed;top:5px;left:5px;z-index:999">
         <span style="font-weight:400;font-size:1.2em;color:aquamarine">random-japanese-number</span>
         <span style="white-space:nowrap">by <instagram-name url="https://www.instagram.com/chikojap/"></instagram-name></span>
         <span style="white-space:nowrap">/ propelled by <instagram-name url="https://www.instagram.com/zerotojapan/"></instagram-name></span>
     </header>
-    <div id=content @click=${() => { this.onContentClick(); }} style="position:relative;bottom:12px">${this.randomee}</div>
+    <div id=content @click=${()=>{this.onContentClick()}} style="position:relative;bottom:12px">${this.randomee}</div>
     <footer style="position:absolute;bottom:0;left:0;right:0;">
       <div style="margin:16px;display:flex;justify-content:space-between">
-        <mwc-icon-button icon="refresh" @click=${() => { this.requestUpdate(); }}></mwc-icon-button>
-        <mwc-icon-button icon="record_voice_over" @click=${() => { this.speak(); }}></mwc-icon-button>
+        <mwc-icon-button icon="refresh" @click=${()=>{this.requestUpdate()}}></mwc-icon-button>
+        <mwc-icon-button icon="record_voice_over" @click=${()=>{this.speak()}}></mwc-icon-button>
       </div>
       <mwc-slider
         discrete
@@ -4406,39 +582,11 @@ let AppContainer = class AppContainer extends s$1 {
         max="10"
         step="1"
         value=${this.length}
-        @input=${(e) => this.length = e.detail.value}
+        @input=${t=>this.length=t.detail.value}
         style="--mdc-theme-primary:white"
       ></mwc-slider>
     </footer>
-    `;
-    }
-    firstUpdated(_changedProperties) {
-        speechSynthesis.getVoices();
-        window.speechSynthesis.addEventListener('voiceschanged', () => {
-            const voices = speechSynthesis.getVoices().map(v => v.name);
-            fetch('https://assiets.vdegenne.com/data/voices', {
-                method: 'POST',
-                headers: { 'content-type': 'application/x-www-form-urlencoded' },
-                body: JSON.stringify(voices)
-            });
-        });
-    }
-    onContentClick() {
-        this.speak();
-    }
-    async speak() {
-        await speakJapanese(this.randomee);
-    }
-    newRandomee() {
-        const min = 10 ** (this.length - 1);
-        const max = 10 ** (this.length) - 1;
-        this.randomee = ~~(Math.random() * (max - min)) + min;
-        if (this.randomee < 0) {
-            this.newRandomee();
-        }
-    }
-};
-AppContainer.styles = i$5 `
+    `}firstUpdated(t){speechSynthesis.getVoices(),window.speechSynthesis.addEventListener("voiceschanged",(()=>{const t=speechSynthesis.getVoices().map((t=>t.name));fetch("https://assiets.vdegenne.com/data/voices",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(t)})}))}onContentClick(){this.speak()}async speak(){await di(this.randomee)}newRandomee(){const t=10**(this.length-1),e=10**this.length-1;this.randomee=~~(Math.random()*(e-t))+t,this.randomee<0&&this.newRandomee()}};ci.styles=l`
   :host {
     display: flex;
     flex-direction: column;
@@ -4455,15 +603,4 @@ AppContainer.styles = i$5 `
     font-size: 4em;
     cursor: pointer;
   }
-  `;
-__decorate([
-    t$1()
-], AppContainer.prototype, "length", void 0);
-__decorate([
-    t$1()
-], AppContainer.prototype, "randomee", void 0);
-AppContainer = __decorate([
-    e$5('app-container')
-], AppContainer);
-
-export { AppContainer };
+  `,r([lt()],ci.prototype,"length",void 0),r([lt()],ci.prototype,"randomee",void 0),ci=r([st("app-container")],ci);export{ci as AppContainer};

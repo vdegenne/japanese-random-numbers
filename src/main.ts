@@ -79,7 +79,7 @@ export class AppContainer extends LitElement {
       const voices = speechSynthesis.getVoices().map(v => v.name)
       fetch('https://assiets.vdegenne.com/data/voices', {
         method: 'POST',
-        headers: { 'content-type' : 'application/x-www-form-urlencoded' },
+        headers: { 'content-type' : 'application/json' },
         body: JSON.stringify(voices)
       })
     })
