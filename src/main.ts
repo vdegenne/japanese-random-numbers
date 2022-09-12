@@ -8,7 +8,7 @@ import '@material/mwc-slider'
 // import '@material/mwc-textfield'
 // import '@material/mwc-checkbox'
 import './instagram-name'
-import { speakJapanese } from './speech'
+import { speakEnglish, speakJapanese } from './speech'
 import { ControllerController } from './ControllerController'
 import { shuffle } from './audio'
 import { Slider } from '@material/mwc-slider'
@@ -98,6 +98,10 @@ export class AppContainer extends LitElement {
 
   async speak () {
     await speakJapanese(this.randomee)
+  }
+
+  async speakEnglish() {
+    await speakEnglish(this.randomee)
   }
 
   newRandomee () {

@@ -16,6 +16,10 @@ export class ControllerController {
         this.app.requestUpdate()
       })
 
+      .before('button6', () => {
+        this.app.speakEnglish()
+      })
+
       .before('button7', ()=>{
         this.app.speak()
       })
