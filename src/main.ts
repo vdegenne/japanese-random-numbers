@@ -23,7 +23,7 @@ declare global {
 @customElement('app-container')
 export class AppContainer extends LitElement {
   @state() length = 3
-  @state() randomee;
+  @state() randomee!: number;
 
   constructor () {
     super()
@@ -57,7 +57,7 @@ export class AppContainer extends LitElement {
     <header style="position:fixed;top:5px;left:5px;z-index:999">
         <span style="font-weight:400;font-size:1.2em;color:aquamarine">Japanese Numbers Practice</span>
         <span style="white-space:nowrap">by <instagram-name url="https://www.instagram.com/chikojap/"></instagram-name></span>
-        <span style="white-space:nowrap">/ promoted by <instagram-name url="https://www.instagram.com/zerotojapan/"></instagram-name></span>
+        <!-- <span style="white-space:nowrap">/ promoted by <instagram-name url="https://www.instagram.com/zerotojapan/"></instagram-name></span> -->
     </header>
     <div id=content @click=${()=>{this.onContentClick()}} style="position:relative;bottom:12px">${this.randomee}</div>
     <footer style="position:absolute;bottom:4px;left:4px;right:4px;display:flex">
@@ -97,11 +97,15 @@ export class AppContainer extends LitElement {
   }
 
   async speak () {
-    await speakJapanese(this.randomee)
+    let input:string = ''+this.randomee
+    if (this.randomee == 50) {
+      input = 'ごじゅう'
+    }
+    await speakJapanese(input)
   }
 
   async speakEnglish() {
-    await speakEnglish(this.randomee)
+    await speakEnglish(''+this.randomee)
   }
 
   newRandomee () {
