@@ -24,13 +24,15 @@ export class ControllerController {
         this.app.speak()
       })
 
-      .before('button14', () => {
+      .before('button14', async () => {
         this.app.slider.value--;
+        await this.app.slider.updateComplete
         this.app.length = this.app.slider.value;
         shuffle()
       })
-      .before('button15', () => {
+      .before('button15', async () => {
         this.app.slider.value++;
+        await this.app.slider.updateComplete
         this.app.length = this.app.slider.value;
         shuffle()
       })
