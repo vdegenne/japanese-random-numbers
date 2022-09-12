@@ -106,7 +106,7 @@ export class AppContainer extends LitElement {
 
   newRandomee () {
     const min = 10**(this.length-1)
-    const max = 10**(this.length) - 1
+    const max = 10**(this.length)
     this.randomee = ~~(Math.random() * (max - min)) + min
     if (this.randomee < 0) {
       this.newRandomee()
