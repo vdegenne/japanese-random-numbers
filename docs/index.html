@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>japanese-random-numbers</title>
+    <title>Japanese Numbers Practice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
@@ -26,6 +26,10 @@
         snackbar.labelText = labelText;
         snackbar.timeoutMs = timeoutMs;
         snackbar.open = true;
+      }
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js');
       }
     </script>
   </body>
