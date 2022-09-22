@@ -25,6 +25,8 @@ export class AppContainer extends LitElement {
   @state() length = 3
   @state() randomee!: number;
 
+  public playbackRate = .9;
+
   constructor () {
     super()
     new ControllerController(this)
@@ -101,7 +103,7 @@ export class AppContainer extends LitElement {
     if (this.randomee == 50) {
       input = 'ごじゅう'
     }
-    await speakJapanese(input)
+    await speakJapanese(input, 1, this.playbackRate)
   }
 
   async speakEnglish() {

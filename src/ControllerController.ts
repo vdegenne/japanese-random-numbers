@@ -16,6 +16,13 @@ export class ControllerController {
         this.app.requestUpdate()
       })
 
+      .before('button4', () => {
+        this.app.playbackRate -= .10;
+      })
+      .before('button5', () => {
+        this.app.playbackRate += .10;
+      })
+
       .before('button6', () => {
         this.app.speakEnglish()
       })
